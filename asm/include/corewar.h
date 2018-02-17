@@ -8,7 +8,15 @@
 #ifndef COREWAR_H_
 #define COREWAR_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
 #include "my.h"
+#include "my_getopt.h"
 #include "clist.h"
 
 enum type_e {
