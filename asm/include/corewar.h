@@ -9,5 +9,28 @@
 #define COREWAR_H_
 
 #include "my.h"
+#include "clist.h"
+
+enum type_e {
+	L,
+	I
+};
+
+enum token_e {
+	REG,
+	DRT,
+	IND,
+	LAB
+};
+
+struct token
+{
+	enum type_e	tk_val;
+	char		*mnemo;
+	char		**arg;
+	enum token_e	*tk_name;
+	int		arg_no;
+	int		line;
+};
 
 #endif

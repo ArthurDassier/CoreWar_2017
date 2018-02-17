@@ -24,6 +24,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ) $(INCLUDE)
 	make -C lib/my
+	make -C lib/clist
 	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
 
 .c.o:
@@ -31,14 +32,17 @@ $(NAME):	$(OBJ) $(INCLUDE)
 
 clean:
 	make -C lib/my clean
+	make -C lib/clist clean
 	@rm -rf $(OBJ)
 
 fclean:		clean
 	make -C lib/my fclean
+	make -C lib/clist fclean
 	@rm -rf $(NAME)
 	@rm -rf lib/*.a
 
 re: fclean all
 	make -C lib/my re
+	make -C lib/clist re
 
 .PHONY: clean fclean re
