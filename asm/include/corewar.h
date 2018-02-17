@@ -41,4 +41,7 @@ struct token
 	int		line;
 };
 
+struct d_queue *lex_file(char *);
+void *file_error(char *);
+
 #endif

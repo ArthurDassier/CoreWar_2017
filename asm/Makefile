@@ -16,7 +16,9 @@ LFLAGS= -L./lib -lmy -lclist -lmy_getopt
 NAME=	asm
 
 SRC_DIR=	$(realpath ./srcs/)
-SRC=		$(SRC_DIR)/main.c
+SRC=		$(SRC_DIR)/main.c                                         \
+			$(SRC_DIR)/lex.c                                          \
+			$(SRC_DIR)/error.c
 
 OBJ=		$(SRC:.c=.o)
 

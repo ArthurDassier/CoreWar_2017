@@ -50,12 +50,11 @@ static char *trunk_new_line(char **str, int *tmp_no)
 	int	i = 0;
 	char	*line = (char *)malloc(sizeof(char) * (pos + 1));
 
-	if (line == NULL || pos == 0)
+	if (line == NULL)
 		return (NULL);
 	for (i = 0; i < pos; i++)
 		line[i] = (*str)[i];
 	line[i] = '\0';
-	pos++;
 	if ((*str)[i + 1] == '\0') {
 		*str = NULL;
 		*tmp_no = 0;

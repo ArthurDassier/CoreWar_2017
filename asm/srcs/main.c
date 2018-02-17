@@ -34,5 +34,7 @@ int main(int ac, char **av)
 	while ((ch = my_getopt(ac, av, "h")) != -1)
 		if (process_arg(ch) < 0)
 			return (84);
+	for (int i = my_optind; i < ac; i++)
+		lex_file(av[i]);
 	return (0);
 }
