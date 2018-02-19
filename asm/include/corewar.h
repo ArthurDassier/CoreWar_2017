@@ -20,6 +20,7 @@
 #include "my_fgets.h"
 #include "clist.h"
 #include "op.h"
+#include "define.h"
 
 enum type_e {
 	L,
@@ -43,9 +44,10 @@ struct token
 	int		line;
 };
 
-struct d_queue *lex_file(char *);
-int is_line_comment(char *);
-void *file_error(char *);
-void malloc_error(void);
+struct d_queue	*lex_file(char *);
+int		is_line_comment(char *);
+void		*file_error(char *);
+void		malloc_error(void);
+void		add_cmd(struct d_queue *head);
 
 #endif
