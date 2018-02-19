@@ -1,20 +1,25 @@
 /*
-** EPITECH PROJECT, 2017
+** EPITECH PROJECT, 2018
 ** get_next_line.h
 ** File description:
-** the header of get_next_line function
+** header file for get next line
 */
-
-#ifndef GET_NEXT_LINE_H_
-#define GET_NEXT_LINE_H_
-
-#include <stdlib.h>
-#include <unistd.h>
-
 #ifndef READ_SIZE
-#	define READ_SIZE (1024)
-#endif
+#define READ_SIZE (142)
+#endif /* !GET_NEXT_LINE_H_ */
 
-char *get_next_line(int);
+#ifndef GNL_H_
+#define GNL_H_ 
 
-#endif
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int	choose(char *dest, char *str, int choice);
+char	*my_rea_cat(char *str, char *buf, int *end);
+int	filler(int *size, int *count, char **str, char *buf);
+char	*get_next_line(int fd);
+
+#endif /* !GNL_H_ */

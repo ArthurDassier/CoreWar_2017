@@ -16,5 +16,6 @@ int is_line_comment(char *line)
 
 int is_header(char *line)
 {
-
+	(void) line;
+	return (0);
 }

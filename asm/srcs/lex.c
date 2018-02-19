@@ -23,18 +23,18 @@ struct d_queue *lex_file(char *fname)
 	struct d_queue	*tmp = NULL;
 	struct token	*node = NULL;
 	int		fd = open(fname, O_RDONLY);
-	char		*line = (char *)malloc(sizeof(char) * BUFSIZ);
+	char		*line = NULL;
 
 	if (fd < 0)
 		return (file_error(fname));
-	line = my_fgets(line, BUFSIZ, fd);
+	line = get_next_line(fd);
 	while (line) {
 		node = process_line(line);
 		if (node != NULL) {
 			printf("%s\n", line);
 			tmp = add_d_queue(tmp, (void *)node);
 		}
-		line = my_fgets(line, BUFSIZ, fd);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (tmp);
