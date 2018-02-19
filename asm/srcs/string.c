@@ -16,6 +16,7 @@ int is_line_comment(char *line)
 
 int is_header(char *line)
 {
-	(void) line;
+	if (line != NULL && line[0] == '.')
+		return (1);
 	return (0);
 }
