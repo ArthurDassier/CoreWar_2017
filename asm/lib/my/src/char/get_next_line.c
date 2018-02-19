@@ -2,93 +2,87 @@
 ** EPITECH PROJECT, 2017
 ** get_next_line.c
 ** File description:
-** The get_next_line function source code
+** getting line
 */
-
 #include "get_next_line.h"
 
-static char *create_buf(int size)
+int	choose(char *dest, char *str, int choice)
 {
-	char	*buf = (char *)malloc(sizeof(char) * (size + 1));
-	int	i = 0;
+	int i = 0;
 
-	if (buf == NULL)
-		return (NULL);
-	while (i < (size + 1))
-		buf[i++] = 0;
-	return (buf);
-}
-
-static char *expand_buf(char *buf, int size)
-{
-	char	*tmp_buf = create_buf(size);
-	int	i = 0;
-
-	if (tmp_buf == NULL)
-		return (NULL);
-	for (i = 0; i < size; i++) {
-		tmp_buf[i] = buf[i];
-	}
-	tmp_buf[i] = '\0';
-	free(buf);
-	return (tmp_buf);
-}
-
-static int is_line(char *str)
-{
-	for (int i = 0; str[i] != '\0'; i++) {
-		if (str[i] == '\n') {
-			return (i);
+	if (choice == 1) {
+		for (i = 0; str[i]; ++i)
+			dest[i] = str[i];
+		dest[i] = '\0';
+	} else if (choice == 2) {
+		for (i = 0; str && str[i]; ++i);
+	} else {
+		for (i = 0; str[i]; ++i) {
+			if (str[i] == '\n')
+				return (i);
 		}
+		return (-1);
+	}
+	return (i);
+}
+
+char	*my_rea_cat(char *str, char *buf, int *end)
+{
+	int	i = 0;
+	char	*res = malloc(sizeof(char) *
+		(choose(NULL, str, 2) + READ_SIZE) + 1);
+	int	j = 0;
+
+	if (res == NULL)
+		return (NULL);
+	for (i = 0; str && str[i]; ++i)
+		res[i] = str[i];
+	for (j = 0; buf[j] != '\n' && buf[j] != '\0'; ++i)
+		res[i] = buf[j++];
+	if (buf[j] == '\n')
+		++j;
+	if (buf[j - 1] == '\n')
+		*end = 10;
+	choose(buf, buf + j, 1);
+	res[i] = 0;
+	if (str != NULL)
+		free(str);
+	return (res);
+}
+
+int	filler(int *size, int *count, char **str, char *buf)
+{
+	if (*size != 0) {
+		buf[*size] = 0;
+		*size = 0;
+	}
+	if (choose(NULL, buf, 3) >= 0) {
+		if (*count == 0)
+			*str = my_rea_cat(*str, buf, count);
+		return (1);
 	}
 	return (0);
 }
 
-static char *trunk_new_line(char **str, int *tmp_no)
+char		*get_next_line(int fd)
 {
-	int	pos = is_line(*str);
-	int	i = 0;
-	char	*line = (char *)malloc(sizeof(char) * (pos + 1));
+	char		*str = NULL;
+	static char	buf[READ_SIZE + 1];
+	int		size = 0;
+	int		count;
 
-	if (line == NULL || pos == 0)
-		return (NULL);
-	for (i = 0; i < pos; i++)
-		line[i] = (*str)[i];
-	line[i] = '\0';
-	pos++;
-	if ((*str)[i + 1] == '\0') {
-		*str = NULL;
-		*tmp_no = 0;
-	} else {
-		for (i = 0; i < *tmp_no; i++)
-			(*str)[i] = (*str)[i + pos];
-		(*str)[i] = '\0';
-		*tmp_no -= pos;
+	while (42) {
+		count = 0;
+		if (choose(NULL, buf, 2) != 0) {
+			count++;
+			str = my_rea_cat(str, buf, &count);
+			if (count == 10)
+				return (str);
+		}
+		else if ((size = read(fd, buf, READ_SIZE)) <= 0)
+			return (str);
+		if (filler(&size, &count, &str, buf) == 1)
+			return (str);
 	}
-	return (line);
-}
-
-char *get_next_line(int fd)
-{
-	static char	*buf = NULL;
-	static int	tmp_no = 0;
-	char		*tmp_buf = create_buf(READ_SIZE + 1);
-	int		no = 0;
-
-	if (buf == NULL)
-		buf = create_buf(READ_SIZE);
-	if (buf == NULL || tmp_buf == NULL || fd < 0)
-		return (NULL);
-	while ((no = read(fd, tmp_buf, READ_SIZE)) > 0) {
-		if ((tmp_no + no) >= READ_SIZE)
-			buf = expand_buf(buf, (tmp_no + no));
-		for (int i = tmp_no; i < (tmp_no + no); i++)
-			buf[i] = tmp_buf[i - tmp_no];
-		tmp_no += no;
-		if (is_line(tmp_buf))
-			break;
-		free(tmp_buf);
-		tmp_buf = create_buf(READ_SIZE + 1);
-	}
-	return ((no > 0 || buf != NULL)? trunk_new_line(&buf, &tmp_no) : NULL);
+	return (str);
 }
