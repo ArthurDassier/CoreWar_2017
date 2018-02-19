@@ -56,10 +56,35 @@ int	filler(int *size, int *count, char **str, char *buf)
 		buf[*size] = 0;
 		*size = 0;
 	}
+<<<<<<< HEAD
 	if (choose(NULL, buf, 3) >= 0) {
 		if (*count == 0)
 			*str = my_rea_cat(*str, buf, count);
 		return (1);
+=======
+	return (0);
+}
+
+static char *trunk_new_line(char **str, int *tmp_no)
+{
+	int	pos = is_line(*str);
+	int	i = 0;
+	char	*line = (char *)malloc(sizeof(char) * (pos + 1));
+
+	if (line == NULL)
+		return (NULL);
+	for (i = 0; i < pos; i++)
+		line[i] = (*str)[i];
+	line[i] = '\0';
+	if ((*str)[i + 1] == '\0') {
+		*str = NULL;
+		*tmp_no = 0;
+	} else {
+		for (i = 0; i < *tmp_no; i++)
+			(*str)[i] = (*str)[i + pos];
+		(*str)[i] = '\0';
+		*tmp_no -= pos;
+>>>>>>> 257205a36b33ce3d82173616366752f3668abbfb
 	}
 	return (0);
 }
