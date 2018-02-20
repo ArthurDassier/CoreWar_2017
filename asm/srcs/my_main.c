@@ -34,7 +34,6 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
 	head = fill_list();
-	add_cmd(head, fd);
-	add_adressage(head, fd);
+	parser(head, fd);
 	return (0);
 }

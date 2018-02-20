@@ -42,5 +42,4 @@ char *my_strstr(char *, char const *);
 char *my_strdup(char const *);
 char *my_strcapitalize(char *);
 
-
 #endif

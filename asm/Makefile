@@ -9,7 +9,7 @@
 
 CC=		gcc -g3
 
-FLAGS=	-Wall -Wextra -Werror -I./include
+FLAGS=	-Wall -Wextra -I./include
 
 LFLAGS= -L./lib -lmy -lclist -lmy_getopt -lmy_fgets
 
@@ -19,8 +19,11 @@ SRC_DIR=	$(realpath ./srcs/)
 
 SRC=		$(SRC_DIR)/my_main.c		\
 		$(SRC_DIR)/instruction.c	\
+		$(SRC_DIR)/parameters.c	\
+		$(SRC_DIR)/parser.c	\
+		$(SRC_DIR)/my_getnbr_base.c	\
+		$(SRC_DIR)/my_compute_power_rec.c	\
 		$(SRC_DIR)/adressage.c	\
-		$(SRC_DIR)/bits.c	\
 		$(SRC_DIR)/op.c
 
 OBJ=		$(SRC:.c=.o)
