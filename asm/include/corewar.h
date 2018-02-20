@@ -40,6 +40,11 @@ struct	args_s {
 	enum	token_e tk_name;
 };
 
+union	endian {
+	char	byte[4];
+	int	val;
+};
+
 struct token
 {
 	enum type_e	tk_val;
@@ -60,5 +65,9 @@ int		my_compute_power_rec(int nb, int p);
 int		my_getnbr_base(char const *str, char const *base);
 void		print_bits(struct token *token, int fd, int i);
 void		parser(struct d_queue *head, int fd);
+void		registers(struct token *token, int fd, int i);
+void		directs(struct token *token, int fd, int i);
+void		indirects(struct token *token, int fd, int i);
+void		swap_endian(union endian *result);
 
 #endif

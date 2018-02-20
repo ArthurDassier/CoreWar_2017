@@ -6,56 +6,60 @@
 */
 #include "corewar.h"
 
-static void	registers(struct token *token, int fd, int i)
+static	void	(*param_tab[NB_INS])(struct token *, int, int) = {
+	&registers,
+	&directs,
+	&indirects
+};
+
+static bool	check_case(char *str)
 {
-	char	*str = malloc((sizeof(*str) * 1) + 1);
+	if (my_strcmp(str, "zjump") == 0 || my_strcmp(str, "ldi") == 0 ||
+	my_strcmp(str, "sti") == 0 || my_strcmp(str, "sti") == 0)
+		return (true);
+	return (false);
+}
+
+void	registers(struct token *token, int fd, int i)
+{
 	int	result = 0;
 
-	str = my_strcat(str, token->arg_tab[i].args + 1);
-	result = my_getnbr(str);
-	write(fd, &result, 1);
-	result = result >> 2;
+	result = my_getnbr(token->arg_tab[i].args + 1);
 	write(fd, &result, 1);
 }
 
-static void	directs(struct token *token, int fd, int i)
+void	directs(struct token *token, int fd, int i)
 {
-	if (strncmp(":", token->arg_tab[i].args + 1, 1) != 0)
-		print_bits(token, fd, i);
+	union endian	result;
+
+	if (token->arg_tab[i].args[1] != LABEL_CHAR) {
+		result.val = my_getnbr(token->arg_tab[i].args + 1);
+		swap_endian(&result);
+		if (my_strcmp(token->mnemo, "live") == 0)
+			write(fd, &result, 4);
+		else if (check_case(token->mnemo) == true) {
+			result.val = result.val >> 16;
+			write(fd, &result, IND_SIZE);
+		}
+		else
+			write(fd, &result, DIR_SIZE);
+	}
 }
 
-void	print_bits(struct token *token, int fd, int i)
+void	indirects(struct token *token, int fd, int i)
 {
-	char	*str = malloc((sizeof(*str) * 1) + 1);
-	int	result = 0;
-	int	save = 0;
+	union endian	result;
 
-	str = my_strcat(str, token->arg_tab[i].args + 1);
-	result = my_getnbr(str);
-	save = result;
-	for (int j = 1; result >> (j - 1) != 0; ++j)
-		result = result >> j;
-	if (token->arg_tab[i].tk_name == REG) {
-		write(fd, &save, 1);
-		write(fd, &result, 1);
-	}
-	if (token->arg_tab[i].tk_name == DRT) {
-		write(fd, &result, 1);
-		write(fd, &save, 1);
-	}
+	result.val = my_getnbr(token->arg_tab[i].args + 1);
+	result.val = result.val << 16;
+	swap_endian(&result);
+	write(fd, &result, IND_SIZE);
 }
 
 void	add_param(struct d_queue *head, int fd)
 {
 	struct	token	*token = head->token;
 
-	for (int i = 0; i < token->arg_no; ++i) {
-		if (token->arg_tab[i].tk_name != LAB) {
-			if (token->arg_tab[i].tk_name == REG) {
-				registers(token, fd, i);
-			} else if (token->arg_tab[i].tk_name == DRT) {
-				directs(token, fd, i);
-			}
-		}
-	}
+	for (int i = 0; i < token->arg_no; ++i)
+		param_tab[token->arg_tab[i].tk_name](token, fd, i);
 }

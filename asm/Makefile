@@ -9,7 +9,7 @@
 
 CC=		gcc -g3
 
-FLAGS=	-Wall -Wextra -I./include
+FLAGS=	-Wall -Wextra -Werror -I./include
 
 LFLAGS= -L./lib -lmy -lclist -lmy_getopt -lmy_fgets
 
