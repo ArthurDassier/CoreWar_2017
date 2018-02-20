@@ -17,11 +17,11 @@ static int	is_valid_cmd(char *cmd)
 	return (FAILURE);
 }
 
-void	add_cmd(struct d_queue *head)
+void	add_cmd(struct d_queue *head, int fd)
 {
 	struct	token	*token = head->token;
 	int	index = is_valid_cmd(token->mnemo);
 
 	if (index != FAILURE)
-		printf("cmd = [%s]\n", op_tab[index].mnemonique);
+		write(fd, &(op_tab[index].code), 1);
 }

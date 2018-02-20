@@ -14,7 +14,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
+#include <stdbool.h>
 #include "my.h"
 #include "my_getopt.h"
 #include "my_fgets.h"
@@ -52,6 +52,7 @@ struct d_queue	*lex_file(char *);
 int		is_line_comment(char *);
 void		*file_error(char *);
 void		malloc_error(void);
-void		add_cmd(struct d_queue *head);
+void		add_cmd(struct d_queue *head, int fd);
+void		add_adressage(struct d_queue *head, int fd);
 
 #endif

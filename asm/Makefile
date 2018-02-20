@@ -19,6 +19,8 @@ SRC_DIR=	$(realpath ./srcs/)
 
 SRC=		$(SRC_DIR)/my_main.c		\
 		$(SRC_DIR)/instruction.c	\
+		$(SRC_DIR)/adressage.c	\
+		$(SRC_DIR)/bits.c	\
 		$(SRC_DIR)/op.c
 
 OBJ=		$(SRC:.c=.o)
