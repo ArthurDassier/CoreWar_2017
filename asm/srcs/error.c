@@ -9,7 +9,7 @@
 
 void *file_error(char *fname)
 {
-	my_printf("%s: does not exist\n\n", fname);
+	my_printf("%s: does not exist\n", fname);
 	return (NULL);
 }
 

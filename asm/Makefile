@@ -7,7 +7,7 @@
 
 .SUFFIXES: .c .o
 
-CC=		gcc
+CC=		gcc -g3
 
 FLAGS=	-Wall -Wextra -Werror -I./include
 
@@ -16,10 +16,12 @@ LFLAGS= -L./lib -lmy -lclist -lmy_getopt -lmy_fgets
 NAME=	asm
 
 SRC_DIR=	$(realpath ./srcs/)
-SRC=		$(SRC_DIR)/main.c                                         \
-			$(SRC_DIR)/lex.c                                          \
-			$(SRC_DIR)/string.c                                       \
-			$(SRC_DIR)/error.c
+
+SRC=		$(SRC_DIR)/my_main.c		\
+		$(SRC_DIR)/instruction.c	\
+		$(SRC_DIR)/adressage.c	\
+		$(SRC_DIR)/bits.c	\
+		$(SRC_DIR)/op.c
 
 OBJ=		$(SRC:.c=.o)
 
