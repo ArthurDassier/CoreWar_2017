@@ -11,5 +11,7 @@
 int ar_er(int ac, char **av);
 int check_ac_nb(int ac);
 int check_one_ac(int ac);
+int g_flag(char *av);
+int hexa_gest(char *av);
 
 #endif
