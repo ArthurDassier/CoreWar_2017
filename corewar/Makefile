@@ -19,6 +19,7 @@ SRC_DIR=	$(realpath ./srcs/)
 SRC=		$(SRC_DIR)/main.c			\
 		$(SRC_DIR)/args_errors/argc_err.c	\
 		$(SRC_DIR)/args_errors/err_gs_acav.c	\
+		$(SRC_DIR)/args_errors/av_err.c		\
 
 OBJ=		$(SRC:.c=.o)
 
