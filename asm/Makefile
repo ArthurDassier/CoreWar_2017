@@ -9,7 +9,7 @@
 
 CC=		gcc
 
-FLAGS=	-Wall -Wextra -Werror -I./include
+FLAGS=	-g3 -Wall -Wextra -Werror -I./include
 
 LFLAGS= -L./lib -lmy -lclist -lmy_getopt -lmy_fgets
 
@@ -19,6 +19,7 @@ SRC_DIR=	$(realpath ./srcs/)
 SRC=		$(SRC_DIR)/main.c                                         \
 			$(SRC_DIR)/lex.c                                          \
 			$(SRC_DIR)/string.c                                       \
+			$(SRC_DIR)/string2.c                                      \
 			$(SRC_DIR)/error.c
 
 OBJ=		$(SRC:.c=.o)

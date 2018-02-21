@@ -41,11 +41,15 @@ struct token
 	enum token_e	*tk_name;
 	int		arg_no;
 	int		line;
+	int		l_size;
 };
 
 struct d_queue *lex_file(char *);
 int is_line_comment(char *);
+int is_header(char *);
+int is_label(char *);
 void *file_error(char *);
+void *error_invalid_instruct(char *, int);
 void malloc_error(void);
 
 #endif
