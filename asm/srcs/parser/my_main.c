@@ -10,7 +10,15 @@ struct d_queue	*fill_list(void)
 {
 	struct token *node = malloc(sizeof(*node));
 	struct d_queue	*head = NULL;
+	struct header_s	*header = malloc(sizeof(*header));
+	char		*name = "test";
+	char		*comment = "It's a test file";
 
+	header->magic = COREWAR_EXEC_MAGIC;
+	my_strcpy(header->prog_name, name);
+	header->prog_size = 42;
+	my_strcpy(header->comment, comment);
+	head = add_d_queue(head, (void *)header);
 	node->tk_val = I;
 	node->mnemo = "sti";
 	node->arg_no = 3;
@@ -30,7 +38,6 @@ int	main(int ac, char **av)
 {
 	struct d_queue *head = NULL;
 	int fd = open("test.cor", O_WRONLY | O_TRUNC | O_CREAT, 0644);
-
 	(void)ac;
 	(void)av;
 	head = fill_list();

@@ -17,13 +17,14 @@ NAME=	asm
 
 SRC_DIR=	$(realpath ./srcs/)
 
-SRC=		$(SRC_DIR)/my_main.c		\
-		$(SRC_DIR)/instruction.c	\
-		$(SRC_DIR)/parameters.c	\
-		$(SRC_DIR)/parser.c	\
+SRC=		$(SRC_DIR)/parser/my_main.c		\
+		$(SRC_DIR)/parser/instruction.c	\
+		$(SRC_DIR)/parser/parameters.c	\
+		$(SRC_DIR)/parser/parser.c	\
+		$(SRC_DIR)/parser/header.c	\
+		$(SRC_DIR)/parser/adressage.c	\
 		$(SRC_DIR)/my_getnbr_base.c	\
 		$(SRC_DIR)/my_compute_power_rec.c	\
-		$(SRC_DIR)/adressage.c	\
 		$(SRC_DIR)/op.c
 
 OBJ=		$(SRC:.c=.o)

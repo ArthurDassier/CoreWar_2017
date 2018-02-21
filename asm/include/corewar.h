@@ -69,5 +69,8 @@ void		registers(struct token *token, int fd, int i);
 void		directs(struct token *token, int fd, int i);
 void		indirects(struct token *token, int fd, int i);
 void		swap_endian(union endian *result);
+void		add_magic(struct d_queue *head, int fd);
+void		add_name(struct d_queue *head, int fd);
+void		add_comment(struct d_queue *head, int fd);
 
 #endif

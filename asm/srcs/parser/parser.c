@@ -20,12 +20,15 @@ void	swap_endian(union endian *result)
 
 void	parser(struct d_queue *head, int fd)
 {
-	struct	d_queue	*tmp = head;
+	struct	d_queue	*tmp = head->next;
 
+	add_magic(head, fd);
+	add_name(head, fd);
+	add_comment(head, fd);
 	while (tmp != NULL) {
-		add_cmd(head, fd);
-		add_adressage(head, fd);
-		add_param(head, fd);
+		add_cmd(tmp, fd);
+		add_adressage(tmp, fd);
+		add_param(tmp, fd);
 		tmp = tmp->next;
 	}
 }
