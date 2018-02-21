@@ -7,7 +7,7 @@
 
 #include "err_gest.h"
 
-int check_cor2(char *av)
+int check_each(char *av)
 {
 	char	cor[4] = ".cor";
 	int	letter = 0;
@@ -23,21 +23,25 @@ int check_cor2(char *av)
 		++j;
 		++letter;
 	}
+	if (letter != 4)
+		return (84);
 	return (0);
 }
 
-int check_cor(char **av)
+int check_cor(int ac, char **av, int i)
 {
-	int	i = 1;
+	int	j = i;
 
-	while (av[i]) {
-		if (check_cor2(av[i]) == 84) {
+	while (i != ac) {
+		if (check_each(av[i]) == 84) {
 			//my_puterror(av[i]);
 			//my_puterror(" is not an executable.\n");
 			return (84);
 		}
 		++i;
 	}
+	if (j == i || i == j + 1)
+		return (84);
 	return (0);
 }
 
@@ -49,14 +53,16 @@ int g_flag(char *av)
 	return (0);
 }
 
-int hexa_gest(char *av)
+int hexa_gest(char *av, char *params)
 {
-	int i = 1;
-	int j = 0;
-	char hexa[16] = "0123456789ABCDEF";
+	char	hexa[16] = "0123456789ABCDEF";
+	int	i = 1;
+	int	j = 0;
 
-	while (av[i] != '\0') {
-		while(av[i] != hexa[j] && hexa[j] != '\0')
+	if (check_dump(av) == 84)
+		return (84);
+	while (params[i] != '\0') {
+		while (params[i] != hexa[j] && hexa[j] != '\0')
 			++j;
 		if (hexa[j] == '\0')
 			return (84);

@@ -7,9 +7,9 @@
 
 .SUFFIXES: .c .o
 
-CC=		gcc
+CC=		gcc -g3
 
-FLAGS=	-Wall -Wextra -Werror -I../asm/include
+FLAGS=	-Wall -Wextra -I../asm/include
 
 ##LFLAGS= -L./lib -lmy
 
@@ -20,6 +20,7 @@ SRC=		$(SRC_DIR)/main.c			\
 		$(SRC_DIR)/args_errors/argc_err.c	\
 		$(SRC_DIR)/args_errors/err_gs_acav.c	\
 		$(SRC_DIR)/args_errors/av_err.c		\
+		$(SRC_DIR)/args_errors/flags_err.c	\
 
 OBJ=		$(SRC:.c=.o)
 

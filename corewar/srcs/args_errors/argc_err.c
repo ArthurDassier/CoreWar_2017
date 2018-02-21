@@ -10,8 +10,9 @@
 
 int check_ac_nb(int ac)
 {
-	if (ac > MAX_ARGS_NUMBER)
-		return (84);
+	(void) ac;
+//	if (ac > MAX_ARGS_NUMBER)
+	//	return (84);
 	//my_puterror("Too many arguments\n");
 	return (0);
 }
