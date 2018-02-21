@@ -7,6 +7,40 @@
 
 #include "err_gest.h"
 
+int check_cor2(char *av)
+{
+	char	cor[4] = ".cor";
+	int	letter = 0;
+	int	j = 0;
+
+	while (av[j] != '.' && av[j] != '\0')
+		++j;
+	if (av[j] == '\0')
+		return (84);
+	while (av[j] != '\0') {
+		if (av[j] != cor[letter])
+			return (84);
+		++j;
+		++letter;
+	}
+	return (0);
+}
+
+int check_cor(char **av)
+{
+	int	i = 1;
+
+	while (av[i]) {
+		if (check_cor2(av[i]) == 84) {
+			//my_puterror(av[i]);
+			//my_puterror(" is not an executable.\n");
+			return (84);
+		}
+		++i;
+	}
+	return (0);
+}
+
 int g_flag(char *av)
 {
 	if (av[0] == '-' && av[1] == 'g')

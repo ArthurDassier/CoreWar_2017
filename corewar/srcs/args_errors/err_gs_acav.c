@@ -16,8 +16,12 @@ int ar_er(int ac, char **av)
 		return (84);
 	if (g_flag(av[1]) == 84)
 		return (84);
-	if (av[1][0] == '-')
+	if (av[1][0] == '-') {
 		if (hexa_gest(av[1]) == 84)
 			return (84);
+	} else {
+		if (check_cor(av) == 84)
+			return (84);
+	}
 	return (0);
 }
