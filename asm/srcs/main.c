@@ -30,11 +30,22 @@ static int process_arg(int ch)
 int main(int ac, char **av)
 {
 	int	ch = 0;
+	struct d_queue	*dq = NULL;
+	struct token	*tmp;
 
 	while ((ch = my_getopt(ac, av, "h")) != -1)
 		if (process_arg(ch) < 0)
 			return (84);
-	for (int i = my_optind; i < ac; i++)
-		lex_file(av[i]);
+	for (int i = my_optind; i < ac; i++) {
+		dq = lex_file(av[i]);
+		while (dq != NULL) {
+			tmp = dq->token;
+			printf("---------------------------\n"
+				"%s\n"
+				"mnemo: %s\n", (tmp->tk_val == L) ? "LABEL" : "INSTRUCTION",
+				tmp->mnemo);
+			dq = dq->next;
+		}
+	}
 	return (0);
 }

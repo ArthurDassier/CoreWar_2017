@@ -19,8 +19,8 @@ void malloc_error(void)
 	exit(84);
 }
 
-void *error_invalid_instruct(char *fname, int line)
+void error_invalid_instruct(char *fname, int line)
 {
 	my_printf("asm, %s, line %d: Invalid instruction.\n", fname, line);
-	return (NULL);
+	exit(0);
 }

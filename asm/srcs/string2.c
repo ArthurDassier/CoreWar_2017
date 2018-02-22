@@ -27,7 +27,7 @@ int is_label(char *line)
 
 	while (line[i] != '\0') {
 		if (line[i] == LABEL_CHAR)
-			return (1);
+			return (i);
 		if (is_label_char(line[i]) == 0)
 			return (0);
 		++i;

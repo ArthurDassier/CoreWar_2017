@@ -45,11 +45,12 @@ struct token
 };
 
 struct d_queue *lex_file(char *);
+header_t *create_header();
 int is_line_comment(char *);
 int is_header(char *);
 int is_label(char *);
 void *file_error(char *);
-void *error_invalid_instruct(char *, int);
+void error_invalid_instruct(char *, int);
 void malloc_error(void);
 
 #endif

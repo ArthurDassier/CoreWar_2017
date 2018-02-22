@@ -20,21 +20,22 @@ static struct token *process_line(char *line, int line_no, char *fname)
 	node->line = line_no;
 	if (is_label(line)) {
 		node->tk_val = L;
-		node->mnemo = my_strdup(line);
+		node->mnemo = my_strndup(line, is_label(line));
 		node->l_size = 0;
 	} else {
-		node = error_invalid_instruct(fname, line_no);
+		//error_invalid_instruct(fname, line_no);
+		return (NULL);
 	}
 	return (node);
 }
 
 struct d_queue *lex_file(char *fname)
 {
-	struct d_queue	*tmp = NULL;
-	struct token	*node = NULL;
 	int		fd = open(fname, O_RDONLY);
-	char		*line = NULL;
 	int		line_no = 0;
+	struct token	*node = NULL;
+	struct d_queue	*tmp = NULL;
+	char		*line = NULL;
 
 	if (fd < 0)
 		return (file_error(fname));
