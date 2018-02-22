@@ -21,11 +21,12 @@ void	swap_endian(union endian *result)
 void	parser(struct d_queue *head, int fd)
 {
 	struct	d_queue	*tmp = head->next;
+	struct	token	*token;
 
-	add_magic(head, fd);
-	add_name(head, fd);
-	add_comment(head, fd);
+	add_header(head, fd);
 	while (tmp != NULL) {
+		token = tmp->token;
+		error_handling(token, head);
 		add_cmd(tmp, fd);
 		add_adressage(tmp, fd);
 		add_param(tmp, fd);

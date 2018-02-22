@@ -10,5 +10,6 @@
 #define SUCCESS 0
 #define FAILURE 84
 #define NB_INS	4
+#define ERROR_MSG "asm, %s, line %d: %s"
 
 #endif /* !DEFINE_H_ */

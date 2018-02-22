@@ -54,6 +54,7 @@ struct token
 	int		line;
 };
 
+int		get_cmd(char *cmd);
 struct d_queue	*lex_file(char *);
 int		is_line_comment(char *);
 void		*file_error(char *);
@@ -69,8 +70,7 @@ void		registers(struct token *token, int fd, int i);
 void		directs(struct token *token, int fd, int i);
 void		indirects(struct token *token, int fd, int i);
 void		swap_endian(union endian *result);
-void		add_magic(struct d_queue *head, int fd);
-void		add_name(struct d_queue *head, int fd);
-void		add_comment(struct d_queue *head, int fd);
+void		add_header(struct d_queue *head, int fd);
+int		error_handling(struct token *token, struct d_queue *head);
 
 #endif
