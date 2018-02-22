@@ -61,3 +61,32 @@ int check_fl_a(char *flag, char *params)
 		return (84);
 	return (0);
 }
+
+int g_flag(char *av)
+{
+	if (av[0] == '-' && av[1] == 'g')
+		return (84);
+	//my_puterror("we don't have any graphic interface");
+	return (0);
+}
+
+int hexa_gest(char *av, char *params)
+{
+	char	hexa[16] = "0123456789ABCDEF";
+	int	i = 1;
+	int	j = 0;
+
+	if (check_dump(av) == 84)
+		return (84);
+	while (params[i] != '\0') {
+		while (params[i] != hexa[j] && hexa[j] != '\0')
+			++j;
+		if (hexa[j] == '\0')
+			return (84);
+		j = 0;
+		++i;
+	}
+	if (i == 1)
+		return (84);
+	return (0);
+}

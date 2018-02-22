@@ -16,11 +16,12 @@ FLAGS=	-Wall -Wextra -I../asm/include
 NAME=	corewar
 
 SRC_DIR=	$(realpath ./srcs/)
-SRC=		$(SRC_DIR)/main.c			\
-		$(SRC_DIR)/args_errors/argc_err.c	\
-		$(SRC_DIR)/args_errors/err_gs_acav.c	\
-		$(SRC_DIR)/args_errors/av_err.c		\
-		$(SRC_DIR)/args_errors/flags_err.c	\
+SRC=		$(SRC_DIR)/main.c					\
+		$(SRC_DIR)/args_errors/error_gest_controler.c		\
+		$(SRC_DIR)/args_errors/ac_errors/number_of_ac_errors.c	\
+		$(SRC_DIR)/args_errors/av_errors/check_for_flags.c	\
+		$(SRC_DIR)/args_errors/av_errors/dot_cor_errors.c	\
+		$(SRC_DIR)/args_errors/av_errors/flags_errors.c		\
 
 OBJ=		$(SRC:.c=.o)
 
