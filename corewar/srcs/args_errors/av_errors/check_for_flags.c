@@ -8,6 +8,27 @@
 #include "op.h"
 #include "err_gest.h"
 
+int double_fg(char flag)
+{
+	static int	flag_dump = OFF;
+	static int	flag_n = OFF;
+	static int	flag_a = OFF;
+
+	if (flag == 'd' && flag_dump == OFF) {
+		flag_dump = ON;
+		return (D);
+	}
+	if (flag == 'n' && flag_n == OFF) {
+		flag_n = ON;
+		return (N);
+	}
+	if (flag == 'a' && flag_a == OFF) {
+		flag_a = ON;
+		return (A);
+	}
+	return (84);
+}
+
 int check_params(char **av, int i)
 {
 	if (!av[i + 1]) {
@@ -28,12 +49,8 @@ int send_to_flag_handler(int (*flag_handler[3])(char *flag, char *av), int nb_hy
 {
 	int fg = 0;
 
-	if (flag[1] == 'd')
-		fg = D;
-	if (flag[1] == 'a')
-		fg = A;
-	if (flag[1] == 'n')
-		fg = N;
+	if ((fg = double_fg(flag[1])) == 84)
+		return (84);
 	nb_hyp = nb_hyp + 2;
 	if (check_params(&av, 1) == 84)
 		return (84);
