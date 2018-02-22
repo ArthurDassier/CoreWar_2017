@@ -7,7 +7,32 @@
 
 #include "corewar.h"
 
-static struct token *process_line(char *line, int line_no, char *fname)
+static struct token *proccess_label(char *line ,int *pos, struct token *node)
+{
+	while ((line[*pos] == ' ' || line[*pos] == '\t') && line[*pos] != '\0')
+		*pos += 1;
+	node->tk_val = L;
+	node->mnemo = my_strndup(line + *pos, is_label(line + *pos));
+	node->l_size = 0;
+	*pos += is_label(line + *pos) + 1;
+	return (node);
+}
+
+static struct token *proccess_mnemonique(char *line ,struct token *node,
+		int *pos)
+{
+	while ((line[*pos] == ' ' || line[*pos] == '\t') && line[*pos] != '\0')
+		*pos += 1;
+	node->tk_val = I;
+	if (is_mnemonic(line + *pos) == 0)
+		return (NULL);
+	node->mnemo = my_strndup(line + *pos, is_mnemonic(line + *pos));
+	*pos += is_mnemonic(line + *pos) + 1;
+	return (node);
+}
+
+static struct token *process_line(char *line, int line_no, char *fname,
+		int *pos)
 {
 	struct token	*node = malloc(sizeof(struct token));
 
@@ -18,13 +43,11 @@ static struct token *process_line(char *line, int line_no, char *fname)
 		return (NULL);
 	}
 	node->line = line_no;
-	if (is_label(line)) {
-		node->tk_val = L;
-		node->mnemo = my_strndup(line, is_label(line));
-		node->l_size = 0;
+	if (is_label(line + *pos)) {
+		node = proccess_label(line, pos, node);
 	} else {
-		//error_invalid_instruct(fname, line_no);
-		return (NULL);
+		if (proccess_mnemonique(line , node, pos) == NULL)
+			error_invalid_instruct(fname, line_no);
 	}
 	return (node);
 }
@@ -41,11 +64,9 @@ struct d_queue *lex_file(char *fname)
 		return (file_error(fname));
 	line = get_next_line(fd);
 	while (line) {
-		line_no++;
-		node = process_line(line, line_no, fname);
-		if (node != NULL) {
-			printf("%s:%d\n", line, is_header(line));
-			tmp = add_d_queue(tmp, (void *)node);
+		for (int pos = 0; pos < my_strlen(line);) {
+			node = process_line(line, ++line_no, fname, &pos);
+			tmp = (node) ? add_d_queue(tmp, (void *)node) : tmp;
 		}
 		free(line);
 		line = get_next_line(fd);

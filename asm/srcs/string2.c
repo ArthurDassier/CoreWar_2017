@@ -25,6 +25,8 @@ int is_label(char *line)
 {
 	int	i = 0;
 
+	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
+		i++;
 	while (line[i] != '\0') {
 		if (line[i] == LABEL_CHAR)
 			return (i);
@@ -33,4 +35,18 @@ int is_label(char *line)
 		++i;
 	}
 	return (0);
+}
+
+int is_mnemonic(char *line)
+{
+	int	i = 0;
+
+	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
+		i++;
+	while (line[i] != '\0') {
+		if (line[i] == ' ' || line[i] == '\t')
+			return (i);
+		++i;
+	}
+	return (i);
 }
