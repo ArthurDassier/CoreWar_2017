@@ -45,7 +45,8 @@ static void init_flag_handler(int (*flag_handler[3])(char *flag, char *av))
 	flag_handler[2] = &check_fl_n;
 }
 
-int send_to_flag_handler(int (*flag_handler[3])(char *flag, char *av), int nb_hyp, char *flag, char *av)
+int send_to_flag_handler(int (*flag_handler[3])(char *flag, char *av),
+int nb_hyp, char *flag, char *av)
 {
 	int fg = 0;
 
@@ -66,15 +67,18 @@ int looking_for_flag(char **av)
 
 	init_flag_handler(flag_handler);
 	if (av[1][0] == '-') {
-		if (!av[2] || (nb_hyp = send_to_flag_handler(flag_handler, nb_hyp, av[1], av[2])) == 84)
+		if (!av[2] || (nb_hyp = send_to_flag_handler(flag_handler,
+			nb_hyp, av[1], av[2])) == 84)
 			return (84);
 	}
 	if (av[3] && av[3][0] == '-') {
-		if (!av[4] || (nb_hyp = send_to_flag_handler(flag_handler, nb_hyp, av[3], av[4])) == 84)
+		if (!av[4] || (nb_hyp = send_to_flag_handler(flag_handler,
+			nb_hyp, av[3], av[4])) == 84)
 			return (84);
 	}
 	if (av[5] && av[5][0] == '-') {
-		if (!av[6] || (nb_hyp = send_to_flag_handler(flag_handler, nb_hyp, av[5], av[6])) == 84)
+		if (!av[6] || (nb_hyp = send_to_flag_handler(flag_handler,
+			nb_hyp, av[5], av[6])) == 84)
 			return (84);
 	}
 	return (nb_hyp);
