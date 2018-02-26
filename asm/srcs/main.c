@@ -31,6 +31,7 @@ int main(int ac, char **av)
 {
 	int	ch = 0;
 	struct d_queue	*dq = NULL;
+	header_t	*head = NULL;
 	struct token	*tmp;
 
 	while ((ch = my_getopt(ac, av, "h")) != -1)
@@ -40,6 +41,12 @@ int main(int ac, char **av)
 		return (84);
 	for (int i = my_optind; i < ac; i++) {
 		dq = lex_file(av[i]);
+		head = dq->token;
+		printf("--------------------\n"
+			"magic: %d\n"
+			"prog_name: %s\n"
+			"comment: %s\n", head->magic, head->prog_name, head->comment);
+		dq = dq->next;
 		while (dq != NULL) {
 			tmp = dq->token;
 			printf("---------------------------\n"

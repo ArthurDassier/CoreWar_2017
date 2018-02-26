@@ -47,7 +47,7 @@ struct token
 };
 
 struct d_queue *lex_file(char *);
-header_t *create_header();
+header_t *create_header(int, char *, char *);
 enum token_e get_arg_type(char *);
 int is_line_comment(char *);
 int is_header(char *);
