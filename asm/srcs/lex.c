@@ -33,8 +33,10 @@ static struct token *proccess_mnemonique(char *line ,struct token *node,
 	*pos += is_mnemonic(line + *pos) + 1;
 	node->arg_no = (*pos < my_strlen(line)) ? count_arg(line + *pos) : 0;
 	node->arg = malloc(sizeof(char *) * node->arg_no + 8);
+	node->tk_name = malloc(sizeof(enum token_e) * node->arg_no);
 	for (i = 0; i < node->arg_no; i++) {
 		node->arg[i] = my_strndup(line + *pos, is_arg(line + *pos));
+		node->tk_name[i] = get_arg_type(line + *pos);
 		*pos += is_arg(line + *pos) + 2;
 	}
 	node->arg[i] = NULL;

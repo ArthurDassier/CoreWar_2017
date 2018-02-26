@@ -47,7 +47,7 @@ int main(int ac, char **av)
 				"mnemo: %s\n", (tmp->tk_val == L) ? "LABEL" : "INSTRUCTION",
 				tmp->mnemo);
 			for (int i = 0; tmp->arg != NULL && tmp->arg[i]; i++)
-				printf("arg[%d]: %s\n", i, tmp->arg[i]);
+				printf("arg[%d]: %s -> %d\n", i, tmp->arg[i], tmp->tk_name[i]);
 			dq = dq->next;
 		}
 	}
