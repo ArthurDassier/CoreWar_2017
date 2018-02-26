@@ -14,6 +14,16 @@ SRC	=	srcs/main.c						\
 		srcs/args_errors/av_errors/look_ff_errors.c		\
 		srcs/vm/cycles.c					\
 		srcs/vm/init/init_vm.c					\
+		srcs/vm/init/instructions_ele_fif.c			\
+		srcs/vm/init/instructions_one_five.c			\
+		srcs/vm/init/instructions_sixteen.c			\
+		srcs/vm/init/instructions_six_ten.c			\
+		srcs/vm/init/main_vincent.c				\
+		srcs/vm/init/read_headers.c				\
+		srcs/vm/init/read_instructions.c			\
+		srcs/vm/init/read_parameters.c				\
+		srcs/vm/init/switch_endian.c				\
+
 
 OBJ	=	$(SRC:.c = .o)
 
