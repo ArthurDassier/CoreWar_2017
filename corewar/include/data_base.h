@@ -27,9 +27,10 @@ union endian
 	int	val;
 };
 
+int init_data_base(instructions **list, int ac, char **av);
+
 void switch_endian_two(union endian *value);
 void switch_endian_four(union endian *value);
-int my_strlen(char *str);
 
 int read_headers(int fd);
 int check_name_comment(char *name, char *comment);

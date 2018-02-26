@@ -6,6 +6,9 @@
 */
 
 #include "data_base.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 int init_data_base(instructions **list, int ac, char **av)
 {
@@ -31,6 +34,6 @@ int init_data_base(instructions **list, int ac, char **av)
 		++i;
 		--ac;
 	}
-	list[i] = NULL;
+	list[i] = NULL;
 	return (0);
 }

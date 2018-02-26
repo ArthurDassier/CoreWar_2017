@@ -18,11 +18,11 @@ SRC	=	srcs/main.c						\
 		srcs/vm/init/instructions_one_five.c			\
 		srcs/vm/init/instructions_sixteen.c			\
 		srcs/vm/init/instructions_six_ten.c			\
-		srcs/vm/init/main_vincent.c				\
 		srcs/vm/init/read_headers.c				\
 		srcs/vm/init/read_instructions.c			\
 		srcs/vm/init/read_parameters.c				\
 		srcs/vm/init/switch_endian.c				\
+		srcs/vm/init/init_data_base.c				\
 
 
 OBJ	=	$(SRC:.c = .o)
