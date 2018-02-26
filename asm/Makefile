@@ -18,6 +18,7 @@ NAME=	asm
 SRC_DIR=	$(realpath ./srcs/)
 SRC=		$(SRC_DIR)/main.c                                         \
 			$(SRC_DIR)/lex.c                                          \
+			$(SRC_DIR)/mem.c                                          \
 			$(SRC_DIR)/string.c                                       \
 			$(SRC_DIR)/string2.c                                      \
 			$(SRC_DIR)/string3.c                                      \

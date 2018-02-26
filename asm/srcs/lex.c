@@ -24,6 +24,7 @@ static struct token *proccess_mnemonique(char *line ,struct token *node,
 		int *pos)
 {
 	int	i = 0;
+
 	while ((line[*pos] == ' ' || line[*pos] == '\t') && line[*pos] != '\0')
 		*pos += 1;
 	node->tk_val = I;
@@ -40,6 +41,7 @@ static struct token *proccess_mnemonique(char *line ,struct token *node,
 		*pos += is_arg(line + *pos) + 2;
 	}
 	node->arg[i] = NULL;
+	set_mem(node);
 	return (node);
 }
 

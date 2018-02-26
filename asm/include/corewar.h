@@ -21,6 +21,8 @@
 #include "clist.h"
 #include "op.h"
 
+#define INSTRUCT_SIZE 1
+
 enum type_e {
 	L,
 	I
@@ -53,6 +55,7 @@ int is_label(char *);
 int is_arg(char *);
 int is_mnemonic(char *);
 int count_arg(char *);
+void set_mem(struct token *);
 void *file_error(char *);
 void error_invalid_instruct(char *, int);
 void malloc_error(void);

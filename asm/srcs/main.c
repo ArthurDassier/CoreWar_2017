@@ -43,8 +43,8 @@ int main(int ac, char **av)
 		while (dq != NULL) {
 			tmp = dq->token;
 			printf("---------------------------\n"
-				"%s\n"
-				"mnemo: %s\n", (tmp->tk_val == L) ? "LABEL" : "INSTRUCTION",
+				"%s:%d\n"
+				"mnemo: %s\n", (tmp->tk_val == L) ? "LABEL" : "INSTRUCTION", tmp->l_size,
 				tmp->mnemo);
 			for (int i = 0; tmp->arg != NULL && tmp->arg[i]; i++)
 				printf("arg[%d]: %s -> %d\n", i, tmp->arg[i], tmp->tk_name[i]);
