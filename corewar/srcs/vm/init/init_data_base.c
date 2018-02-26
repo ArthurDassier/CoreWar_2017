@@ -18,19 +18,19 @@ int init_data_base(instructions **list, int ac, char **av)
 	while (ac != 1) {
 		printf("\n----- CHAMPION %d -----\n\n", i + 1);
 		if ((fd = open(av[i + 1], O_RDONLY)) == -1) {
-			my_putstr("open failed\n");
+			my_puterror("open failed\n");
 			return (84);
 		}
 		if (read_headers(fd) == -1) {
-			my_putstr("bad header\n");
+			my_puterror("bad header\n");
 			return (84);
 		}
 		if((list[i] = malloc(sizeof(instructions))) == NULL) {
-			my_putstr("malloc failed\n");
+			my_puterror("malloc failed\n");
 			return (84);
 		}
 		if ((list[i] = read_instructions(fd)) == NULL) {
-			my_putstr("list failed\n");
+			my_puterror("list failed\n");
 			return (84);
 		}
 		close(fd);
