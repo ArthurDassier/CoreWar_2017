@@ -57,20 +57,24 @@ struct token
 int		get_cmd(char *cmd);
 struct d_queue	*lex_file(char *);
 int		is_line_comment(char *);
-void		*file_error(char *);
+
+//Parser
+void		add_cmd(struct token *, int);
+void		add_adressage(struct token *, int);
+void		add_param(struct token *, int);
+int		my_compute_power_rec(int, int);
+int		my_getnbr_base(char const *, char const *);
+void		print_bits(struct token *, int, int);
+void		parser(struct d_queue *, int);
+void		registers(struct token *, int, int);
+void		directs(struct token *, int , int);
+void		indirects(struct token *, int, int);
+void		swap_endian(union endian *);
+void		add_header(struct d_queue *, int);
+
+// Error handling
+int		error_handling(struct token *, struct d_queue *);
 void		malloc_error(void);
-void		add_cmd(struct d_queue *head, int fd);
-void		add_adressage(struct d_queue *head, int fd);
-void		add_param(struct d_queue *head, int fd);
-int		my_compute_power_rec(int nb, int p);
-int		my_getnbr_base(char const *str, char const *base);
-void		print_bits(struct token *token, int fd, int i);
-void		parser(struct d_queue *head, int fd);
-void		registers(struct token *token, int fd, int i);
-void		directs(struct token *token, int fd, int i);
-void		indirects(struct token *token, int fd, int i);
-void		swap_endian(union endian *result);
-void		add_header(struct d_queue *head, int fd);
-int		error_handling(struct token *token, struct d_queue *head);
+void		*file_error(char *);
 
 #endif

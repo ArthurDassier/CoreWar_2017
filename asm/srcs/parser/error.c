@@ -8,13 +8,15 @@
 
 static bool	is_valid_param(enum token_e tk_name, int index, int i)
 {
-	printf("type = %d\n", op_tab[index].type[i]);
-	if (tk_name == REG && op_tab[index].type[i] != T_REG)
-		return (false);
-	if (tk_name == DRT && op_tab[index].type[i] != T_REG | T_DIR | T_IND)
-		return (false);
-	if (tk_name == IND && op_tab[index].type[i] != T_IND)
-		return (false);
+	(void)tk_name;
+	(void)index;
+	(void)i;
+	// if (tk_name == REG && op_tab[index].type[i] != T_REG)
+	// 	return (false);
+	// if (tk_name == DRT && op_tab[index].type[i] != (T_REG | T_DIR | T_IND))
+	// 	return (false);
+	// if (tk_name == IND && op_tab[index].type[i] != T_IND)
+	// 	return (false);
 	return (true);
 }
 

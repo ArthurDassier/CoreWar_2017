@@ -36,9 +36,8 @@ static bool	check_exception(char *str)
 	return (false);
 }
 
-void	add_adressage(struct d_queue *head, int fd)
+void	add_adressage(struct token *token, int fd)
 {
-	struct	token	*token = head->token;
 	int		result;
 
 	if (check_exception(token->mnemo) == true)

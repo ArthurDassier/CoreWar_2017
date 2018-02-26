@@ -29,7 +29,20 @@ struct d_queue	*fill_list(void)
 	node->arg_tab[1].tk_name = DRT;
 	node->arg_tab[2].args = "%1";
 	node->arg_tab[2].tk_name = DRT;
-	node->line = 15;
+	node->line = 1;
+	head = add_d_queue(head, (void *)node);
+	node = malloc(sizeof(*node));
+	node->tk_val = I;
+	node->mnemo = "and";
+	node->arg_no = 3;
+	node->arg_tab = malloc(sizeof(*(node->arg_tab)) * 3);
+	node->arg_tab[0].args = "r1";
+	node->arg_tab[0].tk_name = REG;
+	node->arg_tab[1].args = "%0";
+	node->arg_tab[1].tk_name = DRT;
+	node->arg_tab[2].args = "r1";
+	node->arg_tab[2].tk_name = REG;
+	node->line = 2;
 	head = add_d_queue(head, (void *)node);
 	return (head);
 }

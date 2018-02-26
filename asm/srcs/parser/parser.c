@@ -27,9 +27,9 @@ void	parser(struct d_queue *head, int fd)
 	while (tmp != NULL) {
 		token = tmp->token;
 		error_handling(token, head);
-		add_cmd(tmp, fd);
-		add_adressage(tmp, fd);
-		add_param(tmp, fd);
+		add_cmd(token, fd);
+		add_adressage(token, fd);
+		add_param(token, fd);
 		tmp = tmp->next;
 	}
 }

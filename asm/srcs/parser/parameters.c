@@ -56,10 +56,8 @@ void	indirects(struct token *token, int fd, int i)
 	write(fd, &result, IND_SIZE);
 }
 
-void	add_param(struct d_queue *head, int fd)
+void	add_param(struct token *token, int fd)
 {
-	struct	token	*token = head->token;
-
 	for (int i = 0; i < token->arg_no; ++i)
 		param_tab[token->arg_tab[i].tk_name](token, fd, i);
 }
