@@ -19,9 +19,9 @@ int check_cor(int ac, char **av, int i);
 int check_fl_n(char *flag, char *av);
 int check_fl_a(char *av, char *params);
 void put_compil_error(void);
-int send_to_flag_handler(int (*flag_handler[3])(char *flag, char *av),
-int nb_hyp, char *flag, char *av);
-int looking_for_flag_err(int (*flag_handler[3])(char *flag, char *av),
+int send_to_flag_handler(int (*flag_handler[3])(char *flag, char *argv),
+int nb_hyp, char **av, int i);
+int lf_flag_err(int (*flag_handler[3])(char *flag, char *argv),
 char **av, int i, int nb_hyp);
 
 #endif
