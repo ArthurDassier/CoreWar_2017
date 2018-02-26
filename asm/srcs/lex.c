@@ -15,12 +15,15 @@ static struct token *proccess_label(char *line ,int *pos, struct token *node)
 	node->mnemo = my_strndup(line + *pos, is_label(line + *pos));
 	node->l_size = 0;
 	*pos += is_label(line + *pos) + 1;
+	node->arg = NULL;
+	node->arg_no = 0;
 	return (node);
 }
 
 static struct token *proccess_mnemonique(char *line ,struct token *node,
 		int *pos)
 {
+	int	i = 0;
 	while ((line[*pos] == ' ' || line[*pos] == '\t') && line[*pos] != '\0')
 		*pos += 1;
 	node->tk_val = I;
@@ -28,6 +31,13 @@ static struct token *proccess_mnemonique(char *line ,struct token *node,
 		return (NULL);
 	node->mnemo = my_strndup(line + *pos, is_mnemonic(line + *pos));
 	*pos += is_mnemonic(line + *pos) + 1;
+	node->arg_no = (*pos < my_strlen(line)) ? count_arg(line + *pos) : 0;
+	node->arg = malloc(sizeof(char *) * node->arg_no + 8);
+	for (i = 0; i < node->arg_no; i++) {
+		node->arg[i] = my_strndup(line + *pos, is_arg(line + *pos));
+		*pos += is_arg(line + *pos) + 2;
+	}
+	node->arg[i] = NULL;
 	return (node);
 }
 

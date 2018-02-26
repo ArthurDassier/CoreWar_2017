@@ -50,3 +50,29 @@ int is_mnemonic(char *line)
 	}
 	return (i);
 }
+
+int count_arg(char *line)
+{
+	int	count = 0;
+
+	for (int i = 0; line && line[i]; i++) {
+		if (line[i] == SEPARATOR_CHAR)
+			count++;
+	}
+	return (count + 1);
+}
+
+int is_arg(char *line)
+{
+	int	i = 0;
+
+	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
+		i++;
+	while (line[i] != '\0') {
+		if (line[i] == SEPARATOR_CHAR)
+			return (i);
+		++i;
+	}
+	return (i);
+}
+
