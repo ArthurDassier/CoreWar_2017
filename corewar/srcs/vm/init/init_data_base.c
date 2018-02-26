@@ -25,7 +25,10 @@ int init_data_base(instructions **list, int ac, char **av)
 			my_putstr("bad header\n");
 			return (84);
 		}
-		list[i] = malloc(sizeof(instructions));
+		if((list[i] = malloc(sizeof(instructions))) == NULL) {
+			my_putstr("malloc failed\n");
+			return (84);
+		}
 		if ((list[i] = read_instructions(fd)) == NULL) {
 			my_putstr("list failed\n");
 			return (84);

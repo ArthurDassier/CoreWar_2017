@@ -51,7 +51,8 @@ instructions *read_instructions(int fd)
 		if (inst_tab[i - 1](list, fd) == -1)
 			return (NULL);
 		printf("==> %s\n", list->mnemonique);
-		list->next = malloc(sizeof(instructions));
+		if ((list->next = malloc(sizeof(instructions))) == NULL)
+			return (NULL);
 		list = list->next;
 	}
 	list->next = NULL;
