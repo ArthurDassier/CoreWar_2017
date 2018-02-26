@@ -12,6 +12,8 @@ SRC	=	srcs/main.c						\
 		srcs/args_errors/av_errors/dot_cor_errors.c		\
 		srcs/args_errors/av_errors/flags_errors.c		\
 		srcs/args_errors/av_errors/look_ff_errors.c		\
+		srcs/vm/cycles.c					\
+		srcs/vm/init/init_vm.c					\
 
 OBJ	=	$(SRC:.c = .o)
 
