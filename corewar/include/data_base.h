@@ -6,11 +6,6 @@
 */
 
 #include "my.h"
-#include "op.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
 
 #ifndef	DATA_BASE_H_
 #define	DATA_BASE_H_

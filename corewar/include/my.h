@@ -15,13 +15,14 @@
 #include "err_gest.h"
 #include "op.h"
 #include "virtual.h"
+#include "data_base.h"
 
 void my_putchar(char c);
 int my_isneg(int nb);
 int my_put_nbr(int nb);
 void my_swap(int *a, int *b);
 void my_putstr(char const *str);
-int my_strlen(char const *str);
+int my_strlen(char *str);
 int my_getnbr(char const *str);
 char *my_strcpy(char *dest, char const *src);
 char *my_strncpy(char *dest, char const *src, int n);
