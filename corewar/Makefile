@@ -5,41 +5,41 @@
 ## Makefile
 ##
 
-.SUFFIXES: .c .o
+SRC	=	srcs/main.c						\
+		srcs/args_errors/error_gest_controler.c			\
+		srcs/args_errors/ac_errors/number_of_ac_errors.c	\
+		srcs/args_errors/av_errors/check_for_flags.c		\
+		srcs/args_errors/av_errors/dot_cor_errors.c		\
+		srcs/args_errors/av_errors/flags_errors.c		\
 
-CC=		gcc -g3
+OBJ	=	$(SRC:.c = .o)
 
-FLAGS=	-Wall -Wextra -I../asm/include
+NAME	=	corewar
 
-##LFLAGS= -L./lib -lmy
+LIB_DIR	=	./lib
 
-NAME=	corewar
+MY.H_DIR	=	./include
 
-SRC_DIR=	$(realpath ./srcs/)
-SRC=		$(SRC_DIR)/main.c					\
-		$(SRC_DIR)/args_errors/error_gest_controler.c		\
-		$(SRC_DIR)/args_errors/ac_errors/number_of_ac_errors.c	\
-		$(SRC_DIR)/args_errors/av_errors/check_for_flags.c	\
-		$(SRC_DIR)/args_errors/av_errors/dot_cor_errors.c	\
-		$(SRC_DIR)/args_errors/av_errors/flags_errors.c		\
+CC	=	gcc
 
-OBJ=		$(SRC:.c=.o)
+C_FLAGS	=	-Wall -Wextra
 
-all:		$(NAME) clean
+LIB_FLAG	=	-L$(LIB_DIR) -lmy
 
-$(NAME):	$(OBJ) $(INCLUDE)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJ) ##$(LFLAGS)
+INCL_FLAG	=	-I$(MY.H_DIR)
 
-.c.o:
-	$(CC) $(FLAGS) -o $@ -c $<
+all:	$(NAME)
+
+$(NAME):	$(OBJ)
+		$(MAKE) -C lib/my
+		$(CC) -o $(NAME) $(OBJ) $(C_FLAGS) $(LIB_FLAG) $(INCL_FLAG)
 
 clean:
-	@rm -rf $(OBJ)
+	rm -f *.o
 
-fclean:		clean
-	@rm -rf $(NAME)
-	@rm -rf lib/*.a
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: clean fclean re
+.PHONY: fclean all re clean

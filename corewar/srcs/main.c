@@ -33,6 +33,7 @@ int vm(char **av)
 			fill_arg(&argv, av[i], av[i + 1]);
 		++i;
 	}
+	return (0);
 }
 
 int main(int ac, char **av)
