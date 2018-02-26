@@ -21,9 +21,13 @@ int virtual_machine(char **av)
 
 int main(int ac, char **av)
 {
+	instructions	**list = malloc(sizeof(instructions) * ac);
+
 	if (ar_er(ac, av) > 0)
 		return (84);
 	if (virtual_machine(av) == 84)
+		return (84);
+	if (init_data_base(list, ac, av) == 84)
 		return (84);
 	return (0);
 }
