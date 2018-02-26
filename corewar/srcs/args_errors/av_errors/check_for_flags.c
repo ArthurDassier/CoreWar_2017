@@ -5,8 +5,7 @@
 ** Arthur
 */
 
-#include "op.h"
-#include "err_gest.h"
+#include "my.h"
 
 int double_fg(char flag)
 {
@@ -32,7 +31,7 @@ int double_fg(char flag)
 int check_params(char **av, int i)
 {
 	if (!av[i + 1]) {
-		//my_puterror("Usage: ./corewar [-g] [-dump cycle_nb] [[-a load_addr] [-n prog_nb] prog.cor] ...");
+		put_compil_error();
 		return (84);
 	}
 	return (0);
@@ -67,18 +66,15 @@ int looking_for_flag(char **av)
 
 	init_flag_handler(flag_handler);
 	if (av[1][0] == '-') {
-		if (!av[2] || (nb_hyp = send_to_flag_handler(flag_handler,
-			nb_hyp, av[1], av[2])) == 84)
+		if (looking_for_flag_err(flag_handler, av, 1, nb_hyp) == 84)
 			return (84);
 	}
 	if (av[3] && av[3][0] == '-') {
-		if (!av[4] || (nb_hyp = send_to_flag_handler(flag_handler,
-			nb_hyp, av[3], av[4])) == 84)
+		if (looking_for_flag_err(flag_handler, av, 3, nb_hyp) == 84)
 			return (84);
 	}
 	if (av[5] && av[5][0] == '-') {
-		if (!av[6] || (nb_hyp = send_to_flag_handler(flag_handler,
-			nb_hyp, av[5], av[6])) == 84)
+		if (looking_for_flag_err(flag_handler, av, 5, nb_hyp) == 84)
 			return (84);
 	}
 	return (nb_hyp);

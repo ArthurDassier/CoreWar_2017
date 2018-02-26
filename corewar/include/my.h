@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include "err_gest.h"
+#include "op.h"
 
 void my_putchar(char c);
 int my_isneg(int nb);

@@ -5,7 +5,7 @@
 ** Arthur
 */
 
-#include "err_gest.h"
+#include "my.h"
 
 int check_dump(char *av)
 {
@@ -64,9 +64,10 @@ int check_fl_a(char *flag, char *params)
 
 int g_flag(char *av)
 {
-	if (av[0] == '-' && av[1] == 'g')
+	if (av[0] == '-' && av[1] == 'g') {
+		my_puterror("we don't have any graphic interface\n");
 		return (84);
-	//my_puterror("we don't have any graphic interface");
+	}
 	return (0);
 }
 

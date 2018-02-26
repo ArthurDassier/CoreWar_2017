@@ -11,6 +11,7 @@ SRC	=	srcs/main.c						\
 		srcs/args_errors/av_errors/check_for_flags.c		\
 		srcs/args_errors/av_errors/dot_cor_errors.c		\
 		srcs/args_errors/av_errors/flags_errors.c		\
+		srcs/args_errors/av_errors/look_ff_errors.c		\
 
 OBJ	=	$(SRC:.c = .o)
 

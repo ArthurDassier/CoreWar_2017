@@ -5,9 +5,7 @@
 ** Arthur
 */
 
-#include "op.h"
-#include "err_gest.h"
-#include <stdlib.h>
+#include "my.h"
 
 void fill_arg(arguments *argv, char *flag, char *parameter)
 {
