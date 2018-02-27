@@ -37,9 +37,7 @@ void memory_put(circular_memory *vm, char data)
 
 void memory_pop(circular_memory *vm)
 {
-	++vm->head;
-	if (vm->head == vm->memory_end)
-		vm->head = vm->memory;
+	++vm->memory;
 	--vm->count;
 }
 
