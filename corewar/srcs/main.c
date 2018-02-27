@@ -34,17 +34,15 @@ static void print_memory(char *memory)
 
 int main(int ac, char **av)
 {
-	instructions	**list = malloc(sizeof(instructions) * ac);
 	circular_memory	*vm = malloc(sizeof(circular_memory));
+	champions	**champ = malloc(sizeof(champions) * ac);
 
 	if (ar_er(ac, av) > 0)
 		return (84);
-	if (init_data_base(list, ac, av) == 84)
+	if (init_champions(champ, ac, av) == 84)
 		return (84);
 	printf("\n----- MEMORY -----\n");
 	memory_init(vm, MEM_SIZE);
-	memory_put(vm, '1', 2);
-	memory_put(vm, '1', -3);
 	print_memory(vm->memory);
 	return (0);
 }

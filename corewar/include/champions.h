@@ -15,6 +15,8 @@ typedef struct champion
 {
 	instructions	*list;
 	int		*registers;
-} chamion;
+} champions;
+
+int init_champions(champions **champ, int ac, char **av);
 
 #endif
