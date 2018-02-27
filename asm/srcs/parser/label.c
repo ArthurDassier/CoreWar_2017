@@ -6,20 +6,25 @@
 */
 #include "corewar.h"
 
-static int	does_label_exists(char *label, struct d_queue *head)
+static struct d_queue	*does_label_exists(char *label, struct d_queue *head)
 {
 	struct d_queue	*tmp = head;
 	struct token	*token = head->token;
 
-	while (tmp != NULL && my_strcmp(token->mnemo, str) != 0) {
+	while (tmp != NULL && my_strcmp(token->mnemo, label) != 0) {
 		token = tmp->token;
 		tmp = tmp->next;
 	}
 	if (tmp == NULL)
 		return (FAILURE);
+	return (tmp);
 }
 
 void	add_label(struct d_queue *head, int fd)
 {
-	
+	struct token	*token = (head->next)->token;
+	struct d_queue	*tmp = does_label_exists();
+
+	calculate_mem();
+	write();
 }
