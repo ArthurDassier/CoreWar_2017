@@ -23,7 +23,7 @@ static struct d_queue	*does_label_exists(char *label, struct d_queue *head)
 void	add_label(struct d_queue *head, int fd)
 {
 	struct token	*token = (head->next)->token;
-	struct d_queue	*tmp = does_label_exists();
+	struct d_queue	*tmp = does_label_exists(tmp->);
 
 	calculate_mem();
 	write();
