@@ -17,12 +17,12 @@ NAME=	asm
 
 SRC_DIR=	$(realpath ./srcs/)
 
-SRC=		$(SRC_DIR)/my_main.c		\
-			$(SRC_DIR)/instruction.c	\
+SRC=		$(SRC_DIR)/instruction.c	\
 			$(SRC_DIR)/adressage.c	\
 			$(SRC_DIR)/bits.c	\
 			$(SRC_DIR)/op.c		\
 			$(SRC_DIR)/lex.c                                          \
+			$(SRC_DIR)/main.c                                         \
 			$(SRC_DIR)/mem.c                                          \
 			$(SRC_DIR)/string.c                                       \
 			$(SRC_DIR)/string2.c                                      \
