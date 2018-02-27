@@ -17,21 +17,24 @@ int memory_init(circular_memory *vm, int size)
 	vm->pars = vm->memory;
 	vm->size = size;
 	vm->count = 0;
-	vm->registers = malloc(sizeof(int) * 17);
+	memory_memset(vm->memory, size);
 	return (0);
 }
 
 void memory_put(circular_memory *vm, char data, int adr)
 {
-	int	flag = 0;
+	int		flag = 0;
+	int		flag2 = 0;
 
+	if (adr > 0)
+		flag2 = 1;
 	flag = set_flag(adr);
 	while (adr != 0) {
-		vm->pars += flag;
 		if (vm->pars == vm->memory_end)
 			vm->pars = vm->memory_head;
-		else if (vm->pars == vm->memory_head)
+		else if (vm->pars == vm->memory_head - flag2)
 			vm->pars = vm->memory_end;
+		vm->pars += flag;
 		adr = adr_acc(adr);
 	}
 	*vm->pars = data;
@@ -56,11 +59,11 @@ int set_flag(int adr)
 	return (flag);
 }
 
-void memory_memset(circular_memory *vm, int size)
+void memory_memset(char *memory, int size)
 {
 	int	i = 0;
 
 	while (i != size)
-		vm->memory[i++] = '0';
-	vm->memory[i] = '\0';
+		memory[i++] = '0';
+	memory[i] = '\0';
 }

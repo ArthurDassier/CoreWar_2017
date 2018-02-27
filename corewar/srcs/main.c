@@ -43,9 +43,8 @@ int main(int ac, char **av)
 		return (84);
 	printf("\n----- MEMORY -----\n");
 	memory_init(vm, MEM_SIZE);
-	memory_memset(vm, MEM_SIZE);
-	memory_put(vm, '1', 1);
+	memory_put(vm, '1', 2);
+	memory_put(vm, '1', -3);
 	print_memory(vm->memory);
-	printf("== register 1 ==> %d\n", find_register(vm, 1));
 	return (0);
 }
