@@ -24,6 +24,7 @@ SRC	=	srcs/main.c						\
 		srcs/vm/recup_instruct/switch_endian.c			\
 		srcs/vm/recup_instruct/init_data_base.c			\
 		srcs/vm/init_vm.c					\
+		srcs/vm/init_registers.c				\
 
 
 OBJ	=	$(SRC:.c = .o)

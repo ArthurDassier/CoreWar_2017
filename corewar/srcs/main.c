@@ -42,13 +42,10 @@ int main(int ac, char **av)
 	if (init_data_base(list, ac, av) == 84)
 		return (84);
 	printf("\n----- MEMORY -----\n");
-	memory_init(vm, 20);
-	memory_memset(vm, 20);
-	memory_put(vm, 'A', 10);
-	memory_put(vm, 'B', -5);
-	memory_put(vm, 'C', 5);
-	memory_put(vm, 'D', -2);
-	memory_put(vm, 'E', 15);
+	memory_init(vm, MEM_SIZE);
+	memory_memset(vm, MEM_SIZE);
+	memory_put(vm, '1', 1);
 	print_memory(vm->memory);
+	printf("== register 1 ==> %d\n", find_register(vm, 1));
 	return (0);
 }

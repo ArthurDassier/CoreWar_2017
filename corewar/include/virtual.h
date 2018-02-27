@@ -11,11 +11,12 @@
 typedef struct circular_memory
 {
 	char	*memory;
-	char	*memory_end;
 	char	*memory_head;
+	char	*memory_end;
 	char	*pars;
 	int	count;
 	int	size;
+	int	*registers;
 } circular_memory;
 
 void fill_arg(arguments *argv, char *flag, char *parameter);
@@ -27,5 +28,7 @@ void memory_put(circular_memory *vm, char data, int adr);
 void memory_memset(circular_memory *vm, int size);
 int adr_acc(int adr);
 int set_flag(int adr);
+
+int find_register(circular_memory *vm, int regi);
 
 #endif

@@ -17,6 +17,7 @@ int memory_init(circular_memory *vm, int size)
 	vm->pars = vm->memory;
 	vm->size = size;
 	vm->count = 0;
+	vm->registers = malloc(sizeof(int) * 17);
 	return (0);
 }
 
