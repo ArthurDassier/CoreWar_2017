@@ -19,6 +19,19 @@ int virtual_machine(char **av)
 	return (0);
 }
 
+static void print_memory(char *memory)
+{
+	int	i = 0;
+
+	my_putchar('\n');
+	my_putstr("memory : ");
+	while (i != my_strlen(memory)) {
+		my_putchar(memory[i++]);
+		my_putchar(' ');
+	}
+	my_putstr("\n\n");
+}
+
 int main(int ac, char **av)
 {
 	instructions	**list = malloc(sizeof(instructions) * ac);
@@ -29,19 +42,13 @@ int main(int ac, char **av)
 	if (init_data_base(list, ac, av) == 84)
 		return (84);
 	printf("\n----- MEMORY -----\n");
-	memory_init(vm, 5);
-	memory_put(vm, 'a');
-	memory_put(vm, 'b');
-	memory_put(vm, 'c');
-	memory_put(vm, 'd');
-	memory_put(vm, 'e');
-	memory_put(vm, 'f');
-	memory_pop(vm);
-	printf("\n== data ==> %s\n", vm->memory);
-	printf("== m_end ==> %s\n", vm->memory_end);
-	printf("== head  ==> %s\n", vm->head);
-	printf("== tail  ==> %s\n", vm->tail);
-	printf("== count ==> %d\n", vm->count);
-	printf("== size  ==> %d\n", vm->size);
+	memory_init(vm, 20);
+	memory_memset(vm, 20);
+	memory_put(vm, 'A', 10);
+	memory_put(vm, 'B', -5);
+	memory_put(vm, 'C', 5);
+	memory_put(vm, 'D', -2);
+	memory_put(vm, 'E', 15);
+	print_memory(vm->memory);
 	return (0);
 }

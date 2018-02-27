@@ -12,8 +12,8 @@ typedef struct circular_memory
 {
 	char	*memory;
 	char	*memory_end;
-	char	*head;
-	char	*tail;
+	char	*memory_head;
+	char	*pars;
 	int	count;
 	int	size;
 } circular_memory;
@@ -23,12 +23,9 @@ char *init_vm(char **av, arguments *argv);
 int cycles(char *memory_zone, arguments *argv);
 
 int memory_init(circular_memory *vm, int size);
-void memory_put(circular_memory *vm, char data);
-int is_memory_full(circular_memory *vm);
-void memory_pop(circular_memory *vm);
-void memory_free(circular_memory *vm);
-
-#define	FULL		(1)
-#define	NOT_FULL	(0)
+void memory_put(circular_memory *vm, char data, int adr);
+void memory_memset(circular_memory *vm, int size);
+int adr_acc(int adr);
+int set_flag(int adr);
 
 #endif
