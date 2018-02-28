@@ -62,7 +62,7 @@ int		get_cmd(char *cmd);
 struct d_queue	*lex_file(char *);
 int		is_line_comment(char *);
 struct d_queue *lex_file(char *);
-header_t	*create_header(int, char *, char *);
+header_t	*create_header(int, char *, char *, int *);
 enum token_e	get_arg_type(char *);
 int		is_line_comment(char *);
 int		is_header(char *);
@@ -84,9 +84,10 @@ void		directs(struct token *, int , int);
 void		indirects(struct token *, int, int);
 void		swap_endian(union endian *);
 void		add_header(struct d_queue *, int);
-void		add_param(struct d_queue *, int);
-void		labels(struct d_queue *head, int fd, int i);
+void		labels(struct d_queue *head, int fd, int i, struct token *);
 bool		check_case(char *str);
+void		add_param(struct d_queue *head, int fd, struct token *token);
+
 
 // Error handling
 int		error_handling(struct token *, struct d_queue *);
@@ -95,5 +96,7 @@ void		*file_error(char *);
 void		*file_error(char *);
 void		error_invalid_instruct(char *, int);
 void		malloc_error(void);
+void		error_comment(char *, int);
+void		error_name(char *, int);
 
 #endif

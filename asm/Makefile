@@ -24,7 +24,7 @@ SRC=		$(SRC_DIR)/main.c			\
 		$(SRC_DIR)/parser/label.c		\
 		$(SRC_DIR)/parser/parameters.c		\
 		$(SRC_DIR)/parser/parser.c		\
-		$(SRC_DIR)/parser/header.c		\
+		$(SRC_DIR)/parser/add_header.c		\
 		$(SRC_DIR)/parser/adressage.c		\
 		$(SRC_DIR)/lexer/lex.c			\
 		$(SRC_DIR)/lexer/mem.c			\

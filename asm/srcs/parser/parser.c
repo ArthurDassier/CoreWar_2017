@@ -26,16 +26,14 @@ void	parser(struct d_queue *head, int fd)
 	add_header(head, fd);
 	while (tmp != NULL) {
 		token = tmp->token;
-		printf("%s %d\n", token->mnemo, token->line);
 		if (token->tk_val == L) {
 			tmp = tmp->next;
 			token = tmp->token;
 		}
-		printf("%s %d\n", token->mnemo, token->line);
 		error_handling(token, tmp);
 		add_cmd(token, fd);
 		add_adressage(token, fd);
-		add_param(tmp, fd);
+		add_param(head->next, fd, token);
 		tmp = tmp->next;
 	}
 }

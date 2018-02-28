@@ -1,1 +1,3 @@
 .vscode
+srcs/op.c
+zork.s
