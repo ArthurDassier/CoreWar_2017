@@ -67,12 +67,12 @@ header_t *create_header(int fd, char *line, char *fname)
 		head->prog_name[i] = '\0';
 	for (int i = 0; i < COMMENT_LENGTH + 1; i++)
 		head->comment[i] = '\0';
+	line = get_next_line(fd);
 	while (line) {
 		if (is_header(line))
 			get_header(line, head);
 		if (head->prog_name[0] != '\0' && head->comment[0] != '\0') {
 			free(line);
-			line = get_next_line(fd);
 			break;
 		}
 		free(line);

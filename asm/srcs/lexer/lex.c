@@ -52,7 +52,7 @@ static struct token *process_line(char *line, int line_no, char *fname,
 
 	if (node == NULL)
 		malloc_error();
-	if (is_line_comment(line)) {
+	if (is_line_comment(line) || my_strlen(line) == 0) {
 		free(node);
 		return (NULL);
 	}
@@ -76,8 +76,8 @@ struct d_queue *lex_file(char *fname)
 
 	if (fd < 0)
 		return (file_error(fname));
-	line = get_next_line(fd);
 	tmp = add_d_queue(tmp, (void *)create_header(fd, line, fname));
+	line = get_next_line(fd);
 	while (line) {
 		for (int pos = 0; pos < my_strlen(line);) {
 			node = process_line(line, ++line_no, fname, &pos);
