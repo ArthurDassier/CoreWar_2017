@@ -34,6 +34,7 @@ SRC=		$(SRC_DIR)/integers/number_len.c                   \
 			$(SRC_DIR)/str/my_strcmp.c                         \
 			$(SRC_DIR)/str/my_strcpy.c                         \
 			$(SRC_DIR)/str/my_strdup.c                         \
+			$(SRC_DIR)/str/my_strndup.c                        \
 			$(SRC_DIR)/str/my_strlen.c                         \
 			$(SRC_DIR)/str/my_strncat.c                        \
 			$(SRC_DIR)/str/my_strncmp.c                        \

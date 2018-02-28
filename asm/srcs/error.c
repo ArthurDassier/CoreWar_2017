@@ -18,3 +18,9 @@ void malloc_error(void)
 	write(2, "Error: malloc NULL pointer\n", 27);
 	exit(84);
 }
+
+void error_invalid_instruct(char *fname, int line)
+{
+	my_printf("asm, %s, line %d: Invalid instruction.\n", fname, line);
+	exit(0);
+}

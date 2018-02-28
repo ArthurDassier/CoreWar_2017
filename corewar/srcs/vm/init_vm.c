@@ -10,45 +10,60 @@
 
 int memory_init(circular_memory *vm, int size)
 {
-	if ((vm->memory = malloc(sizeof(char) * size)) == NULL)
+	if ((vm->memory = malloc(sizeof(char) * (size + 1))) == NULL)
 		return (-1);
 	vm->memory_end = vm->memory + size;
-	vm->head = vm->memory;
-	vm->tail = vm->memory;
+	vm->memory_head = vm->memory;
+	vm->pars = vm->memory;
 	vm->size = size;
 	vm->count = 0;
+	memory_memset(vm->memory, size);
 	return (0);
 }
 
-void memory_put(circular_memory *vm, char data)
+void memory_put(circular_memory *vm, char data, int adr)
 {
-	*vm->tail = data;
-	++vm->tail;
-	if (vm->tail == vm->memory_end)
-		vm->tail = vm->memory;
-	if (is_memory_full(vm) == FULL) {
-		if ((vm->head + 1) == vm->memory_end)
-			vm->head = vm->memory;
-		else
-			++vm->head;
-	} else
-		++vm->count;
+	int		flag = 0;
+	int		flag2 = 0;
+
+	if (adr > 0)
+		flag2 = 1;
+	flag = set_flag(adr);
+	while (adr != 0) {
+		if (vm->pars == vm->memory_end)
+			vm->pars = vm->memory_head;
+		else if (vm->pars == vm->memory_head - flag2)
+			vm->pars = vm->memory_end;
+		vm->pars += flag;
+		adr = adr_acc(adr);
+	}
+	*vm->pars = data;
 }
 
-void memory_pop(circular_memory *vm)
+int adr_acc(int adr)
 {
-	++vm->memory;
-	--vm->count;
+	if (adr > 0)
+		--adr;
+	else
+		++adr;
+	return (adr);
+}
+int set_flag(int adr)
+{
+	int	flag = 0;
+
+	if (adr > 0)
+		flag = 1;
+	else
+		flag = -1;
+	return (flag);
 }
 
-void memory_free(circular_memory *vm)
+void memory_memset(char *memory, int size)
 {
-	free(vm->memory);
-}
+	int	i = 0;
 
-int is_memory_full(circular_memory *vm)
-{
-	if (vm->count == vm->size)
-		return (FULL);
-	return (NOT_FULL);
+	while (i != size)
+		memory[i++] = '0';
+	memory[i] = '\0';
 }

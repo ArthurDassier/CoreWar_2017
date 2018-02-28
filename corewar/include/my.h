@@ -13,9 +13,10 @@
 #include <stdlib.h>
 #include "av_flag.h"
 #include "err_gest.h"
-#include "op.h"
 #include "data_base.h"
+#include "champions.h"
 #include "virtual.h"
+#include "op.h"
 
 void my_putchar(char c);
 int my_isneg(int nb);
