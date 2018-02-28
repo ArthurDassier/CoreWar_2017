@@ -7,15 +7,12 @@
 
 #include "my.h"
 
-int virtual_machine(char **av, instructions **list)
+int virtual_machine(circular_memory *vm, champions **champ, char **av)
 {
-	arguments	argv;
-	char		*memory_zone = init_vm(av, &argv);
+	arguments	*argv = malloc(sizeof(arguments));
 
-	if (memory_zone == NULL)
-		return (84);
-	cycles(memory_zone, list, &argv);
-	free(memory_zone);
+	init_vm(av, argv);
+	cycles(vm, champ, argv);
 	return (0);
 }
 
@@ -41,27 +38,8 @@ int main(int ac, char **av)
 		return (84);
 	if (init_champions(champ, ac, av) == 84)
 		return (84);
-<<<<<<< HEAD
-/*	printf("\n----- MEMORY -----\n");
-	memory_init(vm, 5);
-	memory_put(vm, 'a');
-	memory_put(vm, 'b');
-	memory_put(vm, 'c');
-	memory_put(vm, 'd');
-	memory_put(vm, 'e');
-	memory_put(vm, 'f');
-	memory_pop(vm);
-	printf("\n== data ==> %s\n", vm->memory);
-	printf("== m_end ==> %s\n", vm->memory_end);
-	printf("== head  ==> %s\n", vm->head);
-	printf("== tail  ==> %s\n", vm->tail);
-	printf("== count ==> %d\n", vm->count);
-	printf("== size  ==> %d\n", vm->size);*/
-	virtual_machine(av, list);
-=======
-	printf("\n----- MEMORY -----\n");
 	memory_init(vm, MEM_SIZE);
 	print_memory(vm->memory);
->>>>>>> VM
+	virtual_machine(vm, champ, av);
 	return (0);
 }

@@ -21,19 +21,14 @@ void fill_arg(arguments *argv, char *flag, char *parameter)
 	}
 }
 
-char *init_vm(char **av, arguments *argv)
+arguments *init_vm(char **av, arguments *argv)
 {
-	char	*memory_zone = malloc(sizeof(char) * MEM_SIZE);
 	int	i = 0;
 
-	if (memory_zone == NULL) {
-		my_puterror("/!\\ MALLOC == NULL /!\\\n");
-		return (NULL);
-	}
 	while (av[i]) {
 		if (av[i][0] == '-')
 			fill_arg(argv, av[i], av[i + 1]);
 		++i;
 	}
-	return (memory_zone);
+	return (argv);
 }
