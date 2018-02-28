@@ -10,8 +10,29 @@
 
 void num_cycle(int i, circular_memory *vm, champions **champ, arguments *argv)
 {
-	int cycle = 0;
-	
+	struct instructions	*tmp = champ[0]->list;
+	int			cycle = 0;
+	int			j = 0;
+
+	(void) vm;
+	(void) argv;
+	while (champ[j] != NULL) {
+		tmp = champ[j]->list;
+		while (tmp->next != NULL) {
+			cycle += tmp->nb_cycles;
+			if (i > cycle)
+				tmp = tmp->next;
+			if (i == cycle) {
+				my_putstr(tmp->mnemonique);
+				my_putchar('\n');
+				break;
+			}
+			if (i < cycle)
+				break;
+		}
+		cycle = 0;
+		++j;
+	}
 }
 
 int cycles(circular_memory *vm, champions **champ, arguments *argv)

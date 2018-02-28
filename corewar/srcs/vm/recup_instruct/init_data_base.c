@@ -16,7 +16,6 @@ int init_data_base(instructions **list, int ac, char **av)
 	int		i = 0;
 
 	while (ac != 1) {
-		printf("\n----- CHAMPION %d -----\n\n", i + 1);
 		if ((fd = open(av[i + 1], O_RDONLY)) == -1) {
 			my_puterror("open failed\n");
 			return (84);

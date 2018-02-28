@@ -13,17 +13,47 @@ void put_compil_error(void)
 	"[[-a load_addr] [-n prog_nb] prog.cor] ...\n");
 }
 
+int check_ag(char *argv, char **av, int *i, arguments *dot_cor)
+{
+	int check = 0;
+
+	
+	if (argv[0] == '-') {
+		check = looking_for_flag(av, *i);
+		++*i;
+	} else {
+		check = check_cor(av, *i);
+		++dot_cor->cor;
+	}
+	return (check);
+}
+
+void error_champ(int cor)
+{
+	if (cor == 0)
+		my_puterror("No champion specified.\n");
+	else
+		put_compil_error();
+}
+
 int ar_er(int ac, char **av)
 {
-	int	fl = 1;
+	struct arguments dot_cor;
+	int	i = 1;
 
-	if (check_one_ac(ac) == 84)
+	dot_cor.cor = 0;
+	if (ac == 1) {
+		put_compil_error();
 		return (84);
-	if (g_flag(av[1]) == 84)
+	}
+	while (i != ac) {
+		if (check_ag(av[i], av, &i, &dot_cor) == 84)
+			return (84);
+		++i;
+	}
+	if (dot_cor.cor < 2) {
+		error_champ(dot_cor.cor);
 		return (84);
-	if ((fl = looking_for_flag(av)) == 84)
-		return (84);
-	if (check_cor(ac, av, fl) == 84)
-		return (84);
+	}
 	return (0);
 }

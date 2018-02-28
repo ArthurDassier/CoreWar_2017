@@ -20,12 +20,7 @@ enum flag {
 };
 
 typedef struct arguments {
-	int on_dump;
-	int on_n;
-	int on_a;
-	char *flg_dump;
-	char *flg_n;
-	char *flg_a;
+	int cor;
 } arguments;
 
 #endif
