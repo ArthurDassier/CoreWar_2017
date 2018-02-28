@@ -10,13 +10,15 @@
 
 #include "my.h"
 #include "data_base.h"
+#include "virtual.h"
 
-typedef struct champion
+typedef struct champions
 {
 	instructions	*list;
 	int		*registers;
 } champions;
 
 int init_champions(champions **champ, int ac, char **av);
+void memset_champion_registers(champions *champ);
 
 #endif
