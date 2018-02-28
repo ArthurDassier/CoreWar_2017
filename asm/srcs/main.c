@@ -29,16 +29,19 @@ static int process_arg(int ch)
 
 int main(int ac, char **av)
 {
-	int	ch = 0;
+	int		ch = 0;
 	struct d_queue	*dq = NULL;
+	int		fd;
 
 	while ((ch = my_getopt(ac, av, "h")) != -1)
 		if (process_arg(ch) < 0)
-			return (84);
+			return (FAILURE);
 	if (my_optind == 0)
-		return (84);
+		return (FAILURE);
 	for (int i = my_optind; i < ac; i++) {
+		fd = open("test.cor", O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		dq = lex_file(av[i]);
+		parser(dq, fd);
 	}
-	return (0);
+	return (SUCCESS);
 }

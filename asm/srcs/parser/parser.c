@@ -26,9 +26,11 @@ void	parser(struct d_queue *head, int fd)
 	add_header(head, fd);
 	while (tmp != NULL) {
 		token = tmp->token;
-		if (token->tk_val == L)
+		if (token->tk_val == L) {
 			tmp = tmp->next;
-		error_handling(token, head);
+			token = tmp->token;
+		}
+		error_handling(token, tmp);
 		add_cmd(token, fd);
 		add_adressage(token, fd);
 		add_param(token, fd);

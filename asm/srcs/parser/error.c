@@ -41,6 +41,8 @@ int	error_handling(struct token *token, struct d_queue *head)
 	int			index = get_cmd(token->mnemo);
 
 	if (index == FAILURE) {
+		printf("%s\n", token->mnemo);
+		printf("%d\n", token->tk_val);
 		my_printf(ERROR_MSG, header->prog_name, token->line,
 		"Invalid instruction.\n");
 		exit(0);
