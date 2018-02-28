@@ -12,7 +12,7 @@ static	void	(*param_tab[NB_INS])(struct token *, int, int) = {
 	&indirects
 };
 
-static bool	check_case(char *str)
+bool	check_case(char *str)
 {
 	if (my_strcmp(str, "zjump") == 0 || my_strcmp(str, "ldi") == 0 ||
 	my_strcmp(str, "sti") == 0 || my_strcmp(str, "sti") == 0)
@@ -56,8 +56,15 @@ void	indirects(struct token *token, int fd, int i)
 	write(fd, &result, IND_SIZE);
 }
 
-void	add_param(struct token *token, int fd)
+void	add_param(struct d_queue *head, int fd)
 {
-	for (int i = 0; i < token->arg_no; ++i)
+	struct token *token = head->token;
+
+	for (int i = 0; i < token->arg_no; ++i) {
+		if (token->arg_tab[i].tk_name == LAB) {
+			labels(head, fd, i);
+			++i;
+		}
 		param_tab[token->arg_tab[i].tk_name](token, fd, i);
+	}
 }

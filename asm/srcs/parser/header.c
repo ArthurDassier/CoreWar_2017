@@ -17,6 +17,5 @@ void	add_header(struct d_queue *head, int fd)
 	result.val = header->prog_size;
 	swap_endian(&result);
 	header->prog_size = result.val;
-	printf("size = %d magic = %x name = %s comment %s\n", header->prog_size, header->magic, header->prog_name, header->comment);
 	write(fd, head->token, sizeof(struct header_s));
 }

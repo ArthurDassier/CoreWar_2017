@@ -16,7 +16,8 @@ static int	adressage(struct token *token)
 			result += 1;
 			result = result << 2;
 		}
-		if (token->arg_tab[i].tk_name == DRT) {
+		if (token->arg_tab[i].tk_name == DRT
+		|| token->arg_tab[i].tk_name == LAB) {
 			result += 2;
 			result = result << 2;
 		}

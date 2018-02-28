@@ -16,15 +16,29 @@ static struct d_queue	*does_label_exists(char *label, struct d_queue *head)
 		tmp = tmp->next;
 	}
 	if (tmp == NULL)
-		return (FAILURE);
+		return (NULL);
 	return (tmp);
 }
 
-void	add_label(struct d_queue *head, int fd)
+void	labels(struct d_queue *head, int fd, int i)
 {
-	struct token	*token = (head->next)->token;
-	struct d_queue	*tmp = does_label_exists(tmp->);
+	union endian	result;
+	struct token	*token = head->token;
+	int		curr = token->l_size;
+	struct d_queue	*tmp = does_label_exists(token->arg_tab[i].args + 2, head);
 
-	calculate_mem();
-	write();
+	if (tmp == NULL)
+		return;
+	token = tmp->token;
+	result.val = token->l_size - curr;
+	swap_endian(&result);
+	token = head->token;
+	if (my_strcmp(token->mnemo, "live") == 0) {
+		write(fd, &result, 4);
+	} else if (check_case(token->mnemo) == true) {
+		result.val = result.val >> 16;
+		write(fd, &result, IND_SIZE);
+	} else {
+		write(fd, &result, DIR_SIZE);
+	}
 }
