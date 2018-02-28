@@ -11,11 +11,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include "op.h"
 #include "av_flag.h"
 #include "err_gest.h"
-#include "op.h"
-#include "virtual.h"
 #include "data_base.h"
+#include "champions.h"
+#include "virtual.h"
 
 void my_putchar(char c);
 int my_isneg(int nb);

@@ -20,7 +20,7 @@ int fct_open(char *av)
 	if (open(av, O_DIRECTORY) >= 0) {
 		my_puterror("corewar: Error in function read: "
 		"Is a directory.\n");
-		return (0);
+		return (-1);
 	}
 	return (0);
 }
@@ -56,20 +56,12 @@ void error_message(int code, char *av)
 	}
 }
 
-int check_cor(int ac, char **av, int i)
+int check_cor(char **av, int i)
 {
-	int	j = i;
 	int	code = 0;
 
-	while (i != ac) {
-		if ((code = check_each(av[i])) != 0) {
-			error_message(code, av[i]);
-			return (84);
-		}
-		++i;
-	}
-	if (j == i || i == j + 1) {
-		put_compil_error();
+	if ((code = check_each(av[i])) != 0) {
+		error_message(code, av[i]);
 		return (84);
 	}
 	return (0);
