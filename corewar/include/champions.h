@@ -9,13 +9,12 @@
 #define	CHAMPIONS_H_
 
 #include "my.h"
-#include "data_base.h"
-#include "virtual.h"
 
 typedef struct champions
 {
 	instructions	*list;
 	int		*registers;
+	char		*pars;
 } champions;
 
 int init_champions(champions **champ, int ac, char **av);

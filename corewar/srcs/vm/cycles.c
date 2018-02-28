@@ -6,7 +6,6 @@
 */
 
 #include "my.h"
-#include "printf.h"
 
 void num_cycle(int i, circular_memory *vm, champions **champ, arguments *argv)
 {

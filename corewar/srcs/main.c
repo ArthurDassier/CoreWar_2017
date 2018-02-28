@@ -11,7 +11,7 @@ int virtual_machine(circular_memory *vm, champions **champ, char **av)
 {
 	arguments	*argv = malloc(sizeof(arguments));
 
-	init_vm(av, argv);
+	fill_av(av, argv);
 	cycles(vm, champ, argv);
 	return (0);
 }
@@ -38,7 +38,9 @@ int main(int ac, char **av)
 		return (84);
 	if (init_champions(champ, ac, av) == 84)
 		return (84);
-	memory_init(vm, MEM_SIZE);
+	memory_init(vm, champ, MEM_SIZE);
+	memory_put(vm, champ[0], '1', 10);
+	memory_put(vm, champ[1], '2', 20);
 	print_memory(vm->memory);
 	virtual_machine(vm, champ, av);
 	return (0);
