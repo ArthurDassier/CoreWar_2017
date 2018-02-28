@@ -30,6 +30,7 @@ static int process_arg(int ch)
 int main(int ac, char **av)
 {
 	int	ch = 0;
+	int	fd = 0;
 	struct d_queue	*dq = NULL;
 
 	while ((ch = my_getopt(ac, av, "h")) != -1)
@@ -38,7 +39,9 @@ int main(int ac, char **av)
 	if (my_optind == 0)
 		return (84);
 	for (int i = my_optind; i < ac; i++) {
+		fd = open("test.cor", O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		dq = lex_file(av[i]);
+		parser(dq, fd);
 	}
 	return (0);
 }

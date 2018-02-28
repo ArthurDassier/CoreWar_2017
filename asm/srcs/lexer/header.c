@@ -62,7 +62,9 @@ header_t *create_header(int fd, char *line, char *fname)
 
 	if (head == NULL)
 		return (NULL);
+	memset(head, 0, sizeof(header_t));
 	head->magic = COREWAR_EXEC_MAGIC;
+	head->prog_size = 0;
 	for (int i = 0; i < PROG_NAME_LENGTH + 1; i++)
 		head->prog_name[i] = '\0';
 	for (int i = 0; i < COMMENT_LENGTH + 1; i++)
