@@ -21,13 +21,13 @@ SRC=		$(SRC_DIR)/instruction.c	\
 			$(SRC_DIR)/adressage.c	\
 			$(SRC_DIR)/bits.c	\
 			$(SRC_DIR)/op.c		\
-			$(SRC_DIR)/lex.c                                          \
-			$(SRC_DIR)/main.c                                         \
-			$(SRC_DIR)/mem.c                                          \
-			$(SRC_DIR)/string.c                                       \
-			$(SRC_DIR)/string2.c                                      \
-			$(SRC_DIR)/string3.c                                      \
-			$(SRC_DIR)/header.c                                       \
+			$(SRC_DIR)/lex.c	\
+			$(SRC_DIR)/main.c	\
+			$(SRC_DIR)/mem.c	\
+			$(SRC_DIR)/is_header.c	\
+			$(SRC_DIR)/is_label_or_mnemo.c	\
+			$(SRC_DIR)/arg_type.c	\
+			$(SRC_DIR)/header.c	\
 			$(SRC_DIR)/error.c
 
 OBJ=		$(SRC:.c=.o)
