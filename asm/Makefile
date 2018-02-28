@@ -9,7 +9,7 @@
 
 CC=		gcc -g3
 
-FLAGS=	-Wall -Wextra -Werror -I./include
+FLAGS=	-g3 -Wall -Wextra -I./include
 
 LFLAGS= -L./lib -lmy -lclist -lmy_getopt -lmy_fgets
 
@@ -17,16 +17,22 @@ NAME=	asm
 
 SRC_DIR=	$(realpath ./srcs/)
 
-SRC=		$(SRC_DIR)/parser/my_main.c		\
-		$(SRC_DIR)/parser/instruction.c	\
-		$(SRC_DIR)/parser/error.c	\
-		$(SRC_DIR)/parser/parameters.c	\
-		$(SRC_DIR)/parser/parser.c	\
-		$(SRC_DIR)/parser/header.c	\
-		$(SRC_DIR)/parser/adressage.c	\
-		$(SRC_DIR)/my_getnbr_base.c	\
-		$(SRC_DIR)/my_compute_power_rec.c	\
-		$(SRC_DIR)/op.c
+SRC=		$(SRC_DIR)/main.c			\
+		$(SRC_DIR)/op.c				\
+		$(SRC_DIR)/parser/my_main.c		\
+		$(SRC_DIR)/parser/instruction.c		\
+		$(SRC_DIR)/parser/error.c		\
+		$(SRC_DIR)/parser/parameters.c		\
+		$(SRC_DIR)/parser/parser.c		\
+		$(SRC_DIR)/parser/header.c		\
+		$(SRC_DIR)/parser/adressage.c		\
+		$(SRC_DIR)/lexer/lex.c			\
+		$(SRC_DIR)/lexer/mem.c			\
+		$(SRC_DIR)/lexer/is_header.c		\
+		$(SRC_DIR)/lexer/is_label_or_mnemo.c	\
+		$(SRC_DIR)/lexer/arg_type.c		\
+		$(SRC_DIR)/lexer/header.c		\
+		$(SRC_DIR)/lexer/error.c
 
 OBJ=		$(SRC:.c=.o)
 

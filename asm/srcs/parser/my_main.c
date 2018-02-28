@@ -47,13 +47,13 @@ struct d_queue	*fill_list(void)
 	return (head);
 }
 
-int	main(int ac, char **av)
-{
-	struct d_queue *head = NULL;
-	int fd = open("test.cor", O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	(void)ac;
-	(void)av;
-	head = fill_list();
-	parser(head, fd);
-	return (0);
-}
+// int	main(int ac, char **av)
+// {
+// 	struct d_queue *head = NULL;
+// 	int fd = open("test.cor", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+// 	(void)ac;
+// 	(void)av;
+// 	head = fill_list();
+// 	parser(head, fd);
+// 	return (0);
+// }

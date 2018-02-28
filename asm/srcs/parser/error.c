@@ -6,25 +6,28 @@
 */
 #include "corewar.h"
 
+static int	get_token(enum token_e tk_name)
+{
+	if (tk_name == REG)
+		return (T_REG);
+	else if (tk_name == DRT)
+		return (T_DIR);
+	return (T_IND);
+}
+
 static bool	is_valid_param(enum token_e tk_name, int index, int i)
 {
-	(void)tk_name;
-	(void)index;
-	(void)i;
-	// if (tk_name == REG && op_tab[index].type[i] != T_REG)
-	// 	return (false);
-	// if (tk_name == DRT && op_tab[index].type[i] != (T_REG | T_DIR | T_IND))
-	// 	return (false);
-	// if (tk_name == IND && op_tab[index].type[i] != T_IND)
-	// 	return (false);
-	return (true);
+	int	val = get_token(tk_name);
+
+	if ((val & op_tab[index].type[i]) > 0)
+		return (true);
+	return (false);
 }
 
 static int	check_param(struct token *token, int index)
 {
-	if (token->arg_no != op_tab[index].nbr_args) {
+	if (token->arg_no != op_tab[index].nbr_args)
 		return (FAILURE);
-	}
 	for (int i = 0; i < token->arg_no; ++i) {
 		if (is_valid_param(token->arg_tab[i].tk_name, index, i) == false)
 			return (FAILURE);
