@@ -26,6 +26,8 @@ static bool	is_valid_param(enum token_e tk_name, int index, int i)
 
 static int	check_param(struct token *token, int index)
 {
+	if (token->tk_val == L)
+		return (SUCCESS);
 	if (token->arg_no != op_tab[index].nbr_args)
 		return (FAILURE);
 	for (int i = 0; i < token->arg_no; ++i) {
@@ -41,8 +43,6 @@ int	error_handling(struct token *token, struct d_queue *head)
 	int			index = get_cmd(token->mnemo);
 
 	if (index == FAILURE) {
-		printf("%s\n", token->mnemo);
-		printf("%d\n", token->tk_val);
 		my_printf(ERROR_MSG, header->prog_name, token->line,
 		"Invalid instruction.\n");
 		exit(0);
