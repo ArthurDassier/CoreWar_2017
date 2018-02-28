@@ -1,3 +1,4 @@
 .vscode
 srcs/op.c
 zork.s
+zork.cor
