@@ -32,6 +32,7 @@ int main(int ac, char **av)
 	int	ch = 0;
 	int	fd = 0;
 	struct d_queue	*dq = NULL;
+	struct token	*tmp = NULL;
 
 	while ((ch = my_getopt(ac, av, "h")) != -1)
 		if (process_arg(ch) < 0)

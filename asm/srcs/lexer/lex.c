@@ -76,11 +76,12 @@ struct d_queue *lex_file(char *fname)
 
 	if (fd < 0)
 		return (file_error(fname));
-	tmp = add_d_queue(tmp, (void *)create_header(fd, line, fname));
+	tmp = add_d_queue(tmp, create_header(fd, line, fname, &line_no));
 	line = get_next_line(fd);
 	while (line) {
+		++line_no;
 		for (int pos = 0; pos < my_strlen(line);) {
-			node = process_line(line, ++line_no, fname, &pos);
+			node = process_line(line, line_no, fname, &pos);
 			tmp = (node) ? add_d_queue(tmp, (void *)node) : tmp;
 		}
 		free(line);

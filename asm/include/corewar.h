@@ -62,7 +62,7 @@ int		get_cmd(char *cmd);
 struct d_queue	*lex_file(char *);
 int		is_line_comment(char *);
 struct d_queue *lex_file(char *);
-header_t	*create_header(int, char *, char *);
+header_t	*create_header(int, char *, char *, int *);
 enum token_e	get_arg_type(char *);
 int		is_line_comment(char *);
 int		is_header(char *);
@@ -93,5 +93,7 @@ void		*file_error(char *);
 void		*file_error(char *);
 void		error_invalid_instruct(char *, int);
 void		malloc_error(void);
+void		error_comment(char *, int);
+void		error_name(char *, int);
 
 #endif
