@@ -21,7 +21,7 @@ void fill_arg(arguments *argv, char *flag, char *parameter)
 	}
 }
 
-arguments *init_vm(char **av, arguments *argv)
+arguments *fill_av(char **av, arguments *argv)
 {
 	int	i = 0;
 

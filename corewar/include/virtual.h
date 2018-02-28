@@ -15,7 +15,6 @@ typedef struct circular_memory
 	char	*memory;
 	char	*memory_head;
 	char	*memory_end;
-	int	count;
 	int	size;
 } circular_memory;
 

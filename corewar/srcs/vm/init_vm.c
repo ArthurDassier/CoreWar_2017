@@ -19,7 +19,6 @@ int memory_init(circular_memory *vm, champions **champ, int size)
 	while (champ[i] != NULL)
 		champ[i++]->pars = vm->memory;
 	vm->size = size;
-	vm->count = 0;
 	memory_memset(vm->memory, size);
 	return (0);
 }
