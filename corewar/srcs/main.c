@@ -7,14 +7,14 @@
 
 #include "my.h"
 
-int virtual_machine(char **av)
+int virtual_machine(char **av, instructions **list)
 {
 	arguments	argv;
 	char		*memory_zone = init_vm(av, &argv);
 
 	if (memory_zone == NULL)
 		return (84);
-	cycles(memory_zone, &argv);
+	cycles(memory_zone, list, &argv);
 	free(memory_zone);
 	return (0);
 }
@@ -28,7 +28,7 @@ int main(int ac, char **av)
 		return (84);
 	if (init_data_base(list, ac, av) == 84)
 		return (84);
-	printf("\n----- MEMORY -----\n");
+/*	printf("\n----- MEMORY -----\n");
 	memory_init(vm, 5);
 	memory_put(vm, 'a');
 	memory_put(vm, 'b');
@@ -42,6 +42,7 @@ int main(int ac, char **av)
 	printf("== head  ==> %s\n", vm->head);
 	printf("== tail  ==> %s\n", vm->tail);
 	printf("== count ==> %d\n", vm->count);
-	printf("== size  ==> %d\n", vm->size);
+	printf("== size  ==> %d\n", vm->size);*/
+	virtual_machine(av, list);
 	return (0);
 }

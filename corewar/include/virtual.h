@@ -20,7 +20,7 @@ typedef struct circular_memory
 
 void fill_arg(arguments *argv, char *flag, char *parameter);
 char *init_vm(char **av, arguments *argv);
-int cycles(char *memory_zone, arguments *argv);
+int cycles(char *memory_zone, instructions **list, arguments *argv);
 
 int memory_init(circular_memory *vm, int size);
 void memory_put(circular_memory *vm, char data);
