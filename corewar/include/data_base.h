@@ -13,7 +13,7 @@
 typedef struct instructions
 {
 	char			*mnemonique;
-	int			adr;
+	char			adr;
 	int			nb_cycles;
 	int			arg1;
 	int			arg2;

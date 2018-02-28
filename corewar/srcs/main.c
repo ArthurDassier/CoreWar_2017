@@ -39,8 +39,7 @@ int main(int ac, char **av)
 	if (init_champions(champ, ac, av) == 84)
 		return (84);
 	memory_init(vm, champ, MEM_SIZE);
-	memory_put(vm, champ[0], '1', 10);
-	memory_put(vm, champ[1], '2', 20);
+	put_instru_in_memory(vm, champ[0]);
 	print_memory(vm->memory);
 	virtual_machine(vm, champ, av);
 	return (0);

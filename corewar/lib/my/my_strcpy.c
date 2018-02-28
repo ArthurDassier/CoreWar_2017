@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 
-char *my_strcpy(char *dest, char const *src)
+char *my_strcpy(char *dest, char *src)
 {
 	int	i;
 

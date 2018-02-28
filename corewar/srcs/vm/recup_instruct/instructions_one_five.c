@@ -11,7 +11,7 @@ int live_instruction(instructions *list, int fd)
 {
 	union endian	tmp;
 
-	list->mnemonique = "LIVE";
+	list->mnemonique = "1";
 	read(fd, &list->arg1, 4);
 	tmp.val = list->arg1;
 	switch_endian_four(&tmp);
@@ -25,7 +25,7 @@ int ld_instruction(instructions *list, int fd)
 	union endian	tmp;
 
 	read(fd, &list->adr, 1);
-	list->mnemonique = "LD";
+	list->mnemonique = "2";
 	read(fd, &list->arg1, 4);
 	tmp.val = list->arg1;
 	switch_endian_four(&tmp);
@@ -38,7 +38,7 @@ int ld_instruction(instructions *list, int fd)
 int st_instruction(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
-	list->mnemonique = "ST";
+	list->mnemonique = "3";
 	if (read_parameters(list, list->adr, 2, fd) != 0)
 		return (-1);
 	list->arg3 = 0;
@@ -49,7 +49,7 @@ int st_instruction(instructions *list, int fd)
 int add_instruction(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
-	list->mnemonique = "ADD";
+	list->mnemonique = "4";
 	if (read_parameters(list, list->adr, 3, fd) != 0)
 		return (-1);
 	list->nb_cycles = 10;
@@ -59,7 +59,7 @@ int add_instruction(instructions *list, int fd)
 int sub_instruction(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
-	list->mnemonique = "SUB";
+	list->mnemonique = "5";
 	if (read_parameters(list, list->adr, 3, fd) != 0)
 		return (-1);
 	list->nb_cycles = 10;

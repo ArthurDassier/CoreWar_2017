@@ -28,4 +28,6 @@ void memory_memset(char *memory, int size);
 int adr_acc(int adr);
 int set_flag(int adr);
 
+void put_instru_in_memory(circular_memory *vm, champions *champ);
+void instruction_str(char *tmp, instructions *list);
 #endif
