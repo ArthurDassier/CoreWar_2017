@@ -22,14 +22,14 @@ static int add_arg(struct token *node)
 {
 	int	no = 0;
 
-	for (int i = 0; i < node->arg_no && node->arg[i]; i++) {
-		if (node->tk_name[i] == REG)
+	for (int i = 0; i < node->arg_no; i++) {
+		if (node->arg_tab[i].tk_name == REG)
 			no += REG_SIZE;
-		if (node->tk_name[i] == DRT)
+		if (node->arg_tab[i].tk_name == DRT)
 			no += DIR_SIZE;
-		if (node->tk_name[i] == IND)
+		if (node->arg_tab[i].tk_name == IND)
 			no+= IND_SIZE;
-		if (node->tk_name[i] == LAB)
+		if (node->arg_tab[i].tk_name == LAB)
 			no += DIR_SIZE;
 	}
 	return (no);

@@ -51,8 +51,6 @@ struct token
 {
 	enum type_e	tk_val;
 	char		*mnemo;
-	char		**arg;
-	enum token_e	*tk_name;
 	struct args_s	*arg_tab;
 	int		arg_no;
 	int		line;
