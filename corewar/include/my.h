@@ -14,6 +14,7 @@
 #include "av_flag.h"
 #include "err_gest.h"
 #include "op.h"
+#include "champions.h"
 #include "virtual.h"
 #include "data_base.h"
 
