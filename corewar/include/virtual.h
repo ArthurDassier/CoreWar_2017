@@ -8,6 +8,8 @@
 #ifndef VIRTUAL_H_
 #define VIRTUAL_H_
 
+#include "my.h"
+
 typedef struct circular_memory
 {
 	char	*memory;
@@ -19,8 +21,8 @@ typedef struct circular_memory
 } circular_memory;
 
 void fill_arg(arguments *argv, char *flag, char *parameter);
-char *init_vm(char **av, arguments *argv);
-int cycles(char *memory_zone, arguments *argv);
+arguments *init_vm(char **av, arguments *argv);
+int cycles(circular_memory *vm, champions **champ, arguments *argv);
 
 int memory_init(circular_memory *vm, int size);
 void memory_put(circular_memory *vm, char data, int adr);

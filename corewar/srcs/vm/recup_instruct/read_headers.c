@@ -6,6 +6,7 @@
 */
 
 #include "data_base.h"
+#include "op.h"
 
 int headers_error_handling(struct header_s *files_h)
 {
