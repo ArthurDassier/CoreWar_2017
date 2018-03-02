@@ -27,22 +27,32 @@ static int process_arg(int ch)
 	return (0);
 }
 
+static char	*get_name(char *av)
+{
+	char	*name = malloc(sizeof(*name) * my_strlen(av));
+	int	index;
+
+	for (index = 0; av[index] != '.'; ++index);
+	my_strncpy(name, av, index);
+	my_strcat(name, "cor");
+	return (name);
+}
+
 int main(int ac, char **av)
 {
-	int	ch = 0;
-	int	fd = 0;
+	int		ch = 0;
+	int		fd = 0;
 	struct d_queue	*dq = NULL;
-	struct token	*tmp = NULL;
 
 	while ((ch = my_getopt(ac, av, "h")) != -1)
 		if (process_arg(ch) < 0)
-			return (84);
+			return (FAILURE);
 	if (my_optind == 0)
-		return (84);
+		return (FAILURE);
 	for (int i = my_optind; i < ac; i++) {
-		fd = open("test.cor", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		fd = open(get_name(av[i]), O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		dq = lex_file(av[i]);
 		parser(dq, fd);
 	}
-	return (0);
+	return (SUCCESS);
 }

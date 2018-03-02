@@ -75,7 +75,6 @@ void		set_mem(struct token *);
 //Parser
 void		add_cmd(struct token *, int);
 void		add_adressage(struct token *, int);
-void		add_param(struct token *, int);
 int		my_compute_power_rec(int, int);
 int		my_getnbr_base(char const *, char const *);
 void		print_bits(struct token *, int, int);
@@ -85,6 +84,10 @@ void		directs(struct token *, int , int);
 void		indirects(struct token *, int, int);
 void		swap_endian(union endian *);
 void		add_header(struct d_queue *, int);
+void		labels(struct d_queue *head, int fd, int i, struct token *);
+bool		check_case(char *str);
+void		add_param(struct d_queue *head, int fd, struct token *token);
+
 
 // Error handling
 int		error_handling(struct token *, struct d_queue *);
