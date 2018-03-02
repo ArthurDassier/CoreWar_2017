@@ -9,7 +9,7 @@
 
 static int is_exception(struct token *node)
 {
-	char	*name[5] = { "live", "zjmp", "fork", "lfork", NULL };
+	char	*name[2] = { "live",  NULL };
 
 	for (int i = 0; name[i]; i++) {
 		if (!my_strcmp(node->mnemo, name[i]))
@@ -19,7 +19,8 @@ static int is_exception(struct token *node)
 }
 static int is_index(struct token *node)
 {
-	char	*name[7] = { "ld", "st", "ldi", "sti", "lld", "lldi", NULL };
+	char	*name[10] = { "ld", "st", "ldi", "sti", "lld", "lldi", "zjmp",
+		"fork", "lfork", NULL };
 
 	for (int i = 0; name[i]; i++) {
 		if (!my_strcmp(node->mnemo, name[i]))
