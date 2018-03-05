@@ -7,11 +7,10 @@
 
 #include "my.h"
 
-int virtual_machine(circular_memory *vm, champions **champ, char **av)
+int virtual_machine(circular_memory *vm, champions **champ)
 {
 	arguments	*argv = malloc(sizeof(arguments));
 
-	fill_av(av, argv);
 	cycles(vm, champ, argv);
 	return (0);
 }
@@ -39,8 +38,6 @@ int main(int ac, char **av)
 	if (init_champions(champ, ac, av) == 84)
 		return (84);
 	memory_init(vm, champ, MEM_SIZE);
-	put_instru_in_memory(vm, champ[0]);
 	print_memory(vm->memory);
-	virtual_machine(vm, champ, av);
 	return (0);
 }

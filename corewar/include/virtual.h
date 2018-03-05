@@ -18,8 +18,6 @@ typedef struct circular_memory
 	int	size;
 } circular_memory;
 
-void fill_arg(arguments *argv, char *flag, char *parameter);
-arguments *fill_av(char **av, arguments *argv);
 int cycles(circular_memory *vm, champions **champ, arguments *argv);
 
 int memory_init(circular_memory *vm, champions **champ, int size);
@@ -28,6 +26,6 @@ void memory_memset(char *memory, int size);
 int adr_acc(int adr);
 int set_flag(int adr);
 
-void put_instru_in_memory(circular_memory *vm, champions *champ);
 void instruction_str(char *tmp, instructions *list);
+
 #endif
