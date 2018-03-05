@@ -6,7 +6,7 @@
 */
 #include "corewar.h"
 
-static int	is_valid_cmd(char *cmd)
+int	get_cmd(char *cmd)
 {
 	if (cmd == NULL)
 		return (FAILURE);
@@ -17,10 +17,9 @@ static int	is_valid_cmd(char *cmd)
 	return (FAILURE);
 }
 
-void	add_cmd(struct d_queue *head, int fd)
+void	add_cmd(struct token *token, int fd)
 {
-	struct	token	*token = head->token;
-	int	index = is_valid_cmd(token->mnemo);
+	int	index = get_cmd(token->mnemo);
 
 	if (index != FAILURE)
 		write(fd, &(op_tab[index].code), 1);

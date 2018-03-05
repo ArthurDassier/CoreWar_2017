@@ -7,6 +7,17 @@
 
 #include "corewar.h"
 
+static void set_zero(header_t *head)
+{
+	memset(head, 0, sizeof(header_t));
+	head->magic = COREWAR_EXEC_MAGIC;
+	head->prog_size = 0;
+	for (int i = 0; i < PROG_NAME_LENGTH + 1; i++)
+		head->prog_name[i] = '\0';
+	for (int i = 0; i < COMMENT_LENGTH + 1; i++)
+		head->comment[i] = '\0';
+}
+
 static int is_name(char *line)
 {
 	char	name[6] = ".name\0";
@@ -41,38 +52,39 @@ static int is_comment(char *line)
 	return (0);
 }
 
-static void get_header(char *line, header_t *head)
+static void get_header(char *line, header_t *head, char *fname, int *line_no)
 {
 	int	i = 0;
 	int	inc = 0;
 
 	if (is_name(line)) {
+		if (head->prog_name[0] != '\0')
+			error_name(fname, *line_no);
 		for (i = is_name(line) + 2, inc = 0; line[i + 1]; i++, inc++)
 			head->prog_name[inc]  = line[i];
 	}
 	if (is_comment(line)) {
+		if (head->comment[0] != '\0')
+			error_comment(fname, *line_no);
 		for (i = is_comment(line) + 2, inc = 0; line[i + 1]; i++, inc++)
 			head->comment[inc]  = line[i];
 	}
 }
 
-header_t *create_header(int fd, char *line, char *fname)
+header_t *create_header(int fd, char *line, char *fname, int *line_no)
 {
 	header_t	*head = (header_t *)malloc(sizeof(header_t));
 
 	if (head == NULL)
 		return (NULL);
-	head->magic = COREWAR_EXEC_MAGIC;
-	for (int i = 0; i < PROG_NAME_LENGTH + 1; i++)
-		head->prog_name[i] = '\0';
-	for (int i = 0; i < COMMENT_LENGTH + 1; i++)
-		head->comment[i] = '\0';
+	set_zero(head);
+	line = get_next_line(fd);
 	while (line) {
+		*line_no += 1;
 		if (is_header(line))
-			get_header(line, head);
+			get_header(line, head, fname, line_no);
 		if (head->prog_name[0] != '\0' && head->comment[0] != '\0') {
 			free(line);
-			line = get_next_line(fd);
 			break;
 		}
 		free(line);
