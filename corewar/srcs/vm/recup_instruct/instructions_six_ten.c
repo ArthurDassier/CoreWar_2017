@@ -5,7 +5,7 @@
 ** instr_six_ten
 */
 
-#include "data_base.h"
+#include "virtual.h"
 
 int and_instruction(instructions *list, int fd)
 {

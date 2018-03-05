@@ -5,7 +5,7 @@
 ** Arthur
 */
 
-#include "data_base.h"
+#include "virtual.h"
 
 arg_champ *init_ag_champ(int hyp_a, int hyp_n, char *av)
 {

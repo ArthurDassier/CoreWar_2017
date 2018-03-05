@@ -5,7 +5,7 @@
 ** Arthur
 */
 
-#include "my.h"
+#include "virtual.h"
 
 void num_cycle(int i, circular_memory *vm, champions **champ, arguments *argv)
 {

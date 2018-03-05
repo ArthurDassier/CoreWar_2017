@@ -5,7 +5,7 @@
 ** Arthur
 */
 
-#include "my.h"
+#include "virtual.h"
 
 int check_dump(char *av)
 {

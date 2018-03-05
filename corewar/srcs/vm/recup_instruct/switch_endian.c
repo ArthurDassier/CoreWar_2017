@@ -5,7 +5,7 @@
 ** functions_to_switch_endian
 */
 
-#include "data_base.h"
+#include "virtual.h"
 
 void switch_endian_two(union endian *value)
 {

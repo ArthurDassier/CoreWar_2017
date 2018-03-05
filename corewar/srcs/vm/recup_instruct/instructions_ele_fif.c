@@ -5,7 +5,7 @@
 ** instr_ele_fif
 */
 
-#include "data_base.h"
+#include "virtual.h"
 
 int sti_instruction(instructions *list, int fd)
 {

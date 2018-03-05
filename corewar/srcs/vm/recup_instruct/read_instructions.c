@@ -5,7 +5,7 @@
 ** recup_instructions_of_files
 */
 
-#include "data_base.h"
+#include "virtual.h"
 
 static void malloc_instruction(instructions *list)
 {

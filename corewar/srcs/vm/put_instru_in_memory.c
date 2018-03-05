@@ -5,7 +5,7 @@
 ** put_instru_in_memory_c_
 */
 
-#include "my.h"
+#include "virtual.h"
 
 void int_to_str(char *tmp, int nb, int *i)
 {

@@ -5,7 +5,7 @@
 ** Arthur
 */
 
-#include "my.h"
+#include "virtual.h"
 
 int double_fg(char flag)
 {

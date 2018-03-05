@@ -5,7 +5,7 @@
 ** init_vm_c_
 */
 
-#include "my.h"
+#include "virtual.h"
 
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 		int size)

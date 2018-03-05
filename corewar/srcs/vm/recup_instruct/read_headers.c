@@ -5,8 +5,7 @@
 ** read_headers_files_with_error_handling
 */
 
-#include "data_base.h"
-#include "op.h"
+#include "virtual.h"
 
 int headers_error_handling(struct header_s *files_h)
 {

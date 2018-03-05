@@ -5,7 +5,7 @@
 ** Arthur
 */
 
-#include "my.h"
+#include "virtual.h"
 
 int lf_flag_err(int (*flag_handler[3])(char *flag, char *argv),
 char **av, int i)

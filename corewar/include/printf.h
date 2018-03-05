@@ -8,8 +8,6 @@
 #ifndef PRINTF_H_
 #define PRINTF_H_
 
-#include "my.h"
-
 int my_printf(char const *str, ...);
 int case_s(va_list ap);
 int case_d(va_list ap);

@@ -5,7 +5,7 @@
 ** Arthur
 */
 
-#include "my.h"
+#include "virtual.h"
 
 void put_compil_error(void)
 {

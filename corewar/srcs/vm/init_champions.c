@@ -5,7 +5,7 @@
 ** init_champions_c
 */
 
-#include "my.h"
+#include "virtual.h"
 
 int init_champions(champions **champ, int ac, char **av)
 {

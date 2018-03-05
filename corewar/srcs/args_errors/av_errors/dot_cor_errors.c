@@ -8,7 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "my.h"
+#include "virtual.h"
 
 int fct_open(char *av)
 {
