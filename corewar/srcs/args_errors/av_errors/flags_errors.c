@@ -49,7 +49,7 @@ int check_fl_n(char *flag, char *av)
 int check_fl_a(char *flag, char *params)
 {
 	char	hexa[16] = "0123456789ABCDEF";
-	int	i = 1;
+	int	i = 0;
 	int	j = 0;
 
 	(void) flag;
@@ -62,10 +62,6 @@ int check_fl_a(char *flag, char *params)
 		}
 		j = 0;
 		++i;
-	}
-	if (i == 1) {
-		my_puterror("Invalid option.\n");
-		return (84);
 	}
 	return (0);
 }
