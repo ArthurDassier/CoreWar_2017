@@ -6,25 +6,37 @@
 */
 #include "corewar.h"
 
-static struct d_queue	*does_label_exists(char *label, struct d_queue *head)
+static struct d_queue	*get_label(char *label, struct d_queue *head)
 {
 	struct d_queue	*tmp = head;
-	struct token	*token = head->token;
+	struct token	*token = tmp->token;
 
 	while (tmp != NULL && my_strcmp(token->mnemo, label) != 0) {
 		token = tmp->token;
 		tmp = tmp->next;
 	}
 	if (tmp == NULL)
-		return (FAILURE);
+		return (NULL);
 	return (tmp);
 }
 
-void	add_label(struct d_queue *head, int fd)
+void	labels(struct d_queue *head, int fd, int i, struct token *token)
 {
-	struct token	*token = (head->next)->token;
-	struct d_queue	*tmp = does_label_exists(tmp->);
+	union endian	result;
+	int		curr = token->l_size;
+	struct d_queue	*tmp = get_label(token->arg_tab[i].args + 2, head);
+	struct	token	*tmp_tk = tmp->token;
 
-	calculate_mem();
-	write();
+	if (tmp == NULL)
+		return;
+	result.val = tmp_tk->l_size - curr;
+	swap_endian(&result);
+	if (my_strcmp(token->mnemo, "live") == 0) {
+		write(fd, &result, 4);
+	} else if (check_case(token->mnemo) == true) {
+		result.val = result.val >> 16;
+		write(fd, &result, IND_SIZE);
+	} else {
+		write(fd, &result, DIR_SIZE);
+	}
 }

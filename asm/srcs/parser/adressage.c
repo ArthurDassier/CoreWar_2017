@@ -16,7 +16,8 @@ static int	adressage(struct token *token)
 			result += 1;
 			result = result << 2;
 		}
-		if (token->arg_tab[i].tk_name == DRT) {
+		if (token->arg_tab[i].tk_name == DRT
+		|| token->arg_tab[i].tk_name == LAB) {
 			result += 2;
 			result = result << 2;
 		}
@@ -30,7 +31,7 @@ static int	adressage(struct token *token)
 
 static bool	check_exception(char *str)
 {
-	if (my_strcmp(str, "zjump") == 0 || my_strcmp(str, "live") == 0 ||
+	if (my_strcmp(str, "zjmp") == 0 || my_strcmp(str, "live") == 0 ||
 	my_strcmp(str, "lfork") == 0 || my_strcmp(str, "fork") == 0)
 		return (true);
 	return (false);
