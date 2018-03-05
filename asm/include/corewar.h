@@ -70,6 +70,7 @@ int		is_label(char *);
 int		is_arg(char *);
 int		is_mnemonic(char *);
 int		count_arg(char *);
+int		add_arg(struct token *);
 void		set_mem(struct token *);
 
 //Parser
