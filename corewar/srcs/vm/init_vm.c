@@ -6,7 +6,6 @@
 */
 
 #include "my.h"
-#include <stdio.h>
 
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 		int size)
@@ -17,8 +16,10 @@ int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 		return (-1);
 	vm->memory_end = vm->memory + size;
 	vm->memory_head = vm->memory;
-	while (champ[i] != NULL)
-		champ[i++]->pars = vm->memory;
+	while (av_list->next != NULL) {
+		champ[i++]->pars = av_list->hype_a;
+		av_list = av_list->next;
+	}
 	vm->size = size;
 	memory_memset(vm->memory, size);
 	return (0);

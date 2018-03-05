@@ -29,7 +29,7 @@ int main(int ac, char **av)
 	av_list = put_arg(ac, av);
 	if (ar_er(ac, av) > 0)
 		return (84);
-	if (memory_init(vm, champ, MEM_SIZE) != 0)
+	if (memory_init(vm, champ, av_list, MEM_SIZE) != 0)
 		return (84);
 	if (init_champions(champ, av_list) == 84)
 		return (84);
