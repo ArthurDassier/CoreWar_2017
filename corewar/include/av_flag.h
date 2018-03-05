@@ -19,8 +19,9 @@ enum flag {
 	N = 2
 };
 
-typedef struct arguments {
-	int cor;
+typedef struct arguments
+{
+	int	cor;
 } arguments;
 
 #endif
