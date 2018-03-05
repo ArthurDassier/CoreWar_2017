@@ -39,7 +39,7 @@ static int is_index_only(struct token *node)
 	return (0);
 }
 
-int add_arg(struct token *node)
+static int add_arg(struct token *node)
 {
 	int	no = 0;
 
@@ -64,24 +64,21 @@ int add_arg(struct token *node)
 	return (no);
 }
 
-int set_mem(struct token *node)
+int set_mem(struct token *node, int flag)
 {
 	static int	curent_pos = 0;
-	int		no = 0;
 
+	if (flag)
+		return (curent_pos);
 	if (node == NULL || node->tk_val == L)
 		return (0);
 	node->l_size = curent_pos;
 	curent_pos += INSTRUCT_SIZE;
-	no += INSTRUCT_SIZE;
 	if (is_exception(node)) {
 		curent_pos += 4;
-		no += 4;
 	} else {
-		no += add_arg(node);
-		no += (is_index_only(node)) ? 0 : 1;
 		curent_pos += add_arg(node);
 		curent_pos += (is_index_only(node)) ? 0 : 1;
 	}
-	return (no);
+	return (curent_pos);
 }
