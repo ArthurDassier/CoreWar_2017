@@ -42,6 +42,11 @@ typedef struct champions
 	char		*pars;
 } champions;
 
+typedef struct arguments
+{
+	int	cor;
+} arguments;
+
 union endian
 {
 	char	byte[4];
