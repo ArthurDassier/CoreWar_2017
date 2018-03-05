@@ -61,21 +61,27 @@ int add_arg(struct token *node)
 		if (node->arg_tab[i].tk_name == LAB)
 			no += T_LAB;
 	}
-	return ((is_exception(node) && is_index_only(node)) ? no : no + 1);
+	return (no);
 }
 
-void set_mem(struct token *node)
+int set_mem(struct token *node)
 {
 	static int	curent_pos = 0;
+	int		no = 0;
 
-	if (node == NULL)
-		return;
+	if (node == NULL || node->tk_val == L)
+		return (0);
 	node->l_size = curent_pos;
 	curent_pos += INSTRUCT_SIZE;
-	if (is_exception(node))
+	no += INSTRUCT_SIZE;
+	if (is_exception(node)) {
 		curent_pos += 4;
-	else {
+		no += 4;
+	} else {
+		no += add_arg(node);
+		no += (is_index_only(node)) ? 0 : 1;
 		curent_pos += add_arg(node);
 		curent_pos += (is_index_only(node)) ? 0 : 1;
 	}
+	return (no);
 }

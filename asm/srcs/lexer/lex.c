@@ -84,7 +84,7 @@ static struct d_queue *set_size(struct d_queue * head)
 	}
 	header = head->token;
 	el = back->token;
-	header->prog_size = size += add_arg(el);
+	header->prog_size = size + add_arg(el) + 1;
 	return (head);
 }
 
