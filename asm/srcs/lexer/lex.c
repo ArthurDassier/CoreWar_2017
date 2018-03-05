@@ -15,7 +15,7 @@ static struct token *proccess_label(char *line ,int *pos, struct token *node)
 	node->mnemo = my_strndup(line + *pos, is_label(line + *pos));
 	node->l_size = 0;
 	*pos += is_label(line + *pos) + 1;
-	node->arg = NULL;
+	node->arg_tab = NULL;
 	node->arg_no = 0;
 	return (node);
 }
@@ -33,14 +33,13 @@ static struct token *proccess_mnemonique(char *line ,struct token *node,
 	node->mnemo = my_strndup(line + *pos, is_mnemonic(line + *pos));
 	*pos += is_mnemonic(line + *pos) + 1;
 	node->arg_no = (*pos < my_strlen(line)) ? count_arg(line + *pos) : 0;
-	node->arg = malloc(sizeof(char *) * node->arg_no + 8);
-	node->tk_name = malloc(sizeof(enum token_e) * node->arg_no);
+	node->arg_tab = malloc(sizeof(struct args_s) * node->arg_no + 1);
 	for (i = 0; i < node->arg_no; i++) {
-		node->arg[i] = my_strndup(line + *pos, is_arg(line + *pos));
-		node->tk_name[i] = get_arg_type(line + *pos);
+		node->arg_tab[i].args = my_strndup(line + *pos,
+				is_arg(line + *pos));
+		node->arg_tab[i].tk_name = get_arg_type(line + *pos);
 		*pos += is_arg(line + *pos) + 2;
 	}
-	node->arg[i] = NULL;
 	set_mem(node);
 	return (node);
 }
@@ -52,7 +51,8 @@ static struct token *process_line(char *line, int line_no, char *fname,
 
 	if (node == NULL)
 		malloc_error();
-	if (is_line_comment(line)) {
+	memset(node, 0, sizeof(struct token));
+	if (is_line_comment(line) || my_strlen(line) == 0) {
 		free(node);
 		return (NULL);
 	}
@@ -76,11 +76,12 @@ struct d_queue *lex_file(char *fname)
 
 	if (fd < 0)
 		return (file_error(fname));
+	tmp = add_d_queue(tmp, create_header(fd, line, fname, &line_no));
 	line = get_next_line(fd);
-	tmp = add_d_queue(tmp, (void *)create_header(fd, line, fname));
 	while (line) {
+		++line_no;
 		for (int pos = 0; pos < my_strlen(line);) {
-			node = process_line(line, ++line_no, fname, &pos);
+			node = process_line(line, line_no, fname, &pos);
 			tmp = (node) ? add_d_queue(tmp, (void *)node) : tmp;
 		}
 		free(line);

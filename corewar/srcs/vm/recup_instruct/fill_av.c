@@ -7,6 +7,7 @@
 
 #include "my.h"
 
+<<<<<<< HEAD:corewar/srcs/vm/recup_instruct/fill_av.c
 void fill_arg(arguments *argv, char *flag, char *parameter)
 {
 	if (flag[1] == 'a') {
@@ -22,13 +23,10 @@ void fill_arg(arguments *argv, char *flag, char *parameter)
 }
 
 arguments *fill_av(char **av, arguments *argv)
+=======
+arguments *init_vm(char **av, arguments *argv)
+>>>>>>> df9e369b55499313fdf677a2db184ab8ee7ebd9f:corewar/srcs/vm/recup_instruct/init_vm.c
 {
-	int	i = 0;
-
-	while (av[i]) {
-		if (av[i][0] == '-')
-			fill_arg(argv, av[i], av[i + 1]);
-		++i;
-	}
+	(void) av;
 	return (argv);
 }

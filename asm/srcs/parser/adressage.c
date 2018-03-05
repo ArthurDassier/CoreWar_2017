@@ -28,11 +28,20 @@ static int	adressage(struct token *token)
 	return (result);
 }
 
-void	add_adressage(struct d_queue *head, int fd)
+static bool	check_exception(char *str)
 {
-	struct	token	*token = head->token;
+	if (my_strcmp(str, "zjump") == 0 || my_strcmp(str, "live") == 0 ||
+	my_strcmp(str, "lfork") == 0 || my_strcmp(str, "fork") == 0)
+		return (true);
+	return (false);
+}
+
+void	add_adressage(struct token *token, int fd)
+{
 	int		result;
 
+	if (check_exception(token->mnemo) == true)
+		return;
 	result = adressage(token);
 	write(fd, &result, 1);
 }

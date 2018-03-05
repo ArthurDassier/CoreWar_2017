@@ -8,12 +8,19 @@
 #include "my.h"
 
 int lf_flag_err(int (*flag_handler[3])(char *flag, char *argv),
-char **av, int i, int nb_hyp)
+char **av, int i)
 {
-	if (!av[i + 1] || (nb_hyp = send_to_flag_handler(flag_handler,
-	nb_hyp, av, i)) == 84) {
-		put_compil_error();
+	if (!av[i][1]) {
+		my_puterror("Error in function open: No such file or directory.\n");
 		return (84);
 	}
-	return (nb_hyp);
+	if (g_flag(av[i]) == 84)
+		return (84);
+	if (!av[i + 1]) {
+		my_puterror("Invalid option.\n");
+		return (84);
+	}
+	if (send_to_flag_handler(flag_handler, av, i) == 84)
+		return (84);
+	return (0);
 }
