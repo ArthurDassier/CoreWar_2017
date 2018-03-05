@@ -43,6 +43,7 @@ void put_one_champ_in_memory(champions *champ, circular_memory *vm)
 
 	while (champ->list->next != NULL) {
 		instruction_str(tmp, champ->list);
+		memory_put(vm, champ, tmp[i++], 0);
 		while (tmp[i] != '\0')
 			memory_put(vm, champ, tmp[i++], 1);
 		i = 0;
