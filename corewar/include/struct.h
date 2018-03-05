@@ -39,7 +39,7 @@ typedef struct champions
 {
 	instructions	*list;
 	int		*registers;
-	char		*pars;
+	char		*PC;
 } champions;
 
 union endian

@@ -15,7 +15,7 @@ int init_data_base(instructions **list, arg_champ *av_list)
 	int		fd = 0;
 	int		i = 0;
 
-	while (av_list->next != NULL) {
+	while (av_list != NULL) {
 		if ((fd = open(av_list->cor, O_RDONLY)) == -1) {
 			my_puterror("open failed\n");
 			return (84);
