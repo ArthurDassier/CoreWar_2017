@@ -24,3 +24,30 @@ char **av, int i)
 		return (84);
 	return (0);
 }
+
+void reset_cor(char *av, int *hyp_a, int *hyp_n)
+{
+	int j = 0;
+
+	while (av[j] != '\0') {
+		if (av[j] == '.') {
+			*hyp_a = 0;
+			*hyp_n = 0;
+			return;
+		}
+		++j;
+	}
+}
+
+int double_arg(int dump, int hyp_a, int hyp_n)
+{
+	if (hyp_a > 1 || hyp_n > 1) {
+		my_puterror("Invalid option\n");
+		return (84);
+	}
+	if (dump > 1) {
+		my_puterror("Double definition of option dump.\n");
+		return (84);
+	}
+	return (0);
+}
