@@ -61,7 +61,7 @@ int add_arg(struct token *node)
 		if (node->arg_tab[i].tk_name == LAB)
 			no += T_LAB;
 	}
-	return (no);
+	return ((is_exception(node) && is_index_only(node) ? no : no + 1);
 }
 
 void set_mem(struct token *node)
@@ -76,6 +76,6 @@ void set_mem(struct token *node)
 		curent_pos += 4;
 	else {
 		curent_pos += add_arg(node);
-		curent_pos += 1;
+		curent_pos += (is_index_only(node)) ? 0 : 1;
 	}
 }
