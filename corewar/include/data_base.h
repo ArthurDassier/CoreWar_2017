@@ -27,7 +27,7 @@ union endian
 	int	val;
 };
 
-int init_data_base(instructions **list, int ac, char **av);
+int init_data_base(instructions **list, arg_champ *av_list);
 
 void switch_endian_two(union endian *value);
 void switch_endian_four(union endian *value);

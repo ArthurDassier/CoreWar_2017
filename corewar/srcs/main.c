@@ -7,14 +7,6 @@
 
 #include "my.h"
 
-int virtual_machine(circular_memory *vm, champions **champ)
-{
-	arguments	*argv = malloc(sizeof(arguments));
-
-	cycles(vm, champ, argv);
-	return (0);
-}
-
 static void print_memory(char *memory)
 {
 	int	i = 0;
@@ -32,12 +24,14 @@ int main(int ac, char **av)
 {
 	circular_memory	*vm = malloc(sizeof(circular_memory));
 	champions	**champ = malloc(sizeof(champions) * ac);
+	arg_champ	*av_list = NULL;
 
+	av_list = put_arg(ac, av);
 	if (ar_er(ac, av) > 0)
 		return (84);
 	if (memory_init(vm, champ, MEM_SIZE) != 0)
 		return (84);
-	if (init_champions(champ, ac, av) == 84)
+	if (init_champions(champ, av_list) == 84)
 		return (84);
 	print_memory(vm->memory);
 	return (0);

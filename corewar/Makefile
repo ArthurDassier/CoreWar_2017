@@ -12,7 +12,6 @@ SRC	=	srcs/main.c						\
 		srcs/args_errors/av_errors/dot_cor_errors.c		\
 		srcs/args_errors/av_errors/flags_errors.c		\
 		srcs/args_errors/av_errors/look_ff_errors.c		\
-		srcs/vm/cycles.c					\
 		srcs/vm/init_champions.c				\
 		srcs/vm/recup_instruct/instructions_ele_fif.c		\
 		srcs/vm/recup_instruct/instructions_one_five.c		\
@@ -24,6 +23,8 @@ SRC	=	srcs/main.c						\
 		srcs/vm/recup_instruct/switch_endian.c			\
 		srcs/vm/recup_instruct/init_data_base.c			\
 		srcs/vm/init_vm.c					\
+		srcs/vm/recup_args/clist_argv.c				\
+		srcs/vm/clist_arg_champ.c				\
 
 OBJ	=	$(SRC:.c = .o)
 

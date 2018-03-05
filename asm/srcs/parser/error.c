@@ -17,8 +17,11 @@ static int	get_token(enum token_e tk_name)
 
 static bool	is_valid_param(enum token_e tk_name, int index, int i)
 {
-	int	val = get_token(tk_name);
+	int	val;
 
+	if (tk_name == LAB)
+		return (true);
+	val = get_token(tk_name);
 	if ((val & op_tab[index].type[i]) > 0)
 		return (true);
 	return (false);

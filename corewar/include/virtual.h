@@ -10,6 +10,8 @@
 
 #include "my.h"
 
+typedef struct arg_champ arg_champ;
+
 typedef struct circular_memory
 {
 	char	*memory;
@@ -18,8 +20,18 @@ typedef struct circular_memory
 	int	size;
 } circular_memory;
 
-int cycles(circular_memory *vm, champions **champ, arguments *argv);
+struct arg_champ
+{
+	int		hyp_a;
+	int		hyp_n;
+	char		*cor;
+	arg_champ	*next;
+};
 
+arg_champ *put_arg(int ac, char **av);
+arg_champ *init_ag_champ(int hyp_a, int hyp_n, char *av);
+void insert_begin(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
+void insert_end(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
 int memory_init(circular_memory *vm, champions **champ, int size);
 void memory_put(circular_memory *vm, champions *champ, char data, int adr);
 void memory_memset(char *memory, int size);

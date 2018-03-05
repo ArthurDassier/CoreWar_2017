@@ -33,7 +33,7 @@ void	parser(struct d_queue *head, int fd)
 		error_handling(token, tmp);
 		add_cmd(token, fd);
 		add_adressage(token, fd);
-		add_param(token, fd);
+		add_param(head->next, fd, token);
 		tmp = tmp->next;
 	}
 }

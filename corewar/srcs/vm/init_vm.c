@@ -8,7 +8,8 @@
 #include "my.h"
 #include <stdio.h>
 
-int memory_init(circular_memory *vm, champions **champ, int size)
+int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
+		int size)
 {
 	int		i = 0;
 

@@ -5,18 +5,19 @@
 ** init_data_base_c
 */
 
+#include "virtual.h"
 #include "data_base.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
-int init_data_base(instructions **list, int ac, char **av)
+int init_data_base(instructions **list, arg_champ *av_list)
 {
 	int		fd = 0;
 	int		i = 0;
 
-	while (ac != 1) {
-		if ((fd = open(av[i + 1], O_RDONLY)) == -1) {
+	while (av_list->next != NULL) {
+		if ((fd = open(av[av_list->cor], O_RDONLY)) == -1) {
 			my_puterror("open failed\n");
 			return (84);
 		}
@@ -34,7 +35,7 @@ int init_data_base(instructions **list, int ac, char **av)
 		}
 		close(fd);
 		++i;
-		--ac;
+		av_list = av->list->next;
 	}
 	list[i] = NULL;
 	return (0);

@@ -24,5 +24,7 @@ int send_to_flag_handler(int (*flag_handler[3])(char *flag, char *argv),
 char **av, int i);
 int lf_flag_err(int (*flag_handler[3])(char *flag, char *argv),
 char **av, int i);
+void reset_cor(char *av, int *hyp_a, int *hyp_n);
+int double_arg(int dump, int hyp_a, int hyp_n);
 
 #endif

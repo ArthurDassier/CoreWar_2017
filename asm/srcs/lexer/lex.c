@@ -40,7 +40,7 @@ static struct token *proccess_mnemonique(char *line ,struct token *node,
 		node->arg_tab[i].tk_name = get_arg_type(line + *pos);
 		*pos += is_arg(line + *pos) + 2;
 	}
-	set_mem(node);
+	set_mem(node, 0);
 	return (node);
 }
 
@@ -66,6 +66,28 @@ static struct token *process_line(char *line, int line_no, char *fname,
 	return (node);
 }
 
+static struct d_queue *set_size(struct d_queue * head)
+{
+//	struct d_queue	*tmp = (head) ? head->next : NULL;
+//	struct d_queue	*back = (head) ? head->next : NULL;
+//	struct token	*el = NULL;
+	header_t	*header = NULL;
+//	int		size = 0;
+
+	if (head == NULL)
+		return (NULL);
+//	while (tmp) {
+//		el = tmp->token;
+//		size += (el->l_size - size);
+//		back = tmp;
+//		tmp = tmp->next;
+//	}
+	header = head->token;
+//	el = back->token;
+	header->prog_size = set_mem(NULL, 1);
+	return (head);
+}
+
 struct d_queue *lex_file(char *fname)
 {
 	int		fd = open(fname, O_RDONLY);
@@ -88,5 +110,5 @@ struct d_queue *lex_file(char *fname)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (tmp);
+	return (set_size(tmp));
 }
