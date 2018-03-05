@@ -29,7 +29,7 @@ static int process_arg(int ch)
 
 static char	*get_name(char *av)
 {
-	char	*name = malloc(sizeof(*name) * my_strlen(av));
+	char	*name = malloc(sizeof(*name) * my_strlen(av) + 8);
 	int	index;
 
 	for (index = 0; av[index] != '.'; ++index);
@@ -52,6 +52,8 @@ int main(int ac, char **av)
 	for (int i = my_optind; i < ac; i++) {
 		fd = open(get_name(av[i]), O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		dq = lex_file(av[i]);
+		if (dq == NULL)
+			continue;
 		parser(dq, fd);
 	}
 	return (SUCCESS);
