@@ -55,7 +55,7 @@ void memory_memset(char *memory, int size);
 int adr_acc(int adr);
 int set_flag(int adr);
 
-int init_champions(champions **champ, int ac, char **av);
+int init_champions(champions **champ, arg_champ *av_list);
 void memset_champion_registers(champions *champ);
 
 int init_data_base(instructions **list, arg_champ *av_list);
@@ -67,7 +67,8 @@ int read_headers(int fd);
 int check_name_comment(char *name, char *comment);
 int headers_error_handling(struct header_s *files_h);
 
-int memory_init(circular_memory *vm, champions **champ, int size);
+int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
+		int size);
 void memory_put(circular_memory *vm, champions *champ, char data, int adr);
 
 instructions *read_instructions(int fd);

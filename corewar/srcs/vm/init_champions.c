@@ -7,12 +7,12 @@
 
 #include "virtual.h"
 
-int init_champions(champions **champ, int ac, char **av)
+int init_champions(champions **champ, arg_champ *av_list)
 {
-	instructions	**data_base = malloc(sizeof(instructions) * ac);
+	instructions	**data_base = malloc(sizeof(instructions));
 	int		i = 0;
 
-	if (init_data_base(data_base, ac, av) == -1)
+	if (init_data_base(data_base, av_list) == -1)
 		return (-1);
 	while (data_base[i] != NULL) {
 		champ[i] = malloc(sizeof(champions));

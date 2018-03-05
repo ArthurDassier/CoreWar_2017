@@ -17,7 +17,8 @@ int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 	vm->memory_end = vm->memory + size;
 	vm->memory_head = vm->memory;
 	while (av_list->next != NULL) {
-		champ[i++]->pars = av_list->hype_a;
+		champ[i]->pars = vm->memory;
+		champ[i++]->pars += av_list->hyp_a;
 		av_list = av_list->next;
 	}
 	vm->size = size;
