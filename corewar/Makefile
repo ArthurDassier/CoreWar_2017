@@ -22,6 +22,10 @@ SRC	=	srcs/main.c						\
 		srcs/vm/recup_instruct/read_parameters.c		\
 		srcs/vm/recup_instruct/switch_endian.c			\
 		srcs/vm/recup_instruct/init_data_base.c			\
+		srcs/vm/instructions/one_to_five.c			\
+		srcs/vm/instructions/six_to_ten.c			\
+		srcs/vm/instructions/eleven_to_fifteen.c		\
+		srcs/vm/instructions/sixteen.c				\
 		srcs/vm/init_vm.c					\
 		srcs/vm/recup_args/clist_argv.c				\
 		srcs/vm/clist_arg_champ.c				\

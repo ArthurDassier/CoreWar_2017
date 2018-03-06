@@ -23,11 +23,6 @@ enum flag {
 	N = 2
 };
 
-typedef struct arguments
-{
-	int	cor;
-} arguments;
-
 int ar_er(int ac, char **av);
 int check_one_ac(int ac, char **av);
 
