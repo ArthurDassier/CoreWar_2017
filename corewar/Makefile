@@ -12,8 +12,23 @@ SRC	=	srcs/main.c						\
 		srcs/args_errors/av_errors/dot_cor_errors.c		\
 		srcs/args_errors/av_errors/flags_errors.c		\
 		srcs/args_errors/av_errors/look_ff_errors.c		\
-		srcs/vm/cycles.c					\
-		srcs/vm/init/init_vm.c					\
+		srcs/vm/init_champions.c				\
+		srcs/vm/recup_instruct/instructions_ele_fif.c		\
+		srcs/vm/recup_instruct/instructions_one_five.c		\
+		srcs/vm/recup_instruct/instructions_sixteen.c		\
+		srcs/vm/recup_instruct/instructions_six_ten.c		\
+		srcs/vm/recup_instruct/read_headers.c			\
+		srcs/vm/recup_instruct/read_instructions.c		\
+		srcs/vm/recup_instruct/read_parameters.c		\
+		srcs/vm/recup_instruct/switch_endian.c			\
+		srcs/vm/recup_instruct/init_data_base.c			\
+		srcs/vm/instructions/one_to_five.c			\
+		srcs/vm/instructions/six_to_ten.c			\
+		srcs/vm/instructions/eleven_to_fifteen.c		\
+		srcs/vm/instructions/sixteen.c				\
+		srcs/vm/init_vm.c					\
+		srcs/vm/recup_args/clist_argv.c				\
+		srcs/vm/clist_arg_champ.c				\
 
 OBJ	=	$(SRC:.c = .o)
 
@@ -23,7 +38,7 @@ LIB_DIR	=	./lib
 
 MY.H_DIR	=	./include
 
-CC	=	gcc
+CC	=	gcc -g3
 
 C_FLAGS	=	-Wall -Wextra
 
