@@ -17,14 +17,19 @@ void ld(int *param_one, int *register_one)
 {
 	(void) *param_one;
 	(void) *register_one;
+	//register_one = (PC + *param_one % IDX_MOD);
 	//modif carry;
 	return;
 }
 
-void st(int *param_one, int *param_two)
+void st(int *register_one, int *param_two)
 {
 	(void) *param_one;
 	(void) *param_two;
+	//if (param_two != register)
+		//(PC + *param_two % IDX_MOD) = register_one;
+	//else
+		//param_two = register_one;
 	return;
 }
 
