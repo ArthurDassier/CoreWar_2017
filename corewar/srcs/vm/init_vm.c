@@ -21,7 +21,7 @@ int set_flag(int adr)
 
 	if (adr > 0)
 		flag = 1;
-	else
+	else if (adr < 0)
 		flag = -1;
 	return (flag);
 }

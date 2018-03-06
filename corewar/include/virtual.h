@@ -66,7 +66,8 @@ int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 		int size);
 void memory_put(circular_memory *vm, champions *champ, char data, int adr);
 void put_instructions_in_memory(champions **champ, circular_memory *vm);
-void int_to_str(char *tmp, int nb, int *i);
+int hexo_to_dec(int value, int flag);
+void int_to_str(char *tmp, int nb, int *i, int size);
 void instruction_str(char *tmp, instructions *list);
 void put_one_champ_in_memory(champions *champ, circular_memory *vm);
 
@@ -90,7 +91,7 @@ int aff_instruction(instructions *list, int fd);
 
 int read_in_struct(instructions *list, int val, int j, int fd);
 struct parameters recup_parameters(int types);
-int read_value_of_param(int value, int fd);
+int read_value_of_param(int *types, int value, int fd);
 int read_parameters(instructions *list, int code, int nb_arg, int fd);
 
 #endif
