@@ -27,6 +27,7 @@ int fork_instruction(instructions *list, int fd)
 	switch_endian_two(&tmp);
 	list->arg1 = tmp.val;
 	list->nb_cycles = 800;
+	list->types = 400;
 	return (0);
 }
 

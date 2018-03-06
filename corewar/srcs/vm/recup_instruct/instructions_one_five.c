@@ -12,11 +12,12 @@ int live_instruction(instructions *list, int fd)
 	union endian	tmp;
 
 	list->mnemonique = "1";
-	read(fd, &list->arg1, 4);
+	read(fd, &list->arg1, T_IND);
 	tmp.val = list->arg1;
 	switch_endian_four(&tmp);
 	list->arg1 = tmp.val;
 	list->nb_cycles = 10;
+	list->types = 800;
 	return (0);
 }
 
@@ -25,6 +26,7 @@ int ld_instruction(instructions *list, int fd)
 	union endian	tmp;
 
 	read(fd, &list->adr, 1);
+	list->adr %= 16;
 	list->mnemonique = "2";
 	read(fd, &list->arg1, 4);
 	tmp.val = list->arg1;
@@ -32,6 +34,7 @@ int ld_instruction(instructions *list, int fd)
 	list->arg1 = tmp.val;
 	read(fd, &list->arg2, 1);
 	list->nb_cycles = 5;
+	list->types = 420;
 	return (0);
 }
 

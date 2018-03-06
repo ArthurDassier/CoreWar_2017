@@ -32,6 +32,7 @@ struct instructions
 	int		arg1;
 	int		arg2;
 	int		arg3;
+	int		types;
 	instructions	*next;
 };
 
@@ -39,7 +40,7 @@ typedef struct champions
 {
 	instructions	*list;
 	int		*registers;
-	char		*pars;
+	char		*PC;
 } champions;
 
 typedef struct arguments
