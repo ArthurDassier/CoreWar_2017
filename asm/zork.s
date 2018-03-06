@@ -1,4 +1,4 @@
-.name "zork"
+.name				"zork"
 .comment "just a basic living program"
 
 l2:

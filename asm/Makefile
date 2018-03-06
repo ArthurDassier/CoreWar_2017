@@ -32,6 +32,8 @@ SRC=		$(SRC_DIR)/main.c			\
 		$(SRC_DIR)/lexer/is_label_or_mnemo.c	\
 		$(SRC_DIR)/lexer/arg_type.c		\
 		$(SRC_DIR)/lexer/header.c		\
+		$(SRC_DIR)/lexer/skip.c		\
+		$(SRC_DIR)/lexer/syntax_error.c		\
 		$(SRC_DIR)/lexer/error.c
 
 OBJ=		$(SRC:.c=.o)
