@@ -29,9 +29,11 @@ static int process_arg(int ch)
 
 static char	*get_name(char *av)
 {
-	char	*name = malloc(sizeof(*name) * my_strlen(av) + 8);
 	int	index;
+	char	*name = malloc(sizeof(*name) * my_strlen(av) + 9);
 
+	if (name == NULL)
+		return (NULL);
 	for (index = 0; av[index] != '.'; ++index);
 	my_strncpy(name, av, index);
 	my_strcat(name, "cor");
@@ -50,7 +52,8 @@ int main(int ac, char **av)
 	if (my_optind == 0)
 		return (FAILURE);
 	for (int i = my_optind; i < ac; i++) {
-		fd = open(get_name(av[i]), O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		char *new = get_name(av[i]);
+		fd = open(new, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		dq = lex_file(av[i]);
 		if (dq == NULL)
 			continue;
