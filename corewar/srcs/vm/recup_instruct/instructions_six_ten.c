@@ -53,6 +53,7 @@ int zjmp_instruction(instructions *list, int fd)
 	switch_endian_two(&tmp);
 	list->arg1 = tmp.val;
 	list->nb_cycles = 25;
+	list->types = 400;
 	return (0);
 }
 

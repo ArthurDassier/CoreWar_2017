@@ -29,6 +29,7 @@ SRC	=	srcs/main.c						\
 		srcs/vm/init_vm.c					\
 		srcs/vm/recup_args/clist_argv.c				\
 		srcs/vm/clist_arg_champ.c				\
+		srcs/vm/put_instru_in_memory.c				\
 
 OBJ	=	$(SRC:.c = .o)
 
