@@ -6,25 +6,33 @@
 */
 #include "corewar.h"
 
+static void	add_args(struct token *token, int *result, int i)
+{
+	if (token->arg_tab[i].tk_name == REG) {
+		*result += 1;
+		*result = *result << 2;
+	}
+	if (token->arg_tab[i].tk_name == DRT
+	|| token->arg_tab[i].tk_name == LAB) {
+		*result += 2;
+		*result = *result << 2;
+	}
+	if (token->arg_tab[i].tk_name == IND) {
+		*result += 3;
+		*result = *result << 2;
+	}
+}
+
 static int	adressage(struct token *token)
 {
 	int	result = 0;
 
 	result = result << 2;
-	for (int i = 0; i < token->arg_no; ++i) {
-		if (token->arg_tab[i].tk_name == REG) {
-			result += 1;
+	for (int i = 0; i < 3; ++i) {
+		if (i < token->arg_no)
+			add_args(token, &result, i);
+		else
 			result = result << 2;
-		}
-		if (token->arg_tab[i].tk_name == DRT
-		|| token->arg_tab[i].tk_name == LAB) {
-			result += 2;
-			result = result << 2;
-		}
-		if (token->arg_tab[i].tk_name == IND) {
-			result += 3;
-			result = result << 2;
-		}
 	}
 	return (result);
 }
