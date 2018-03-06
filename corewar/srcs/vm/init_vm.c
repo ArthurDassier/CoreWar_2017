@@ -65,7 +65,8 @@ int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 	vm->memory_head = vm->memory;
 	while (av_list != NULL) {
 		champ[i]->PC = vm->memory;
-		champ[i++]->PC += av_list->hyp_a;
+		if ((champ[i++]->PC += av_list->hyp_a) == vm->memory_head)
+			champ[i]->PC = vm->memory_end;
 		av_list = av_list->next;
 	}
 	vm->size = size;
