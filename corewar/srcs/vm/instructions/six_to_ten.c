@@ -37,6 +37,10 @@ void xor(int *first, int *two, int *register_one)
 void zjmp(int *index_one)
 {
 	(void) *index_one;
+	//if (carry == 1)
+		//PC = PC + index_one % IDX_MOD;
+	//else
+		//return;
 	return;
 }
 

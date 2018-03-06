@@ -19,6 +19,9 @@ void sti(int *register_one, int *param_one, int *param_two)
 void fork_inst(int *index_one)
 {
 	(void) *index_one;
+	/*It creates a new program that inherits different states from
+	the parent. This program is executed at the address PC
+	+ first index_one % IDX_MOD.*/
 	return;
 }
 
@@ -47,5 +50,8 @@ void lldi(int *index_one, int *index_two, int *register_one)
 void lfork(int *index_one)
 {
 	(void) *index_one;
+	/*It creates a new program that inherits different states from
+	the parent. This program is executed at the address PC
+	+ first index_one.*/
 	return;
 }

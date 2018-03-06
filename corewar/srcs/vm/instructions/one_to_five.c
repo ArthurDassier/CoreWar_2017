@@ -24,7 +24,7 @@ void ld(int *param_one, int *register_one)
 
 void st(int *register_one, int *param_two)
 {
-	(void) *param_one;
+	(void) *register_one;
 	(void) *param_two;
 	//if (param_two != register)
 		//(PC + *param_two % IDX_MOD) = register_one;
