@@ -16,7 +16,6 @@ LFLAGS= -L./lib -lmy -lclist -lmy_getopt -lmy_fgets
 NAME=	asm
 
 SRC_DIR=	$(realpath ./srcs/)
-
 SRC=		$(SRC_DIR)/main.c			\
 		$(SRC_DIR)/op.c				\
 		$(SRC_DIR)/parser/instruction.c		\
