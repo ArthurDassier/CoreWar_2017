@@ -5,7 +5,7 @@
 ** recup_instructions_of_files
 */
 
-#include "data_base.h"
+#include "virtual.h"
 
 static void malloc_instruction(instructions *list)
 {
@@ -45,13 +45,19 @@ instructions *read_instructions(int fd)
 	instructions		*tmp_list = list;
 	int			(*inst_tab[16])(instructions *list, int fd);
 
+	printf("\n == instructions == \n\n");
 	init_instructions_tab(inst_tab);
 	while ((rv = read(fd, &i, 1)) != 0) {
 		malloc_instruction(list);
 		if (inst_tab[i - 1](list, fd) == -1)
 			return (NULL);
-		printf("==> %s\n", list->mnemonique);
-		list->next = malloc(sizeof(instructions));
+		if ((list->next = malloc(sizeof(instructions))) == NULL)
+			return (NULL);
+		printf("==> %s", list->mnemonique);
+		printf("	/ AD = %x", list->adr);
+		printf("	/ A1 = %x", list->arg1);
+		printf("	/ A2 = %x", list->arg2);
+		printf("	/ A3 = %x\n", list->arg3);
 		list = list->next;
 	}
 	list->next = NULL;

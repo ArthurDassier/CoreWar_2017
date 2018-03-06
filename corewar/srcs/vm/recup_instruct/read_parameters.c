@@ -5,7 +5,7 @@
 ** check_all_params
 */
 
-#include "data_base.h"
+#include "virtual.h"
 
 int read_value_of_param(int val, int fd)
 {

@@ -5,7 +5,7 @@
 ** strcat
 */
 
-char *my_strcat(char *dest, char const *src)
+char *my_strcat(char *dest, char *src)
 {
 	int	i = 0;
 	int	j = 0;
