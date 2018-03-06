@@ -45,5 +45,9 @@ void ldi(int *index_one, int *index_two, int *register_one)
 	(void) *index_one;
 	(void) *index_two;
 	(void) *register_one;
+	//IND_SIZE :
+	//S = (PC + index_one % IDX_MOD) + index_two;
+	//REG_SIZE :
+	//register_one = PC + S % IDX_MOD;
 	return;
 }

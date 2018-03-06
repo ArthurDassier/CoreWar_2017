@@ -12,7 +12,7 @@ void sti(int *register_one, int *param_one, int *param_two)
 	(void) *register_one;
 	(void) *param_one;
 	(void) *param_two;
-	//modif carry;
+//	PC + (param_one + param_two) % IDX_MOD = register_one;
 	return;
 }
 
@@ -26,6 +26,7 @@ void lld(int *param_one, int *register_one)
 {
 	(void) *param_one;
 	(void) *register_one;
+	//register_one = (PC + *param_one);
 	//modif carry;
 	return;
 }
@@ -35,6 +36,10 @@ void lldi(int *index_one, int *index_two, int *register_one)
 	(void) *index_one;
 	(void) *index_two;
 	(void) *register_one;
+	//IND_SIZE :
+	//S = (PC + index_one) + index_two;
+	//REG_SIZE :
+	//register_one = PC + S;
 	//modif carry;
 	return;
 }
