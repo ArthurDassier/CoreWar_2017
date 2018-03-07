@@ -10,10 +10,9 @@
 
 void live(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) instr;
 	(void) champ;
 	(void) vm;
-	//my_printf("Le joueur %d (?) est en vie.", instr->arg1);
+	my_printf("Le joueur %X (?) est en vie.\n", instr->arg1);
 }
 
 void ld(instructions *instr, champions *champ, circular_memory *vm)
@@ -26,7 +25,7 @@ void ld(instructions *instr, champions *champ, circular_memory *vm)
 void st(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) vm;
-	if ((instr->types / 10) % 10 != 2)
+	if (instr->arg2 > REG_NUMBER)
 		champ->PC = (champ->PC + instr->arg2 % IDX_MOD);
 	else
 		instr->arg2 = instr->arg1;
