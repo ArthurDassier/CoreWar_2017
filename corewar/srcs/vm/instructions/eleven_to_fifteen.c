@@ -34,9 +34,9 @@ void lld(instructions *instr, champions *champ, circular_memory *vm)
 
 void lldi(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) vm;
 	int	S = 0;
 
+	(void) vm;
 	champ->tmp = champ->PC + instr->arg1;
 	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
 	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3)))

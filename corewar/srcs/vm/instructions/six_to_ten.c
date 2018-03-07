@@ -37,9 +37,9 @@ void zjmp(instructions *instr, champions *champ, circular_memory *vm)
 
 void ldi(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) vm;
 	int	S = 0;
 
+	(void) vm;
 	champ->tmp = champ->PC + instr->arg1 % IDX_MOD;
 	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
 	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3)))
