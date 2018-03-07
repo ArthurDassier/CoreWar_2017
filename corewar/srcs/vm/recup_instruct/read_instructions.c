@@ -48,10 +48,10 @@ instructions *read_instructions(int fd)
 	printf("\n == instructions == \n\n");
 	init_instructions_tab(inst_tab);
 	while ((rv = read(fd, &i, 1)) != 0) {
-		malloc_instruction(list);
-		if (inst_tab[i - 1](list, fd) == -1)
+		malloc_instruction(tmp_list);
+		if (inst_tab[i - 1](tmp_list, fd) == -1)
 			return (NULL);
-		if ((list->next = malloc(sizeof(instructions))) == NULL)
+		if ((tmp_list->next = malloc(sizeof(instructions))) == NULL)
 			return (NULL);
 		printf("==> %s", list->mnemonique);
 		printf("	/ TY = %d", list->types);
@@ -59,8 +59,8 @@ instructions *read_instructions(int fd)
 		printf("	/ A1 = %X", list->arg1);
 		printf("	/ A2 = %X", list->arg2);
 		printf("	/ A3 = %X\n", list->arg3);
-		list = list->next;
+		tmp_list = tmp_list->next;
 	}
-	list->next = NULL;
+	tmp_list->next = NULL;
 	return (tmp_list);
 }

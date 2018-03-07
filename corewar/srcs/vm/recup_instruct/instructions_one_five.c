@@ -12,7 +12,7 @@ int live_instruction(instructions *list, int fd)
 	union endian	tmp;
 
 	list->mnemonique = "1";
-	read(fd, &list->arg1, T_IND);
+	read(fd, &list->arg1, 4);
 	tmp.val = list->arg1;
 	switch_endian_four(&tmp);
 	list->arg1 = tmp.val;
