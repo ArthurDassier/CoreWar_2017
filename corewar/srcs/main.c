@@ -36,9 +36,5 @@ int main(int ac, char **av)
 		return (84);
 	put_instructions_in_memory(champ, vm);
 	print_memory(vm->memory);
-	my_printf("%s\n", champ[0]->list->mnemonique);
-	//champ[0]->list = champ[0]->list->next;
-	//printf("%d\n", champ[0]->list->arg1);
-	//live(champ[0]->list->next, champ[0], vm);
 	return (0);
 }

@@ -12,7 +12,7 @@ void live(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) champ;
 	(void) vm;
-	my_printf("Le joueur %d (?) est en vie.", instr->arg1);
+	my_printf("Le joueur %X (?) est en vie.\n", instr->arg1);
 }
 
 void ld(instructions *instr, champions *champ, circular_memory *vm)
