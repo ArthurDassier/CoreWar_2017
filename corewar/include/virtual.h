@@ -94,5 +94,6 @@ int read_in_struct(instructions *list, int val, int j, int fd);
 struct parameters recup_parameters(int types);
 int read_value_of_param(int *types, int value, int fd);
 int read_parameters(instructions *list, int code, int nb_arg, int fd);
+char *its(int nb);
 
 #endif

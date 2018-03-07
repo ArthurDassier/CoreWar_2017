@@ -13,13 +13,11 @@ void live(instructions *instr, champions *champ, circular_memory *vm)
 	(void) instr;
 	(void) champ;
 	(void) vm;
-	//my_printf("Le joueur %d (?) est en vie.", player_number);
+	//my_printf("Le joueur %d (?) est en vie.", instr->arg1);
 }
 
 void ld(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) instr;
-	(void) champ;
 	(void) vm;
 	instr->arg2 = my_getnbr((champ->PC + instr->arg1 % IDX_MOD));
 	champ->carry = modif_carry(champ->carry);
@@ -27,8 +25,6 @@ void ld(instructions *instr, champions *champ, circular_memory *vm)
 
 void st(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) instr;
-	(void) champ;
 	(void) vm;
 	if ((instr->types / 10) % 10 != 2)
 		champ->PC = (champ->PC + instr->arg2 % IDX_MOD);
@@ -38,8 +34,6 @@ void st(instructions *instr, champions *champ, circular_memory *vm)
 
 void add(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) instr;
-	(void) champ;
 	(void) vm;
 	instr->arg3 = instr->arg1 + instr->arg2;
 	champ->carry = modif_carry(champ->carry);
@@ -47,8 +41,6 @@ void add(instructions *instr, champions *champ, circular_memory *vm)
 
 void sub(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) instr;
-	(void) champ;
 	(void) vm;
 	instr->arg3 = instr->arg1 - instr->arg2;
 	champ->carry = modif_carry(champ->carry);

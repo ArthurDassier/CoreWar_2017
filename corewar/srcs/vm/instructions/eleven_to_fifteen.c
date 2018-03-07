@@ -9,11 +9,9 @@
 
 void sti(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) instr;
-	(void) champ;
 	(void) vm;
 	champ->tmp = champ->PC + (instr->arg2 + instr->arg3) % IDX_MOD;
-	//champ->PC + champ->tmp = instr->arg1;
+	champ->tmp = its(instr->arg1);
 }
 
 void fork_inst(instructions *instr, champions *champ, circular_memory *vm)
@@ -29,8 +27,6 @@ void fork_inst(instructions *instr, champions *champ, circular_memory *vm)
 
 void lld(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) instr;
-	(void) champ;
 	(void) vm;
 	instr->arg2 = my_getnbr((champ->PC + instr->arg1));
 	champ->carry = modif_carry(champ->carry);
@@ -38,15 +34,16 @@ void lld(instructions *instr, champions *champ, circular_memory *vm)
 
 void lldi(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) instr;
-	(void) champ;
 	(void) vm;
 	int	S = 0;
 
 	champ->tmp = champ->PC + instr->arg1;
-	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1)) + my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3))) + instr->arg2;
+	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
+	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3)))
+	+ instr->arg2;
 	champ->tmp = champ->PC + S;
-	instr->arg3 =  my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1)) + my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
+	instr->arg3 =  my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
+	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
 	champ->carry = modif_carry(champ->carry);
 }
 
