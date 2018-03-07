@@ -59,10 +59,11 @@ void instruction_str(char *tmp, instructions *list)
 	printf("== instructions str ==> %s\n", tmp);
 }
 
-void put_one_champ_in_memory(champions *champ, circular_memory *vm)
+instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm)
 {
-	char	*tmp = malloc(sizeof(char) * 20);
-	int	i = 0;
+	char		*tmp = malloc(sizeof(char) * 20);
+	instructions	*tmp_list = champ->list;
+	int		i = 0;
 
 	printf("\n");
 	while (champ->list->next != NULL) {
@@ -72,12 +73,15 @@ void put_one_champ_in_memory(champions *champ, circular_memory *vm)
 		i = 0;
 		champ->list = champ->list->next;
 	}
+	return (tmp_list);
 }
 
 void put_instructions_in_memory(champions **champ, circular_memory *vm)
 {
 	int	i = 0;
 
-	while (champ[i] != NULL)
-		put_one_champ_in_memory(champ[i++], vm);
+	while (champ[i] != NULL) {
+		champ[i]->list = put_one_champ_in_memory(champ[i], vm);
+		++i;
+	}
 }
