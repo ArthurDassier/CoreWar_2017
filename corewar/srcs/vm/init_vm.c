@@ -61,16 +61,17 @@ int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 
 	if ((vm->memory = malloc(sizeof(char) * (size + 1))) == NULL)
 		return (-1);
+	memory_memset(vm->memory, size - 1);
 	vm->memory_end = vm->memory + size;
 	vm->memory_head = vm->memory;
 	while (av_list != NULL) {
 		champ[i]->PC = vm->memory;
 		if ((champ[i]->PC += av_list->hyp_a) == vm->memory_head)
 			champ[i]->PC = vm->memory_end - 1;
+		champ[i]->tmp = champ[i]->PC;
 		av_list = av_list->next;
 		++i;
 	}
 	vm->size = size;
-	memory_memset(vm->memory, size);
 	return (0);
 }

@@ -59,7 +59,9 @@ int zjmp_instruction(instructions *list, int fd)
 
 int ldi_instruction(instructions *list, int fd)
 {
+	printf("%x\n", list->adr);
 	read(fd, &list->adr, 1);
+	printf("%X\n", list->adr);
 	list->mnemonique = "A";
 	if (read_parameters(list, list->adr, 3, fd) != 0)
 		return (-1);

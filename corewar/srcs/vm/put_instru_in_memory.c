@@ -61,7 +61,7 @@ void instruction_str(char *tmp, instructions *list)
 
 void put_one_champ_in_memory(champions *champ, circular_memory *vm)
 {
-	char	*tmp = malloc(sizeof(char) * 18);
+	char	*tmp = malloc(sizeof(char) * 20);
 	int	i = 0;
 
 	printf("\n");
