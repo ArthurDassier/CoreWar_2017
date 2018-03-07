@@ -22,10 +22,10 @@ void ld(instructions *instr, champions *champ, circular_memory *vm)
 
 void st(instructions *instr, champions *champ, circular_memory *vm)
 {
-	//if (instr->arg2 != register)
+	if ((type / 10) % 10 != 2)
 		//(champ->PC + instr->arg2 % IDX_MOD) = instr->arg1;
-	//else
-		//instr->arg2 = instr->arg1;
+	else
+		instr->arg2 = instr->arg1;
 	return;
 }
 
