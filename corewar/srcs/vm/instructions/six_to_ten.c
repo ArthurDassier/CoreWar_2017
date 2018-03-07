@@ -7,35 +7,33 @@
 
 #include "struct.h"
 #include "instructions.h"
+#include "op.h"
 
-void and(instructions *instr, champions *champ)
+void and_inst(instructions *instr, champions *champ, circular_memory *vm)
 {
 	instr->arg1 = instr->arg2 & instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
-void or(instructions *instr, champions *champ)
+void or_inst(instructions *instr, champions *champ, circular_memory *vm)
 {
 	instr->arg1 = instr->arg2 | instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
-void xor(instructions *instr, champions *champ)
+void xor_inst(instructions *instr, champions *champ, circular_memory *vm)
 {
 	instr->arg1 = instr->arg2 ^ instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
-void zjmp(instructions *instr, champions *champ)
+void zjmp(instructions *instr, champions *champ, circular_memory *vm)
 {
-	//if (champ->carry == 1)
-		//champ->PC = champ->PC + instr->arg1 % IDX_MOD;
-	//else
-		//return;
-	return;
+	if (champ->carry == 1)
+		champ->PC = champ->PC + instr->arg1 % IDX_MOD;
 }
 
-void ldi(instructions *instr, champions *champ)
+void ldi(instructions *instr, champions *champ, circular_memory *vm)
 {
 	//IND_SIZE :
 	//S = (champ->PC + instr->arg1 % IDX_MOD) + instr->arg2;
