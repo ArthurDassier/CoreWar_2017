@@ -52,7 +52,8 @@ static struct token *process_line(char *line, int line_no, char *fname,
 	if (node == NULL)
 		malloc_error();
 	memset(node, 0, sizeof(struct token));
-	if (is_line_comment(line) || my_strlen(line) == 0) {
+	if (is_line_comment(line + *pos) || my_strlen(line) == 0) {
+		*pos = my_strlen(line);
 		free(node);
 		return (NULL);
 	}
@@ -68,22 +69,11 @@ static struct token *process_line(char *line, int line_no, char *fname,
 
 static struct d_queue *set_size(struct d_queue * head)
 {
-//	struct d_queue	*tmp = (head) ? head->next : NULL;
-//	struct d_queue	*back = (head) ? head->next : NULL;
-//	struct token	*el = NULL;
 	header_t	*header = NULL;
-//	int		size = 0;
 
 	if (head == NULL)
 		return (NULL);
-//	while (tmp) {
-//		el = tmp->token;
-//		size += (el->l_size - size);
-//		back = tmp;
-//		tmp = tmp->next;
-//	}
 	header = head->token;
-//	el = back->token;
 	header->prog_size = set_mem(NULL, 1);
 	return (head);
 }
