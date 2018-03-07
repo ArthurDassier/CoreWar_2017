@@ -18,6 +18,7 @@ typedef struct circular_memory
 
 struct arg_champ
 {
+	int		nbr_champ;
 	int		hyp_a;
 	int		hyp_n;
 	char		*cor;

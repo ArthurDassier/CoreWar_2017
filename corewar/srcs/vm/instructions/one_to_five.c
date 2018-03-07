@@ -13,40 +13,30 @@ void live(int player_number)
 	my_printf("Le joueur %d (?) est en vie.", player_number);
 }
 
-void ld(int *param_one, int *register_one)
+void ld(instructions *instr, champions *champ)
 {
-	(void) *param_one;
-	(void) *register_one;
-	//register_one = (PC + *param_one % IDX_MOD);
+	instr->arg2 = (champ->PC + instr->arg1 % IDX_MOD);
 	//modif carry;
 	return;
 }
 
-void st(int *register_one, int *param_two)
+void st(instructions *instr, champions *champ)
 {
-	(void) *register_one;
-	(void) *param_two;
-	//if (param_two != register)
-		//(PC + *param_two % IDX_MOD) = register_one;
+	//if (instr->arg2 != register)
+		//(champ->PC + instr->arg2 % IDX_MOD) = instr->arg1;
 	//else
-		//param_two = register_one;
+		//instr->arg2 = instr->arg1;
 	return;
 }
 
-void add(int *register_one, int *register_two, int *register_three)
+void add(instructions *instr, champions *champ)
 {
-	(void) *register_one;
-	(void) *register_two;
-	(void) *register_three;
 	//modif carry;
-	*register_three = *register_one + *register_two;
+	instr->arg3 = instr->arg1 + instr->arg2;
 }
 
-void sub(int *register_one, int *register_two, int *register_three)
+void sub(instructions *instr, champions *champ)
 {
-	(void) *register_one;
-	(void) *register_two;
-	(void) *register_three;
 	//modif carry;
-	*register_three = *register_one - *register_two;
+	instr->arg3 = instr->arg1 - instr->arg2;
 }

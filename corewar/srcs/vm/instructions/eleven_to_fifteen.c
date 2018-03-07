@@ -7,49 +7,39 @@
 
 #include "virtual.h"
 
-void sti(int *register_one, int *param_one, int *param_two)
+void sti(instructions *instr, champions *champ)
 {
-	(void) *register_one;
-	(void) *param_one;
-	(void) *param_two;
-//	PC + (param_one + param_two) % IDX_MOD = register_one;
+	//champ->PC + (instr->arg2 + instr->arg3) % IDX_MOD = instr->arg1;
 	return;
 }
 
-void fork_inst(int *index_one)
+void fork_inst(instructions *instr, champions *champ)
 {
-	(void) *index_one;
 	/*It creates a new program that inherits different states from
 	the parent. This program is executed at the address PC
 	+ first index_one % IDX_MOD.*/
 	return;
 }
 
-void lld(int *param_one, int *register_one)
+void lld(instructions *instr, champions *champ)
 {
-	(void) *param_one;
-	(void) *register_one;
-	//register_one = (PC + *param_one);
+	instr->arg2 = (champ->PC + instr->arg1);
 	//modif carry;
 	return;
 }
 
-void lldi(int *index_one, int *index_two, int *register_one)
+void lldi(instructions *instr, champions *champ)
 {
-	(void) *index_one;
-	(void) *index_two;
-	(void) *register_one;
 	//IND_SIZE :
-	//S = (PC + index_one) + index_two;
+	//S = (champ->PC + instr->arg1) + instr->arg2;
 	//REG_SIZE :
-	//register_one = PC + S;
+	//instr->arg3 = champ->PC + S;
 	//modif carry;
 	return;
 }
 
-void lfork(int *index_one)
+void lfork(instructions *instr, champions *champ)
 {
-	(void) *index_one;
 	/*It creates a new program that inherits different states from
 	the parent. This program is executed at the address PC
 	+ first index_one.*/

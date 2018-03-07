@@ -7,51 +7,38 @@
 
 #include "virtual.h"
 
-void and(int *first, int *two, int *register_one)
+void and(instructions *instr, champions *champ)
 {
-	(void) *first;
-	(void) *two;
-	(void) *register_one;
 	//modif carry;
-	*register_one = *first & *two;
+	instr->arg1 = instr->arg2 & instr->arg3;
 }
 
-void or(int *first, int *two, int *register_one)
+void or(instructions *instr, champions *champ)
 {
-	(void) *first;
-	(void) *two;
-	(void) *register_one;
 	//modif carry;
-	*register_one = *first | *two;
+	instr->arg1 = instr->arg2 | instr->arg3;
 }
 
-void xor(int *first, int *two, int *register_one)
+void xor(instructions *instr, champions *champ)
 {
-	(void) *first;
-	(void) *two;
-	(void) *register_one;
 	//modif carry;
-	*register_one = *first ^ *two;
+	instr->arg1 = instr->arg2 ^ instr->arg3;
 }
 
-void zjmp(int *index_one)
+void zjmp(instructions *instr, champions *champ)
 {
-	(void) *index_one;
 	//if (carry == 1)
-		//PC = PC + index_one % IDX_MOD;
+		//PC = PC + instr->arg1 % IDX_MOD;
 	//else
 		//return;
 	return;
 }
 
-void ldi(int *index_one, int *index_two, int *register_one)
+void ldi(instructions *instr, champions *champ)
 {
-	(void) *index_one;
-	(void) *index_two;
-	(void) *register_one;
 	//IND_SIZE :
-	//S = (PC + index_one % IDX_MOD) + index_two;
+	//S = (champ->PC + instr->arg1 % IDX_MOD) + instr->arg2;
 	//REG_SIZE :
-	//register_one = PC + S % IDX_MOD;
+	//instr->arg3 = champ->PC + S % IDX_MOD;
 	return;
 }

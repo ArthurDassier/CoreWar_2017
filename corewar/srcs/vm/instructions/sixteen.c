@@ -8,7 +8,7 @@
 #include "virtual.h"
 #include "printf.h"
 
-void aff(int *register_one)
+void aff(instructions *instr, champions *champ)
 {
-	my_printf("%c\n", register_one);
+	my_printf("%c\n", instr->arg1);
 }
