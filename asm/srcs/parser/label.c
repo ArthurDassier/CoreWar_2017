@@ -25,10 +25,11 @@ void	labels(struct d_queue *head, int fd, int i, struct token *token)
 	union endian	result;
 	int		curr = token->l_size;
 	struct d_queue	*tmp = get_label(token->arg_tab[i].args + 2, head);
-	struct	token	*tmp_tk = tmp->token;
+	struct	token	*tmp_tk = NULL;
 
 	if (tmp == NULL)
 		return;
+	tmp_tk = tmp->token;
 	result.val = tmp_tk->l_size - curr;
 	swap_endian(&result);
 	if (my_strcmp(token->mnemo, "live") == 0) {
