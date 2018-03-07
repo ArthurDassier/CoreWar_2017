@@ -10,9 +10,9 @@
 int find_a(char **av, int i)
 {
 	if (i - 2 > 0 && av[i - 2][1] == 'a')
-		return (my_getnbr_base(av[i - 1], "0123456789ABCDEF"));
+		return (my_getnbr(av[i - 1]));
 	if (i - 4 > 0 && av[i - 4][1] == 'a')
-		return (my_getnbr_base(av[i - 3], "0123456789ABCDEF"));
+		return (my_getnbr(av[i - 3]));
 	return (0);
 }
 
