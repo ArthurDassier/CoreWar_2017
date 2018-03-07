@@ -28,10 +28,10 @@ SRC	=	srcs/main.c						\
 		srcs/vm/recup_args/clist_argv.c				\
 		srcs/vm/clist_arg_champ.c				\
 		srcs/vm/put_instru_in_memory.c				\
-		##srcs/vm/instructions/one_to_five.c			\
-		##srcs/vm/instructions/six_to_ten.c			\
-		##srcs/vm/instructions/eleven_to_fifteen.c		\
-		##srcs/vm/instructions/sixteen.c			\
+		srcs/vm/instructions/one_to_five.c			\
+		srcs/vm/instructions/six_to_ten.c			\
+		srcs/vm/instructions/eleven_to_fifteen.c		\
+		srcs/vm/instructions/sixteen.c				\
 
 OBJ	=	$(SRC:.c = .o)
 
