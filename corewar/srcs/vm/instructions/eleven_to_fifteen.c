@@ -26,7 +26,6 @@ void lld(instructions *instr, champions *champ)
 {
 	instr->arg2 = (champ->PC + instr->arg1);
 	champ->carry = modif_carry(champ->carry);
-	return;
 }
 
 void lldi(instructions *instr, champions *champ)
@@ -36,7 +35,6 @@ void lldi(instructions *instr, champions *champ)
 	//REG_SIZE :
 	//instr->arg3 = champ->PC + S;
 	champ->carry = modif_carry(champ->carry);
-	return;
 }
 
 void lfork(instructions *instr, champions *champ)

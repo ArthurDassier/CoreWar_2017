@@ -17,7 +17,6 @@ void ld(instructions *instr, champions *champ)
 {
 	instr->arg2 = (champ->PC + instr->arg1 % IDX_MOD);
 	champ->carry = modif_carry(champ->carry);
-	return;
 }
 
 void st(instructions *instr, champions *champ)
