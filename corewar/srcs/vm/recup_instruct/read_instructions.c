@@ -54,11 +54,11 @@ instructions *read_instructions(int fd)
 		if ((tmp_list->next = malloc(sizeof(instructions))) == NULL)
 			return (NULL);
 		printf("==> %s", list->mnemonique);
-		printf("	/ TY = %d", list->types);
-		printf("	/ AD = %X", list->adr);
-		printf("	/ A1 = %X", list->arg1);
-		printf("	/ A2 = %X", list->arg2);
-		printf("	/ A3 = %X\n", list->arg3);
+		printf("	/ TY = %d", tmp_list->types);
+		printf("	/ AD = %X", tmp_list->adr);
+		printf("	/ A1 = %X", tmp_list->arg1);
+		printf("	/ A2 = %X", tmp_list->arg2);
+		printf("	/ A3 = %X\n", tmp_list->arg3);
 		tmp_list = tmp_list->next;
 	}
 	tmp_list->next = NULL;

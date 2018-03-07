@@ -70,7 +70,7 @@ void put_instructions_in_memory(champions **champ, circular_memory *vm);
 int hexo_to_dec(int value, int flag);
 void int_to_str(char *tmp, int nb, int *i, int size);
 void instruction_str(char *tmp, instructions *list);
-void put_one_champ_in_memory(champions *champ, circular_memory *vm);
+instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm);
 
 instructions *read_instructions(int fd);
 int live_instruction(instructions *list, int fd);
