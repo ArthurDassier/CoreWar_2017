@@ -4,9 +4,11 @@
 ** File description:
 ** getnbr base
 */
-#include "my.h"
 
-static int  from_base(char c, char const *base)
+int my_strlen(char const *str);
+int my_compute_power_rec(int nb, int p);
+
+static int from_base(char c, char const *base)
 {
 	int	i;
 
@@ -33,8 +35,8 @@ int my_getnbr_base(char const *str, char const *base)
 {
 	int	i = 0;
 	int	base_size = my_strlen(base);
-	int	nbr_size;
-	int	result;
+	int	nbr_size = 0;
+	int	result = 0;
 
 	for (; str[i] && (str[i] == '+' || str[i] == '-'); ++i);
 	nbr_size = my_strlen(str + i) - 1;

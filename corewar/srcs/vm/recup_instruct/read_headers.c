@@ -5,7 +5,7 @@
 ** read_headers_files_with_error_handling
 */
 
-#include "data_base.h"
+#include "virtual.h"
 
 int headers_error_handling(struct header_s *files_h)
 {
@@ -35,10 +35,6 @@ int read_headers(int fd)
 	tmp.val = files_h->prog_size;
 	switch_endian_four(&tmp);
 	files_h->prog_size = tmp.val;
-	printf("== magic ==> %x\n", files_h->magic);
-	printf("== prog_name ==> %s\n", files_h->prog_name);
-	printf("== prog_size ==> %x\n", files_h->prog_size);
-	printf("== comment ==> %s\n\n", files_h->comment);
 	if (headers_error_handling(files_h) != 0)
 		return (-1);
 	return (0);

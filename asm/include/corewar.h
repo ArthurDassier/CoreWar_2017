@@ -71,6 +71,8 @@ int		is_arg(char *);
 int		is_mnemonic(char *);
 int		count_arg(char *);
 int		set_mem(struct token *, int);
+int		skip_tabs(char *);
+int		next_quote(char *, int);
 
 //Parser
 void		add_cmd(struct token *, int);
@@ -98,5 +100,6 @@ void		error_invalid_instruct(char *, int);
 void		malloc_error(void);
 void		error_comment(char *, int);
 void		error_name(char *, int);
+void		syntax_error(char *, int);
 
 #endif

@@ -5,7 +5,7 @@
 ** Arthur
 */
 
-#include "my.h"
+#include "virtual.h"
 
 int check_dump(char *av)
 {
@@ -25,18 +25,23 @@ int check_dump(char *av)
 int check_fl_n(char *flag, char *av)
 {
 	char	base[10] = "0123456789";
-	int	i = 0;
 	int	j = 0;
 
-	if (flag[1] != 'n')
-		return (84);
-	while (av[i] != '\0') {
+	(void) flag;
+	for (int i = 0; av[i] != '\0'; ++i) {
 		while (base[j] != av[i] && base[j] != '\0')
 			++j;
-		if (base[j] == '\0')
+		if (base[j] == '\0') {
+			my_puterror("Invalid option.\n");
 			return (84);
+		}
 		j = 0;
-		++i;
+	}
+	if (my_getnbr(av) < 1 || my_getnbr(av) > 4) {
+		my_puterror("-n argument ");
+		my_puterror(av);
+		my_puterror(" is invalid.\nEnter a number between 1 and 4.\n");
+		return (84);
 	}
 	return (0);
 }
@@ -44,28 +49,27 @@ int check_fl_n(char *flag, char *av)
 int check_fl_a(char *flag, char *params)
 {
 	char	hexa[16] = "0123456789ABCDEF";
-	int	i = 1;
+	int	i = 0;
 	int	j = 0;
 
-	if (flag[1] != 'a')
-		return (84);
+	(void) flag;
 	while (params[i] != '\0') {
 		while (params[i] != hexa[j] && hexa[j] != '\0')
 			++j;
-		if (hexa[j] == '\0')
+		if (hexa[j] == '\0') {
+			my_puterror("Invalid option.\n");
 			return (84);
+		}
 		j = 0;
 		++i;
 	}
-	if (i == 1)
-		return (84);
 	return (0);
 }
 
 int g_flag(char *av)
 {
 	if (av[0] == '-' && av[1] == 'g') {
-		my_puterror("we don't have any graphic interface\n");
+		my_puterror("We don't have any graphic interface\n");
 		return (84);
 	}
 	return (0);

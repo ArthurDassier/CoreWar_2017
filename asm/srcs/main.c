@@ -50,10 +50,10 @@ int main(int ac, char **av)
 	if (my_optind == 0)
 		return (FAILURE);
 	for (int i = my_optind; i < ac; i++) {
-		fd = open(get_name(av[i]), O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		dq = lex_file(av[i]);
 		if (dq == NULL)
 			continue;
+		fd = open(get_name(av[i]), O_WRONLY | O_TRUNC | O_CREAT, 0644);
 		parser(dq, fd);
 	}
 	return (SUCCESS);

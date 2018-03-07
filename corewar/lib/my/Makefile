@@ -17,7 +17,7 @@ NAME	=	libmy.a
 
 AR	=	ar rc
 
-all:	$(NAME)
+all:	$(NAME) clean
 
 $(NAME):	$(OBJ)
 		$(AR) ../$(NAME) $(OBJ)
