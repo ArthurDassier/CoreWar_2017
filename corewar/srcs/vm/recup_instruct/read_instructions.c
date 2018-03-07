@@ -53,7 +53,7 @@ instructions *read_instructions(int fd)
 			return (NULL);
 		if ((tmp_list->next = malloc(sizeof(instructions))) == NULL)
 			return (NULL);
-		printf("==> %s", list->mnemonique);
+		printf("==> %s", tmp_list->mnemonique);
 		printf("	/ TY = %d", tmp_list->types);
 		printf("	/ AD = %X", tmp_list->adr);
 		printf("	/ A1 = %X", tmp_list->arg1);

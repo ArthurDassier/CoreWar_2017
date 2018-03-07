@@ -12,17 +12,23 @@ int read_for_ldi(instructions *list, int val, int i, int fd)
 	union endian	tmp;
 
 	if (i == 0) {
-		read(fd, &list->arg1, IND_SIZE);
-		tmp.val = list->arg1;
-		switch_endian_two(&tmp);
-		list->arg1 = tmp.val;
-		list->types = 4;
+		if (val != 1) {
+			read(fd, &list->arg1, IND_SIZE);
+			tmp.val = list->arg1;
+			switch_endian_two(&tmp);
+			list->arg1 = tmp.val;
+			list->types = 4;
+		} else
+			i = 2;
 	} else if (i == 1) {
-		read(fd, &list->arg2, IND_SIZE);
-		tmp.val = list->arg2;
-		switch_endian_two(&tmp);
-		list->arg2 = tmp.val;
-		list->types = list->types * 10 + 4;
+		if (val != 1) {
+			read(fd, &list->arg2, IND_SIZE);
+			tmp.val = list->arg2;
+			switch_endian_two(&tmp);
+			list->arg2 = tmp.val;
+			list->types = list->types * 10 + 4;
+		} else
+			i = 2;
 	}
 	if (i == 2) {
 		if (val != 1)

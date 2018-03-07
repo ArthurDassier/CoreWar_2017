@@ -47,7 +47,7 @@ void instruction_str(char *tmp, instructions *list)
 		tmp[i++] = list->mnemonique[0];
 	}
 	if (list->adr != 0) {
-		tmp[i++] = list->adr / 16 + 48;
+		tmp[i++] = list->adr / (16 * 16) % 16 + 48;
 		tmp[i++] = list->adr % 16 + 48;
 	}
 	int_to_str(tmp, list->arg1, &i, (list->types / 100));

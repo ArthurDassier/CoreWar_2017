@@ -9,7 +9,7 @@
 
 int init_champions(champions **champ, arg_champ *av_list)
 {
-	instructions	**data_base = malloc(sizeof(instructions) * 3);
+	instructions	**data_base = malloc(sizeof(instructions) * av_list->nbr_champ);
 	int		i = 0;
 
 	if (init_data_base(data_base, av_list) == -1)

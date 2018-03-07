@@ -9,10 +9,12 @@
 
 int aff_instruction(instructions *list, int fd)
 {
-	read(fd, &list->adr, 1);
-	list->mnemonique = "10";
-	if (read_parameters(list, list->adr, 1, fd) != 0)
+	if (read(fd, &list->adr, 1) == -1)
 		return (-1);
+	list->mnemonique = "10";
+	if (read(fd, &list->arg1, T_REG) == -1)
+		return (-1);
+	list->types = 200;
 	list->nb_cycles = 2;
 	return (0);
 }

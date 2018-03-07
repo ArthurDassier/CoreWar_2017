@@ -30,14 +30,14 @@ struct arg_champ
 
 struct instructions
 {
-	char		*mnemonique;
+	char			*mnemonique;
 	unsigned char		adr;
-	int		nb_cycles;
-	int		arg1;
-	int		arg2;
-	int		arg3;
-	int		types;
-	instructions	*next;
+	int			nb_cycles;
+	int			arg1;
+	int			arg2;
+	int			arg3;
+	int			types;
+	instructions		*next;
 };
 
 typedef struct champions
