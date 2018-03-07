@@ -5,7 +5,8 @@
 ** Arthur
 */
 
-#include "virtual.h"
+#include "struct.h"
+#include "instructions.h"
 
 void and(instructions *instr, champions *champ)
 {
