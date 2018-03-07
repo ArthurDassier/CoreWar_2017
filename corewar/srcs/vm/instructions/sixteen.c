@@ -12,3 +12,12 @@ void aff(instructions *instr, champions *champ)
 {
 	my_printf("%c\n", instr->arg1);
 }
+
+int modif_carry(int carry)
+{
+	if (carry == 0)
+		carry = 1;
+	else
+		carry = 0;
+	return (carry);
+}

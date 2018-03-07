@@ -5,6 +5,9 @@
 ** Arthur
 */
 
+#ifndef STRUCT_H_
+#define STRUCT_H_
+
 typedef struct instructions instructions;
 typedef struct arg_champ arg_champ;
 
@@ -54,3 +57,5 @@ union endian
 	char	byte[4];
 	int	val;
 };
+
+#endif
