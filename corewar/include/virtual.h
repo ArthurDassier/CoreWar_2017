@@ -95,4 +95,9 @@ struct parameters recup_parameters(int types);
 int read_value_of_param(int *types, int value, int fd);
 int read_parameters(instructions *list, int code, int nb_arg, int fd);
 
+int read_for_ldi(instructions *list, int val, int i, int fd);
+int read_ldi(instructions *list, int code, int nb_arg, int fd);
+int read_for_sti(instructions *list, int val, int i, int fd);
+int read_sti(instructions *list, int code, int nb_arg, int fd);
+
 #endif

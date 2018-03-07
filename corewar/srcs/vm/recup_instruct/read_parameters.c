@@ -18,15 +18,15 @@ int read_value_of_param(int *types, int val, int fd)
 			return (-1);
 		return (arg);
 	} else if (val == 2) {
-		*types = *types * 10 + 4;
-		if (read(fd, &arg, T_DIR) == -1)
+		*types = *types * 10 + 8;
+		if (read(fd, &arg, DIR_SIZE) == -1)
 			return (-1);
 		ins.val = arg;
 		switch_endian_two(&ins);
 		return (ins.val);
 	} else {
-		*types = *types * 10 + 8;
-		if (read(fd, &arg, T_IND) == -1)
+		*types = *types * 10 + 4;
+		if (read(fd, &arg, IND_SIZE) == -1)
 			return (-1);
 		ins.val = arg;
 		switch_endian_four(&ins);

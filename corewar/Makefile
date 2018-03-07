@@ -13,6 +13,8 @@ SRC	=	srcs/main.c						\
 		srcs/args_errors/av_errors/flags_errors.c		\
 		srcs/args_errors/av_errors/look_ff_errors.c		\
 		srcs/vm/init_champions.c				\
+		srcs/vm/recup_instruct/sti.c				\
+		srcs/vm/recup_instruct/ldi.c				\
 		srcs/vm/recup_instruct/instructions_ele_fif.c		\
 		srcs/vm/recup_instruct/instructions_one_five.c		\
 		srcs/vm/recup_instruct/instructions_sixteen.c		\

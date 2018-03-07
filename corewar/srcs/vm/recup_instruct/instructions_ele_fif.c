@@ -11,7 +11,7 @@ int sti_instruction(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "B";
-	if (read_parameters(list, list->adr, 3, fd) != 0)
+	if (read_sti(list, list->adr, 3, fd) == -1)
 		return (-1);
 	list->nb_cycles = 25;
 	return (0);
@@ -22,7 +22,7 @@ int fork_instruction(instructions *list, int fd)
 	union endian	tmp;
 
 	list->mnemonique = "C";
-	read(fd, &list->arg1, 2);
+	read(fd, &list->arg1, IND_SIZE);
 	tmp.val = list->arg1;
 	switch_endian_two(&tmp);
 	list->arg1 = tmp.val;
@@ -45,7 +45,7 @@ int lldi_instruction(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "E";
-	if (read_parameters(list, list->adr, 3, fd) != 0)
+	if (read_ldi(list, list->adr, 3, fd) != 0)
 		return (-1);
 	list->nb_cycles = 50;
 	return (0);

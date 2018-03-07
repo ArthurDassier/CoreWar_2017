@@ -31,7 +31,7 @@ struct arg_champ
 struct instructions
 {
 	char		*mnemonique;
-	char		adr;
+	unsigned char		adr;
 	int		nb_cycles;
 	int		arg1;
 	int		arg2;
