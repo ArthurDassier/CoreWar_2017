@@ -60,14 +60,20 @@ static void get_header(char *line, header_t *head, char *fname, int *line_no)
 	if (is_name(line)) {
 		if (head->prog_name[0] != '\0')
 			error_name(fname, *line_no);
-		for (i = is_name(line) + 2, inc = 0; line[i + 1]; i++, inc++)
+		for (i = next_quote(line, 0) + 1, inc = 0; line[i] != '"'
+				&& line[i] ; i++, inc++)
 			head->prog_name[inc]  = line[i];
+		if (line[i] == '\0')
+			syntax_error(fname, *line_no);
 	}
 	if (is_comment(line)) {
 		if (head->comment[0] != '\0')
 			error_comment(fname, *line_no);
-		for (i = is_comment(line) + 2, inc = 0; line[i + 1]; i++, inc++)
+		for (i = next_quote(line, 0) + 1, inc = 0; line[i] != '"'
+				&& line[i]; i++, inc++)
 			head->comment[inc]  = line[i];
+		if (line[i] == '\0')
+			syntax_error(fname, *line_no);
 	}
 }
 

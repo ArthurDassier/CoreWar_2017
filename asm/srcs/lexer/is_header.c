@@ -43,7 +43,11 @@ static int is_comment(char *line)
 
 int is_line_comment(char *line)
 {
-	if (line != NULL && (line[0] == '#' || line [0] == '\0'))
+	int	i = 0;
+
+	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
+		i++;
+	if (line != NULL && (line[i] == '#' || line [i] == '\0'))
 		return (1);
 	return (0);
 }
