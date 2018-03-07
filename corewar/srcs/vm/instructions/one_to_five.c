@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2017
+** EPITECH PROJECT, 2018
 ** one_to_five.c
 ** File description:
 ** Arthur
@@ -12,7 +12,7 @@ void live(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) champ;
 	(void) vm;
-	my_printf("Le joueur %X (?) est en vie.\n", instr->arg1);
+	my_printf("Le joueur %d (?) est en vie.\n", instr->arg1);
 }
 
 void ld(instructions *instr, champions *champ, circular_memory *vm)

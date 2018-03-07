@@ -36,5 +36,6 @@ int main(int ac, char **av)
 		return (84);
 	put_instructions_in_memory(champ, vm);
 	print_memory(vm->memory);
+	live(champ[1]->list->next, champ[1], vm);
 	return (0);
 }
