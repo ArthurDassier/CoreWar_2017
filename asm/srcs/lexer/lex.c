@@ -52,7 +52,8 @@ static struct token *process_line(char *line, int line_no, char *fname,
 	if (node == NULL)
 		malloc_error();
 	memset(node, 0, sizeof(struct token));
-	if (is_line_comment(line) || my_strlen(line) == 0) {
+	if (is_line_comment(line + *pos) || my_strlen(line) == 0) {
+		*pos = my_strlen(line);
 		free(node);
 		return (NULL);
 	}
