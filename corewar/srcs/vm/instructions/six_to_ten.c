@@ -5,39 +5,53 @@
 ** Arthur
 */
 
-#include "struct.h"
-#include "instructions.h"
-#include "op.h"
+#include "virtual.h"
 
 void and_inst(instructions *instr, champions *champ, circular_memory *vm)
 {
+	(void) instr;
+	(void) champ;
+	(void) vm;
 	instr->arg1 = instr->arg2 & instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
 void or_inst(instructions *instr, champions *champ, circular_memory *vm)
 {
+	(void) instr;
+	(void) champ;
+	(void) vm;
 	instr->arg1 = instr->arg2 | instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
 void xor_inst(instructions *instr, champions *champ, circular_memory *vm)
 {
+	(void) instr;
+	(void) champ;
+	(void) vm;
 	instr->arg1 = instr->arg2 ^ instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
 void zjmp(instructions *instr, champions *champ, circular_memory *vm)
 {
+	(void) instr;
+	(void) champ;
+	(void) vm;
 	if (champ->carry == 1)
 		champ->PC = champ->PC + instr->arg1 % IDX_MOD;
 }
 
 void ldi(instructions *instr, champions *champ, circular_memory *vm)
 {
-	//IND_SIZE :
-	//S = (champ->PC + instr->arg1 % IDX_MOD) + instr->arg2;
-	//REG_SIZE :
-	//instr->arg3 = champ->PC + S % IDX_MOD;
-	return;
+	(void) instr;
+	(void) champ;
+	(void) vm;
+	int	S = 0;
+
+	champ->tmp = champ->PC + instr->arg1 % IDX_MOD;
+	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1)) + my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3))) + instr->arg2;
+	champ->tmp = champ->PC + S % IDX_MOD;
+	instr->arg3 = my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1)) + my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
 }

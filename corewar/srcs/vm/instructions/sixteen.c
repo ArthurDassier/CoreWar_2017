@@ -10,6 +10,9 @@
 
 void aff(instructions *instr, champions *champ, circular_memory *vm)
 {
+	(void) instr;
+	(void) champ;
+	(void) vm;
 	my_printf("%c\n", instr->arg1);
 }
 

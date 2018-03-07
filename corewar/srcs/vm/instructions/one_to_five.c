@@ -7,36 +7,49 @@
 
 #include "virtual.h"
 #include "printf.h"
-#include "op.h"
 
 void live(instructions *instr, champions *champ, circular_memory *vm)
 {
+	(void) instr;
+	(void) champ;
+	(void) vm;
 	//my_printf("Le joueur %d (?) est en vie.", player_number);
 }
 
 void ld(instructions *instr, champions *champ, circular_memory *vm)
 {
-	instr->arg2 = (champ->PC + instr->arg1 % IDX_MOD);
+	(void) instr;
+	(void) champ;
+	(void) vm;
+	instr->arg2 = my_getnbr((champ->PC + instr->arg1 % IDX_MOD));
 	champ->carry = modif_carry(champ->carry);
 }
 
 void st(instructions *instr, champions *champ, circular_memory *vm)
 {
-	if ((type / 10) % 10 != 2)
-		//(champ->PC + instr->arg2 % IDX_MOD) = instr->arg1;
+	(void) instr;
+	(void) champ;
+	(void) vm;
+	if ((instr->types / 10) % 10 != 2)
+		champ->PC = (champ->PC + instr->arg2 % IDX_MOD);
 	else
 		instr->arg2 = instr->arg1;
-	return;
 }
 
 void add(instructions *instr, champions *champ, circular_memory *vm)
 {
+	(void) instr;
+	(void) champ;
+	(void) vm;
 	instr->arg3 = instr->arg1 + instr->arg2;
 	champ->carry = modif_carry(champ->carry);
 }
 
 void sub(instructions *instr, champions *champ, circular_memory *vm)
 {
+	(void) instr;
+	(void) champ;
+	(void) vm;
 	instr->arg3 = instr->arg1 - instr->arg2;
 	champ->carry = modif_carry(champ->carry);
 }
