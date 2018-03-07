@@ -45,6 +45,7 @@ typedef struct champions
 	instructions	*list;
 	int		*registers;
 	char		*PC;
+	char		*tmp;
 	int		carry;
 } champions;
 
