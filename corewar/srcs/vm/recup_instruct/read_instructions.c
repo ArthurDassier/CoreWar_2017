@@ -62,5 +62,5 @@ instructions *read_instructions(int fd)
 		tmp_list = tmp_list->next;
 	}
 	tmp_list->next = NULL;
-	return (tmp_list);
+	return (list);
 }
