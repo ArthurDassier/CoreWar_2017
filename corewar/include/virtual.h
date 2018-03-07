@@ -6,6 +6,7 @@
 */
 
 #include "struct.h"
+#include "instructions.h"
 #include "my.h"
 #include "op.h"
 

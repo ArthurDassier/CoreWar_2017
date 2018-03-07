@@ -16,7 +16,7 @@ void live(int player_number)
 void ld(instructions *instr, champions *champ)
 {
 	instr->arg2 = (champ->PC + instr->arg1 % IDX_MOD);
-	//modif carry;
+	champ->carry = modif_carry(champ->carry);
 	return;
 }
 
@@ -31,12 +31,12 @@ void st(instructions *instr, champions *champ)
 
 void add(instructions *instr, champions *champ)
 {
-	//modif carry;
 	instr->arg3 = instr->arg1 + instr->arg2;
+	champ->carry = modif_carry(champ->carry);
 }
 
 void sub(instructions *instr, champions *champ)
 {
-	//modif carry;
 	instr->arg3 = instr->arg1 - instr->arg2;
+	champ->carry = modif_carry(champ->carry);
 }

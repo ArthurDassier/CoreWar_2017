@@ -9,26 +9,26 @@
 
 void and(instructions *instr, champions *champ)
 {
-	//modif carry;
 	instr->arg1 = instr->arg2 & instr->arg3;
+	champ->carry = modif_carry(champ->carry);
 }
 
 void or(instructions *instr, champions *champ)
 {
-	//modif carry;
 	instr->arg1 = instr->arg2 | instr->arg3;
+	champ->carry = modif_carry(champ->carry);
 }
 
 void xor(instructions *instr, champions *champ)
 {
-	//modif carry;
 	instr->arg1 = instr->arg2 ^ instr->arg3;
+	champ->carry = modif_carry(champ->carry);
 }
 
 void zjmp(instructions *instr, champions *champ)
 {
-	//if (carry == 1)
-		//PC = PC + instr->arg1 % IDX_MOD;
+	//if (champ->carry == 1)
+		//champ->PC = champ->PC + instr->arg1 % IDX_MOD;
 	//else
 		//return;
 	return;

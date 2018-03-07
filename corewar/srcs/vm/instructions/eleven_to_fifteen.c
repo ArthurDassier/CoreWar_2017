@@ -24,7 +24,7 @@ void fork_inst(instructions *instr, champions *champ)
 void lld(instructions *instr, champions *champ)
 {
 	instr->arg2 = (champ->PC + instr->arg1);
-	//modif carry;
+	champ->carry = modif_carry(champ->carry);
 	return;
 }
 
@@ -34,7 +34,7 @@ void lldi(instructions *instr, champions *champ)
 	//S = (champ->PC + instr->arg1) + instr->arg2;
 	//REG_SIZE :
 	//instr->arg3 = champ->PC + S;
-	//modif carry;
+	champ->carry = modif_carry(champ->carry);
 	return;
 }
 
