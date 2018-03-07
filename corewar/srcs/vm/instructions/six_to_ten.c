@@ -8,19 +8,19 @@
 #include "struct.h"
 #include "instructions.h"
 
-void and(instructions *instr, champions *champ)
+void and_inst(instructions *instr, champions *champ)
 {
 	instr->arg1 = instr->arg2 & instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
-void or(instructions *instr, champions *champ)
+void or_inst(instructions *instr, champions *champ)
 {
 	instr->arg1 = instr->arg2 | instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
-void xor(instructions *instr, champions *champ)
+void xor_inst(instructions *instr, champions *champ)
 {
 	instr->arg1 = instr->arg2 ^ instr->arg3;
 	champ->carry = modif_carry(champ->carry);
