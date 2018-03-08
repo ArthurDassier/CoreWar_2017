@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-void sti(instructions *instr, champions *champ, circular_memory *vm)
+void sti_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	int	i = 0;
 	char	*str = its(instr->arg1);
@@ -19,7 +19,7 @@ void sti(instructions *instr, champions *champ, circular_memory *vm)
 	champ->tmp = champ->PC;
 }
 
-void fork_inst(instructions *instr, champions *champ, circular_memory *vm)
+void fork_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) instr;
 	(void) champ;
@@ -30,14 +30,14 @@ void fork_inst(instructions *instr, champions *champ, circular_memory *vm)
 	return;
 }
 
-void lld(instructions *instr, champions *champ, circular_memory *vm)
+void lld_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) vm;
 	instr->arg2 = my_getnbr((champ->PC + instr->arg1));
 	champ->carry = modif_carry(champ->carry);
 }
 
-void lldi(instructions *instr, champions *champ, circular_memory *vm)
+void lldi_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	int	S = 0;
 
@@ -53,7 +53,7 @@ void lldi(instructions *instr, champions *champ, circular_memory *vm)
 	champ->tmp = champ->PC;
 }
 
-void lfork(instructions *instr, champions *champ, circular_memory *vm)
+void lfork_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) instr;
 	(void) champ;

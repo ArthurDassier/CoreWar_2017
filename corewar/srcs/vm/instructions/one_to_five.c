@@ -8,21 +8,21 @@
 #include "virtual.h"
 #include "printf.h"
 
-void live(instructions *instr, champions *champ, circular_memory *vm)
+void live_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) champ;
 	(void) vm;
 	my_printf("Le joueur %d (?) est en vie.\n", instr->arg1);
 }
 
-void ld(instructions *instr, champions *champ, circular_memory *vm)
+void ld_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) vm;
 	instr->arg2 = my_getnbr((champ->PC + instr->arg1 % IDX_MOD));
 	champ->carry = modif_carry(champ->carry);
 }
 
-void st(instructions *instr, champions *champ, circular_memory *vm)
+void st_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	int	i = 0;
 	char	*str = its(instr->arg1);
@@ -37,14 +37,14 @@ void st(instructions *instr, champions *champ, circular_memory *vm)
 		instr->arg2 = instr->arg1;
 }
 
-void add(instructions *instr, champions *champ, circular_memory *vm)
+void add_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) vm;
 	instr->arg3 = instr->arg1 + instr->arg2;
 	champ->carry = modif_carry(champ->carry);
 }
 
-void sub(instructions *instr, champions *champ, circular_memory *vm)
+void sub_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) vm;
 	instr->arg3 = instr->arg1 - instr->arg2;
