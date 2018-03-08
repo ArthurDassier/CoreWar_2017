@@ -16,6 +16,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdbool.h>
+
 #include "my.h"
 #include "my_getopt.h"
 #include "my_fgets.h"
@@ -73,6 +74,9 @@ int		count_arg(char *);
 int		set_mem(struct token *, int);
 int		skip_tabs(char *);
 int		next_quote(char *, int);
+int		skip_space_tabs(char *);
+int		skip_space_tabs_arg(char *);
+int		skip_space_tabs_lab(char *);
 
 //Parser
 void		add_cmd(struct token *, int);
