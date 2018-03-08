@@ -60,6 +60,8 @@ instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm)
 	instructions	*tmp_list = champ->list;
 	int		i = 0;
 
+	if (tmp == NULL)
+		return (NULL);
 	printf("\n");
 	while (champ->list->next != NULL) {
 		instruction_str(tmp, champ->list);
@@ -72,12 +74,14 @@ instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm)
 	return (tmp_list);
 }
 
-void put_instructions_in_memory(champions **champ, circular_memory *vm)
+int put_instructions_in_memory(champions **champ, circular_memory *vm)
 {
 	int	i = 0;
 
 	while (champ[i] != NULL) {
-		champ[i]->list = put_one_champ_in_memory(champ[i], vm);
+		if ((champ[i]->list = put_one_champ_in_memory(champ[i], vm)) == NULL)
+			return (84);
 		++i;
 	}
+	return (0);
 }

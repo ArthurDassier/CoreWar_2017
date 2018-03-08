@@ -27,7 +27,8 @@ int main(int ac, char **av)
 	champions	**champ = NULL;
 	arg_champ	*av_list = NULL;
 
-	av_list = put_arg(ac, av);
+	if ((av_list = put_arg(ac, av)) == NULL)
+		return (84);
 	champ = malloc(sizeof(champions) * av_list->nbr_champ);
 	if (ar_er(ac, av) > 0)
 		return (84);
@@ -35,7 +36,8 @@ int main(int ac, char **av)
 		return (84);
 	if (memory_init(vm, champ, av_list, MEM_SIZE) != 0)
 		return (84);
-	put_instructions_in_memory(champ, vm);
+	if (put_instructions_in_memory(champ, vm) == 84)
+		return (84);
 	print_memory(vm->memory);
 	cycles(vm, champ);
 	return (0);

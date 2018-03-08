@@ -31,9 +31,12 @@ arg_champ *put_in_list(arg_champ *clist, char **av, int i)
 
 	if (status == 0) {
 		clist = init_ag_champ(find_a(av, i), find_n(av, i), av[i]);
+		if (clist == NULL)
+			return (NULL);
 		status = 1;
 	} else
-		insert_end(&clist, find_a(av, i), find_n(av, i), av[i]);
+		if (insert_end(&clist, find_a(av, i), find_n(av, i), av[i]) == 84)
+			return (NULL);
 	return (clist);
 }
 
@@ -56,7 +59,8 @@ arg_champ *put_arg(int ac, char **av)
 
 	while (i != ac) {
 		if (verif_cor(av[i]) == 1) {
-			clist = put_in_list(clist, av, i);
+			if ((clist = put_in_list(clist, av, i)) == NULL)
+				return (NULL);
 			++clist->nbr_champ;
 		}
 		++i;

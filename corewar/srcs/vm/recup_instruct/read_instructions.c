@@ -7,14 +7,17 @@
 
 #include "virtual.h"
 
-static void malloc_instruction(instructions *list)
+static int malloc_instruction(instructions *list)
 {
 	list->mnemonique = malloc(sizeof(char *));
+	if (list->mnemonique == NULL)
+		return (84);
 	list->adr = 0;
 	list->nb_cycles = 0;
 	list->arg1 = 0;
 	list->arg2 = 0;
 	list->arg3 = 0;
+	return (0);
 }
 
 static void init_instructions_tab(int (**inst_tab)(instructions *list, int fd))
@@ -41,14 +44,18 @@ instructions *read_instructions(int fd)
 {
 	int			rv = 0;
 	int			i = 0;
-	instructions		*list = malloc(sizeof(instructions));
-	instructions		*tmp_list = list;
+	instructions		*list = NULL;
+	instructions		*tmp_list = NULL;
 	int			(*inst_tab[16])(instructions *list, int fd);
 
+	if ((list = malloc(sizeof(instructions))) == NULL)
+		return (NULL);
+	tmp_list = list;
 	printf("\n == instructions == \n\n");
 	init_instructions_tab(inst_tab);
 	while ((rv = read(fd, &i, 1)) != 0) {
-		malloc_instruction(tmp_list);
+		if (malloc_instruction(tmp_list) == 84)
+			return (NULL);
 		if (inst_tab[i - 1](tmp_list, fd) == -1)
 			return (NULL);
 		if ((tmp_list->next = malloc(sizeof(instructions))) == NULL)
