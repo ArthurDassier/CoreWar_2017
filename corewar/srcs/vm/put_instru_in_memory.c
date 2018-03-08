@@ -47,7 +47,7 @@ void instruction_str(char *tmp, instructions *list)
 		tmp[i++] = list->mnemonique[0];
 	}
 	if (list->adr != 0) {
-		tmp[i++] = list->adr / 16 + 48;
+		tmp[i++] = list->adr / (16 * 16) % 16 + 48;
 		tmp[i++] = list->adr % 16 + 48;
 	}
 	int_to_str(tmp, list->arg1, &i, (list->types / 100));
@@ -69,7 +69,7 @@ instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm)
 	while (champ->list->next != NULL) {
 		instruction_str(tmp, champ->list);
 		while (tmp[i] != '\0')
-			memory_put(vm, champ, tmp[i++], 1);
+			memory_put_move(vm, champ, tmp[i++], 1);
 		i = 0;
 		champ->list = champ->list->next;
 	}

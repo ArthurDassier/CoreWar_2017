@@ -70,8 +70,7 @@ static struct token *process_line(char *line, int line_no, char *fname,
 static struct d_queue *set_size(struct d_queue * head)
 {
 	header_t	*header = NULL;
-
-	if (head == NULL)
+if (head == NULL)
 		return (NULL);
 	header = head->token;
 	header->prog_size = set_mem(NULL, 1);

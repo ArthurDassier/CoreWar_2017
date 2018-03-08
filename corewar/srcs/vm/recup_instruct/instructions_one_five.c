@@ -39,7 +39,7 @@ int st_instruction(instructions *list, int fd)
 	list->mnemonique = "3";
 	if (read_parameters(list, list->adr, 2, fd) != 0)
 		return (-1);
-	list->arg3 = 0;
+	list->types = list->types * 10;
 	list->nb_cycles = 5;
 	return (0);
 }
