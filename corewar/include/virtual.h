@@ -47,6 +47,7 @@ arg_champ *put_arg(int ac, char **av);
 arg_champ *init_ag_champ(int hyp_a, int hyp_n, char *av);
 void insert_begin(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
 void insert_end(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
+void insert_nbr_champ(arg_champ **first_elem, int nbr);
 void memory_memset(char *memory, int size);
 int adr_acc(int adr);
 int set_flag(int adr);
@@ -99,5 +100,8 @@ int read_for_ldi(instructions *list, int val, int i, int fd);
 int read_ldi(instructions *list, int code, int nb_arg, int fd);
 int read_for_sti(instructions *list, int val, int i, int fd);
 int read_sti(instructions *list, int code, int nb_arg, int fd);
+
+int recup_instruction(instructions *instr, circular_memory *vm, champions *champ);
+int cycles(circular_memory *vm, champions **champ);
 
 #endif

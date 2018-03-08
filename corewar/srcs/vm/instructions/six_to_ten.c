@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-void and__instru(instructions *instr, champions *champ, circular_memory *vm)
+void and_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) vm;
 	instr->arg1 = instr->arg2 & instr->arg3;

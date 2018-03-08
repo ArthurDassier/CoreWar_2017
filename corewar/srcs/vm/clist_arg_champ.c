@@ -7,6 +7,16 @@
 
 #include "virtual.h"
 
+void insert_nbr_champ(arg_champ **first_elem, int nbr)
+{
+	arg_champ	*actual = (*first_elem);
+
+	while (actual != NULL) {
+		actual->nbr_champ = nbr;
+		actual = actual->next;
+	}
+}
+
 arg_champ *init_ag_champ(int hyp_a, int hyp_n, char *av)
 {
 	arg_champ	*element = malloc(sizeof(arg_champ));

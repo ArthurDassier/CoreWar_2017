@@ -20,7 +20,7 @@ void num_cycle(int i, circular_memory *vm, champions **champ)
 			if (i > cycle)
 				tmp = tmp->next;
 			if (i == cycle) {
-				recup_instruction(tmp, vm, champ);
+				recup_instruction(tmp, vm, champ[j]);
 				break;
 			}
 			if (i < cycle)
@@ -37,30 +37,21 @@ int cycles(circular_memory *vm, champions **champ)
 	int	cycle_delta = CYCLE_DELTA;
 	int	i = 0;
 
+	vm->nbr_live = 0;
 	while (cycle_to_die > 0) {
 		while (i != cycle_to_die) {
 			num_cycle(i, vm, champ);
 			++i;
 		}
 		i = 0;
+		vm->nbr_live = 0;
 		cycle_to_die -= cycle_delta;
 	}
 	return (0);
 }
 
-int recup_instruction(instructions *instr, circular_memory *vm, champions *champ)
-{
-	int	inst = 0;
 
-	if (cycle != 0) {
-		--cycles;
-		return (1);
-	}
-	inst = champ->list->mnemonique[0]  % 16;
-	inst = inst * 10 + champ->list->mnemonique[1] % 16;
-}
-
-void init_exec_instru_tab(void (**exec_instru_tab)(instructions *instr,
+void init_exec_instru_tab(void (*exec_instru_tab[16])(instructions *instr,
 champions *champ, circular_memory *vm))
 {
 	exec_instru_tab[0] = &live_instru;
@@ -81,13 +72,28 @@ champions *champ, circular_memory *vm))
 	exec_instru_tab[15] = &aff_instru;
 }
 
-void do_instruction(champions *champ)
+int recup_instruction(instructions *instr, circular_memory *vm, champions *champ)
 {
-	int		i = 0;
-	instructions	*tmp1 = champ[0]->list;
-	instructions	*tmp2 = champ[1]->list;
+	int	inst = 0;
+	void	(*exec_instru_tab[16])(instructions *instr,
+		champions *champ, circular_memory *vm);
 
-	while (1) {
-		exec_
-	}
+	init_exec_instru_tab(exec_instru_tab);
+	inst = instr->mnemonique[0] % 16;
+	inst = inst * 10 + instr->mnemonique[1] % 16;
+	exec_instru_tab[inst - 1](instr, champ, vm);
+	if (inst == 1)
+		++vm->nbr_live;
+	return (0);
 }
+
+//void do_instruction(champions *champ)
+//{
+	//int		i = 0;
+//	instructions	*tmp1 = champ[0]->list;
+	//instructions	*tmp2 = champ[1]->list;
+
+	//while (1) {
+//		exec_
+	//}
+//}

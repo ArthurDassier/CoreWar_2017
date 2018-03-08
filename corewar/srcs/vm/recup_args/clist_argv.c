@@ -61,5 +61,6 @@ arg_champ *put_arg(int ac, char **av)
 		}
 		++i;
 	}
+	insert_nbr_champ(&clist, clist->nbr_champ);
 	return (clist);
 }

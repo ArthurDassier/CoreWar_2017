@@ -32,6 +32,7 @@ SRC	=	srcs/main.c						\
 		srcs/vm/instructions/six_to_ten.c			\
 		srcs/vm/instructions/eleven_to_fifteen.c		\
 		srcs/vm/instructions/sixteen.c				\
+		srcs/fight/exec_instructions.c				\
 
 OBJ	=	$(SRC:.c = .o)
 
