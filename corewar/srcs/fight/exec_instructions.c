@@ -20,15 +20,14 @@ void num_cycle(int i, circular_memory *vm, champions **champ)
 			if (i > cycle)
 				tmp = tmp->next;
 			if (i == cycle) {
-				my_putstr(tmp->mnemonique);
-				my_putchar('\n');
+				recup_instruction(tmp, vm, champ);
 				break;
 			}
 			if (i < cycle)
 				break;
 			}
-			cycle = 0;
-			++j;
+		cycle = 0;
+		++j;
 	}
 }
 
@@ -49,17 +48,13 @@ int cycles(circular_memory *vm, champions **champ)
 	return (0);
 }
 
-int recup_instruction(circular_memory *vm, champions *champ)
+int recup_instruction(instructions *instr, circular_memory *vm, champions *champ)
 {
-	static int	cycl = champ->list->nb_cycles;
-	int		inst = 0;
+	int	inst = 0;
 
-	if (cycle != 0) {
-		--cycles;
-		return (1);
-	}
-	inst = champ->list->mnemonique / (16 * 16) % 16;
-	inst = inst * 10 + champ->list->mnemonique % 16;
+	inst = instr->mnemonique / (16 * 16) % 16;
+	inst = inst * 10 + instr->mnemonique % 16;
+	exec_instru_tab[inst];
 }
 
 void init_exec_instru_tab(void (**exec_instru_tab)(instructions *instr,
