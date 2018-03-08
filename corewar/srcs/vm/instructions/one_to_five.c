@@ -24,10 +24,16 @@ void ld(instructions *instr, champions *champ, circular_memory *vm)
 
 void st(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) vm;
-	if (instr->arg2 > REG_NUMBER)
+	char	*str = its(instr->arg1);
+
+	if (instr->arg2 > REG_NUMBER) {
+		champ->tmp = champ->PC;
 		champ->PC = (champ->PC + instr->arg2 % IDX_MOD);
-	else
+		memory_put_move(vm, champ, str[i++], 0);
+		while (str[i] != '\0')
+			memory_put_move(vm, champ, str[i++], 1);
+		champ->PC = champ->tmp;
+	} else
 		instr->arg2 = instr->arg1;
 }
 

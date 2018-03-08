@@ -9,9 +9,14 @@
 
 void sti(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) vm;
-	champ->tmp = champ->PC + (instr->arg2 + instr->arg3) % IDX_MOD;
-	champ->tmp = its(instr->arg1);
+	char	*str = its(instr->arg1);
+
+	champ->tmp = champ->PC;
+	champ->PC = champ->PC + (instr->arg2 + instr->arg3) % IDX_MOD;
+	memory_put_move(vm, champ, str[i++], 0);
+	while (str[i] != '\0')
+		memory_put_move(vm, champ, str[i++], 1);
+	champ->PC = champ->tmp;
 }
 
 void fork_inst(instructions *instr, champions *champ, circular_memory *vm)

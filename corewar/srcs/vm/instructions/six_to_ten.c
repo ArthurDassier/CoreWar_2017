@@ -33,6 +33,7 @@ void zjmp(instructions *instr, champions *champ, circular_memory *vm)
 	(void) vm;
 	if (champ->carry == 1)
 		champ->PC = champ->PC + instr->arg1 % IDX_MOD;
+	champ->tmp = champ->PC;
 }
 
 void ldi(instructions *instr, champions *champ, circular_memory *vm)
