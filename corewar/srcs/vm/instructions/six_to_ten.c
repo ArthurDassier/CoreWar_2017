@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2017
+** EPITECH PROJECT, 2018
 ** six_to_ten.c
 ** File description:
 ** Arthur
@@ -7,47 +7,46 @@
 
 #include "virtual.h"
 
-void and(int *first, int *two, int *register_one)
+void and_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) *first;
-	(void) *two;
-	(void) *register_one;
-	//modif carry;
-	*register_one = *first & *two;
+	(void) vm;
+	instr->arg1 = instr->arg2 & instr->arg3;
+	champ->carry = modif_carry(champ->carry);
 }
 
-void or(int *first, int *two, int *register_one)
+void or_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) *first;
-	(void) *two;
-	(void) *register_one;
-	//modif carry;
-	*register_one = *first | *two;
+	(void) vm;
+	instr->arg1 = instr->arg2 | instr->arg3;
+	champ->carry = modif_carry(champ->carry);
 }
 
-void xor(int *first, int *two, int *register_one)
+void xor_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) *first;
-	(void) *two;
-	(void) *register_one;
-	//modif carry;
-	*register_one = *first ^ *two;
+	(void) vm;
+	instr->arg1 = instr->arg2 ^ instr->arg3;
+	champ->carry = modif_carry(champ->carry);
 }
 
-void zjmp(int *index_one)
+void zjmp_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) *index_one;
-	return;
+	(void) vm;
+	if (champ->carry == 1)
+		champ->PC = champ->PC + instr->arg1 % IDX_MOD;
+	champ->tmp = champ->PC;
 }
 
-void ldi(int *index_one, int *index_two, int *register_one)
+void ldi_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) *index_one;
-	(void) *index_two;
-	(void) *register_one;
-	//IND_SIZE :
-	//S = (PC + index_one % IDX_MOD) + index_two;
-	//REG_SIZE :
-	//register_one = PC + S % IDX_MOD;
-	return;
+	int	S = 0;
+
+	(void) vm;
+	champ->tmp = champ->PC + instr->arg1 % IDX_MOD;
+	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
+	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3)))
+	+ instr->arg2;
+	champ->tmp = champ->PC + S % IDX_MOD;
+	instr->arg3 = my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
+	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
+	champ->tmp = champ->PC;
 }

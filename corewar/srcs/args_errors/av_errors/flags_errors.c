@@ -48,16 +48,19 @@ int check_fl_n(char *flag, char *av)
 
 int check_fl_a(char *flag, char *params)
 {
-	char	hexa[16] = "0123456789ABCDEF";
+	char	base[10] = "0123456789";
 	int	i = 0;
 	int	j = 0;
 
 	(void) flag;
 	while (params[i] != '\0') {
-		while (params[i] != hexa[j] && hexa[j] != '\0')
+		while (params[i] != base[j] && base[j] != '\0')
 			++j;
-		if (hexa[j] == '\0') {
-			my_puterror("Invalid option.\n");
+		if (base[j] == '\0') {
+			my_puterror("-a argument ");
+			my_puterror(params);
+			my_puterror(" is invalid\n"
+			"Enter a valid memory offset.\n");
 			return (84);
 		}
 		j = 0;

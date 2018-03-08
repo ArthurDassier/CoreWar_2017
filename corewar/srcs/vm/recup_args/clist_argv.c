@@ -10,9 +10,9 @@
 int find_a(char **av, int i)
 {
 	if (i - 2 > 0 && av[i - 2][1] == 'a')
-		return (my_getnbr_base(av[i - 1], "0123456789ABCDEF"));
+		return (my_getnbr(av[i - 1]));
 	if (i - 4 > 0 && av[i - 4][1] == 'a')
-		return (my_getnbr_base(av[i - 3], "0123456789ABCDEF"));
+		return (my_getnbr(av[i - 3]));
 	return (0);
 }
 
@@ -55,9 +55,12 @@ arg_champ *put_arg(int ac, char **av)
 	arg_champ	*clist = NULL;
 
 	while (i != ac) {
-		if (verif_cor(av[i]) == 1)
+		if (verif_cor(av[i]) == 1) {
 			clist = put_in_list(clist, av, i);
+			++clist->nbr_champ;
+		}
 		++i;
 	}
+	insert_nbr_champ(&clist, clist->nbr_champ);
 	return (clist);
 }
