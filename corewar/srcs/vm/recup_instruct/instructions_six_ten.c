@@ -10,7 +10,7 @@
 int read_and(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
-	list->mnemonique = "6";
+	list->mnemonique = "06";
 	if (read_parameters(list, list->adr, 3, fd) != 0)
 		return (-1);
 	list->nb_cycles = 6;
@@ -20,7 +20,7 @@ int read_and(instructions *list, int fd)
 int read_or(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
-	list->mnemonique = "7";
+	list->mnemonique = "07";
 	if (read_parameters(list, list->adr, 3, fd) != 0)
 		return (-1);
 	list->nb_cycles = 6;
@@ -30,7 +30,7 @@ int read_or(instructions *list, int fd)
 int read_xor(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
-	list->mnemonique = "8";
+	list->mnemonique = "08";
 	if (read_parameters(list, list->adr, 3, fd) != 0)
 		return (-1);
 	list->nb_cycles = 6;
@@ -41,7 +41,7 @@ int read_zjmp(instructions *list, int fd)
 {
 	union endian	tmp;
 
-	list->mnemonique = "9";
+	list->mnemonique = "09";
 	read(fd, &list->arg1, 2);
 	tmp.val = list->arg1;
 	switch_endian_two(&tmp);
@@ -54,7 +54,7 @@ int read_zjmp(instructions *list, int fd)
 int read_ldi_instruction(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
-	list->mnemonique = "A";
+	list->mnemonique = "0A";
 	if (read_ldi(list, list->adr, 3, fd) != 0)
 		return (-1);
 	list->nb_cycles = 25;

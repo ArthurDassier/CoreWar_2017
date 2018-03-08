@@ -58,8 +58,8 @@ int recup_instruction(circular_memory *vm, champions *champ)
 		--cycles;
 		return (1);
 	}
-	inst = champ->list->mnemonique / (16 * 16) % 16;
-	inst = inst * 10 + champ->list->mnemonique % 16;
+	inst = champ->list->mnemonique[0]  % 16;
+	inst = inst * 10 + champ->list->mnemonique[1] % 16;
 }
 
 void init_exec_instru_tab(void (**exec_instru_tab)(instructions *instr,
@@ -85,5 +85,11 @@ champions *champ, circular_memory *vm))
 
 void do_instruction(champions *champ)
 {
+	int		i = 0;
+	instructions	*tmp1 = champ[0]->list;
+	instructions	*tmp2 = champ[1]->list;
 
+	while (1) {
+		exec_
+	}
 }

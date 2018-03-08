@@ -39,13 +39,8 @@ void instruction_str(char *tmp, instructions *list)
 {
 	int	i = 0;
 
-	if (my_strlen(list->mnemonique) == 2) {
-		tmp[i++] = list->mnemonique[0];
-		tmp[i++] = list->mnemonique[1];
-	} else {
-		tmp[i++] = '0';
-		tmp[i++] = list->mnemonique[0];
-	}
+	tmp[i++] = list->mnemonique[0];
+	tmp[i++] = list->mnemonique[1];
 	if (list->adr != 0) {
 		tmp[i++] = list->adr / (16 * 16) % 16 + 48;
 		tmp[i++] = list->adr % 16 + 48;
