@@ -44,15 +44,15 @@ void memory_put_move(circular_memory *vm, champions *champ, char data, int adr)
 		flag2 = 1;
 	flag = set_flag(adr);
 	while (adr != 0) {
-		if (champ->PC == vm->memory_end)
-			champ->PC = vm->memory_head;
-		else if (champ->PC == vm->memory_head - flag2)
-			champ->PC = vm->memory_end;
-		champ->PC += flag;
+		if (champ->tmp == vm->memory_end)
+			champ->tmp = vm->memory_head;
+		else if (champ->tmp == vm->memory_head - flag2)
+			champ->tmp = vm->memory_end;
+		champ->tmp += flag;
 		adr = adr_acc(adr);
 	}
 	if (data != ' ')
-		*champ->PC = data;
+		*champ->tmp = data;
 }
 
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
