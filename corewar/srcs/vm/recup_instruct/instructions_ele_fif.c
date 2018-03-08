@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-int sti_instruction(instructions *list, int fd)
+int read_sti_instruction(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "B";
@@ -17,7 +17,7 @@ int sti_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int fork_instruction(instructions *list, int fd)
+int read_fork(instructions *list, int fd)
 {
 	union endian	tmp;
 
@@ -31,7 +31,7 @@ int fork_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int lld_instruction(instructions *list, int fd)
+int read_lld(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "D";
@@ -41,7 +41,7 @@ int lld_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int lldi_instruction(instructions *list, int fd)
+int read_lldi(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "E";
@@ -51,7 +51,7 @@ int lldi_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int lfork_instruction(instructions *list, int fd)
+int read_lfork(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "F";

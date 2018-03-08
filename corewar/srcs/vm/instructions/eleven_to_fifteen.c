@@ -9,14 +9,14 @@
 
 void sti(instructions *instr, champions *champ, circular_memory *vm)
 {
+	int	i = 0;
 	char	*str = its(instr->arg1);
 
-	champ->tmp = champ->PC;
-	champ->PC = champ->PC + (instr->arg2 + instr->arg3) % IDX_MOD;
+	champ->tmp = champ->PC + (instr->arg2 + instr->arg3) % IDX_MOD;
 	memory_put_move(vm, champ, str[i++], 0);
 	while (str[i] != '\0')
 		memory_put_move(vm, champ, str[i++], 1);
-	champ->PC = champ->tmp;
+	champ->tmp = champ->PC;
 }
 
 void fork_inst(instructions *instr, champions *champ, circular_memory *vm)
@@ -50,6 +50,7 @@ void lldi(instructions *instr, champions *champ, circular_memory *vm)
 	instr->arg3 =  my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
 	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
 	champ->carry = modif_carry(champ->carry);
+	champ->tmp = champ->PC;
 }
 
 void lfork(instructions *instr, champions *champ, circular_memory *vm)

@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-int aff_instruction(instructions *list, int fd)
+int read_aff(instructions *list, int fd)
 {
 	if (read(fd, &list->adr, 1) == -1)
 		return (-1);

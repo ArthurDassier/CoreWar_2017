@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-int live_instruction(instructions *list, int fd)
+int read_live(instructions *list, int fd)
 {
 	union endian	tmp;
 
@@ -21,7 +21,7 @@ int live_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int ld_instruction(instructions *list, int fd)
+int read_ld(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "2";
@@ -33,7 +33,7 @@ int ld_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int st_instruction(instructions *list, int fd)
+int read_st(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "3";
@@ -44,7 +44,7 @@ int st_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int add_instruction(instructions *list, int fd)
+int read_add(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "4";
@@ -54,7 +54,7 @@ int add_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int sub_instruction(instructions *list, int fd)
+int read_sub(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "5";

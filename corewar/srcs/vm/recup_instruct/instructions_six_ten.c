@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-int and_instruction(instructions *list, int fd)
+int read_and(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "6";
@@ -17,7 +17,7 @@ int and_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int or_instruction(instructions *list, int fd)
+int read_or(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "7";
@@ -27,7 +27,7 @@ int or_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int xor_instruction(instructions *list, int fd)
+int read_xor(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "8";
@@ -37,7 +37,7 @@ int xor_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int zjmp_instruction(instructions *list, int fd)
+int read_zjmp(instructions *list, int fd)
 {
 	union endian	tmp;
 
@@ -51,7 +51,7 @@ int zjmp_instruction(instructions *list, int fd)
 	return (0);
 }
 
-int ldi_instruction(instructions *list, int fd)
+int read_ldi_instruction(instructions *list, int fd)
 {
 	read(fd, &list->adr, 1);
 	list->mnemonique = "A";

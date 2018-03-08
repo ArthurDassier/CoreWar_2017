@@ -48,4 +48,5 @@ void ldi(instructions *instr, champions *champ, circular_memory *vm)
 	champ->tmp = champ->PC + S % IDX_MOD;
 	instr->arg3 = my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
 	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
+	champ->tmp = champ->PC;
 }

@@ -19,22 +19,22 @@ static void malloc_instruction(instructions *list)
 
 static void init_instructions_tab(int (**inst_tab)(instructions *list, int fd))
 {
-	inst_tab[0] = &live_instruction;
-	inst_tab[1] = &ld_instruction;
-	inst_tab[2] = &st_instruction;
-	inst_tab[3] = &add_instruction;
-	inst_tab[4] = &sub_instruction;
-	inst_tab[5] = &and_instruction;
-	inst_tab[6] = &or_instruction;
-	inst_tab[7] = &xor_instruction;
-	inst_tab[8] = &zjmp_instruction;
-	inst_tab[9] = &ldi_instruction;
-	inst_tab[10] = &sti_instruction;
-	inst_tab[11] = &fork_instruction;
-	inst_tab[12] = &lld_instruction;
-	inst_tab[13] = &lldi_instruction;
-	inst_tab[14] = &lfork_instruction;
-	inst_tab[15] = &aff_instruction;
+	inst_tab[0] = &read_live;
+	inst_tab[1] = &read_ld;
+	inst_tab[2] = &read_st;
+	inst_tab[3] = &read_add;
+	inst_tab[4] = &read_sub;
+	inst_tab[5] = &read_and;
+	inst_tab[6] = &read_or;
+	inst_tab[7] = &read_xor;
+	inst_tab[8] = &read_zjmp;
+	inst_tab[9] = &read_ldi_instruction;
+	inst_tab[10] = &read_sti_instruction;
+	inst_tab[11] = &read_fork;
+	inst_tab[12] = &read_lld;
+	inst_tab[13] = &read_lldi;
+	inst_tab[14] = &read_lfork;
+	inst_tab[15] = &read_aff;
 }
 
 instructions *read_instructions(int fd)
