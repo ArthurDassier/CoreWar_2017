@@ -32,10 +32,10 @@ int main(int ac, char **av)
 		return (84);
 	if (init_champions(champ, av_list) == 84)
 		return (84);
-	if (memory_init(vm, champ, av_list, 400) != 0)
+	if (memory_init(vm, champ, av_list, MEM_SIZE) != 0)
 		return (84);
 	put_instructions_in_memory(champ, vm);
 	print_memory(vm->memory);
-	live(champ[1]->list->next, champ[1], vm);
+	c_to_die(champ, vm);
 	return (0);
 }

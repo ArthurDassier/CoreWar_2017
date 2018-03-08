@@ -10,6 +10,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+int err_init_data_base()
+
 int init_data_base(instructions **list, arg_champ *av_list)
 {
 	int		fd = 0;
