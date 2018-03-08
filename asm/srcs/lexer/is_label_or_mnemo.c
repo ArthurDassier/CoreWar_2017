@@ -71,6 +71,10 @@ int is_arg(char *line)
 	while (line[i] != '\0') {
 		if (line[i] == SEPARATOR_CHAR)
 			return (i);
+		if (line[i] == COMMENT_CHAR)
+			return (i);
+		if (line [i] == ' ' || line[i] == '\t')
+			return (i);
 		++i;
 	}
 	return (i);
