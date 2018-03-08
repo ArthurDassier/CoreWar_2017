@@ -14,7 +14,8 @@ static struct token *proccess_label(char *line ,int *pos, struct token *node)
 	node->tk_val = L;
 	node->mnemo = my_strndup(line + *pos, is_label(line + *pos));
 	node->l_size = 0;
-	*pos += is_label(line + *pos) + 1;
+	*pos += is_label(line + *pos);
+	*pos += skip_space_tabs_lab(line + *pos);
 	node->arg_tab = NULL;
 	node->arg_no = 0;
 	return (node);
@@ -25,8 +26,7 @@ static struct token *proccess_mnemonique(char *line ,struct token *node,
 {
 	int	i = 0;
 
-	while ((line[*pos] == ' ' || line[*pos] == '\t') && line[*pos] != '\0')
-		*pos += 1;
+	*pos += skip_space_tabs(line + *pos);
 	node->tk_val = I;
 	if (is_mnemonic(line + *pos) == 0)
 		return (NULL);
@@ -35,10 +35,12 @@ static struct token *proccess_mnemonique(char *line ,struct token *node,
 	node->arg_no = (*pos < my_strlen(line)) ? count_arg(line + *pos) : 0;
 	node->arg_tab = malloc(sizeof(struct args_s) * node->arg_no + 1);
 	for (i = 0; i < node->arg_no; i++) {
+		*pos += skip_space_tabs(line + *pos);
 		node->arg_tab[i].args = my_strndup(line + *pos,
 				is_arg(line + *pos));
 		node->arg_tab[i].tk_name = get_arg_type(line + *pos);
-		*pos += is_arg(line + *pos) + 2;
+		*pos += is_arg(line + *pos);
+		*pos += skip_space_tabs_arg(line + *pos);
 	}
 	set_mem(node, 0);
 	return (node);
@@ -70,7 +72,7 @@ static struct token *process_line(char *line, int line_no, char *fname,
 static struct d_queue *set_size(struct d_queue * head)
 {
 	header_t	*header = NULL;
-if (head == NULL)
+	if (head == NULL)
 		return (NULL);
 	header = head->token;
 	header->prog_size = set_mem(NULL, 1);

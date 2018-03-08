@@ -48,7 +48,7 @@ int is_line_comment(char *line)
 	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
 		i++;
 	if (line != NULL && (line[i] == '#' || line [i] == '\0'))
-		return (1);
+		return (i + 1);
 	return (0);
 }
 
