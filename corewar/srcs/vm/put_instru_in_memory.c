@@ -69,7 +69,7 @@ instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm)
 	while (champ->list->next != NULL) {
 		instruction_str(tmp, champ->list);
 		while (tmp[i] != '\0')
-			memory_put(vm, champ, tmp[i++], 1);
+			memory_put_move(vm, champ, tmp[i++], 1);
 		i = 0;
 		champ->list = champ->list->next;
 	}

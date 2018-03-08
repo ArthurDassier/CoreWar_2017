@@ -65,7 +65,7 @@ int headers_error_handling(struct header_s *files_h);
 
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 		int size);
-void memory_put(circular_memory *vm, champions *champ, char data, int adr);
+void memory_put_move(circular_memory *vm, champions *champ, char data, int adr);
 void put_instructions_in_memory(champions **champ, circular_memory *vm);
 int hexo_to_dec(int value, int flag);
 void int_to_str(char *tmp, int nb, int *i, int size);

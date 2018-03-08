@@ -35,7 +35,7 @@ void memory_memset(char *memory, int size)
 	memory[i] = '\0';
 }
 
-void memory_put(circular_memory *vm, champions *champ, char data, int adr)
+void memory_put_move(circular_memory *vm, champions *champ, char data, int adr)
 {
 	int	flag = 0;
 	int	flag2 = 0;
@@ -51,7 +51,8 @@ void memory_put(circular_memory *vm, champions *champ, char data, int adr)
 		champ->PC += flag;
 		adr = adr_acc(adr);
 	}
-	*champ->PC = data;
+	if (data != ' ')
+		*champ->PC = data;
 }
 
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
