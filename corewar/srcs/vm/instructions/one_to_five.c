@@ -21,10 +21,11 @@ void ld_instru(circular_memory *vm, champions *champ, int types)
 	int	rg = 0;
 	int	nbr_to_load = 0;
 
-	ld = name(champ, types / 10);
-	rg = name(champ, types % 10);
-	champ->tmp = (champ->PC + ld % IDX_MOD) - 1;
-	nbr_to_load = name(champ, REG_SIZE);
+	ld = getnbr_from_size(champ, types / 10);
+	rg = getnbr_from_size(champ, types % 10);
+	champ->tmp = champ->PC + ld % IDX_MOD;
+	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
+	champ->tmp = champ->PC;
 	if (rg > REG_NUMBER)
 		return;
 	champ->registers[rg] = nbr_to_load;
