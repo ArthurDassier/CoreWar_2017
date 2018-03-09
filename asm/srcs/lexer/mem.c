@@ -19,7 +19,7 @@ static int is_exception(struct token *node)
 }
 static int is_index(struct token *node)
 {
-	char	*name[3] = { "ldi", "lldi", "sti", NULL };
+	char	*name[4] = { "ldi", "sti", "lldi", NULL };
 
 	for (int i = 0; name[i]; i++) {
 		if (!my_strcmp(node->mnemo, name[i]))
