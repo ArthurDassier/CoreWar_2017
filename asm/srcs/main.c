@@ -34,7 +34,7 @@ static char	*get_name(char *av)
 
 	if (name == NULL)
 		return (NULL);
-	for (index = 0; av[index] != '.'; ++index);
+	for (index = 0; my_strncmp(av + index, ".s", 2) != 0; ++index);
 	my_strncpy(name, av, index);
 	my_strcat(name, "cor");
 	return (name);
@@ -56,6 +56,8 @@ int main(int ac, char **av)
 		if (dq == NULL)
 			continue;
 		fd = open(get_name(av[i]), O_WRONLY | O_TRUNC | O_CREAT, 0644);
+		if (fd == -1)
+			return (FAILURE);
 		parser(dq, fd);
 	}
 	return (SUCCESS);
