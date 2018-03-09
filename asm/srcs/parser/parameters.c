@@ -50,7 +50,7 @@ void	indirects(struct token *token, int fd, int i)
 {
 	union endian	result;
 
-	result.val = my_getnbr(token->arg_tab[i].args + 1);
+	result.val = my_getnbr(token->arg_tab[i].args);
 	result.val = result.val << 16;
 	swap_endian(&result);
 	write(fd, &result, IND_SIZE);

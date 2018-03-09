@@ -1,9 +1,4 @@
-.name				"zork"
-.comment "just a basic living program"
+.name "0x02_ld"
+.comment "A valid 0x02_ld s file."
 
-		# damn son
-l2:
-sti r1 , %:live , %1 #dep
-and r1, %0, r1
-live: live %1
-zjmp %:live
+ld 42,r4
