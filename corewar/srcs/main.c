@@ -27,10 +27,12 @@ int main(int ac, char **av)
 	champions	**champ = NULL;
 	arg_champ	*av_list = NULL;
 
+	if (ar_er(ac, av) > 0)
+		return (84);
 	if ((av_list = put_arg(ac, av)) == NULL)
 		return (84);
 	champ = malloc(sizeof(champions) * av_list->nbr_champ);
-	if (ar_er(ac, av) > 0)
+	if (champ == NULL)
 		return (84);
 	if (init_champions(champ, av_list) == 84)
 		return (84);
@@ -39,6 +41,8 @@ int main(int ac, char **av)
 	if (put_instructions_in_memory(champ, vm) == 84)
 		return (84);
 	print_memory(vm->memory);
-	cycles(vm, champ);
+//	++champ[0]->PC;
+	printf("%c\n", *champ[0]->PC);
+//	cycles(vm, champ);
 	return (0);
 }
