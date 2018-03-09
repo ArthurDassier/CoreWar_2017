@@ -25,7 +25,6 @@ SRC	=	srcs/main.c						\
 		srcs/vm/recup_instruct/read_parameters.c		\
 		srcs/vm/recup_instruct/switch_endian.c			\
 		srcs/vm/recup_instruct/init_data_base.c			\
-		srcs/vm/champions/param_error.c				\
 		srcs/vm/init_vm.c					\
 		srcs/vm/recup_args/clist_argv.c				\
 		srcs/vm/clist_arg_champ.c				\
@@ -35,6 +34,8 @@ SRC	=	srcs/main.c						\
 		srcs/vm/instructions/eleven_to_fifteen.c		\
 		srcs/vm/instructions/sixteen.c				\
 		srcs/fight/exec_instructions.c				\
+		srcs/vm/champions/param_error.c				\
+		srcs/vm/champions/pars_champ.c				\
 
 OBJ	=	$(SRC:.c = .o)
 

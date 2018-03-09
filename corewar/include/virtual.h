@@ -104,4 +104,9 @@ int read_sti(instructions *list, int code, int nb_arg, int fd);
 int recup_instruction(instructions *instr, circular_memory *vm, champions *champ);
 int cycles(circular_memory *vm, champions **champ);
 
+int champ_instru(champions *champ);
+int champ_adr(champions *champ);
+int champ_params_types(int adr, int nb_params, int inst);
+int is_good_params(int types, int inst);
+
 #endif

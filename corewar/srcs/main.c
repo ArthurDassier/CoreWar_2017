@@ -41,8 +41,6 @@ int main(int ac, char **av)
 	if (put_instructions_in_memory(champ, vm) == 84)
 		return (84);
 	print_memory(vm->memory);
-//	++champ[0]->PC;
-	printf("%c\n", *champ[0]->PC);
 //	cycles(vm, champ);
 	return (0);
 }

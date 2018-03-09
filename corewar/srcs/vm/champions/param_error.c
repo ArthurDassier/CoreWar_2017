@@ -42,15 +42,12 @@ static int know_params_nb(int types)
 	return (1);
 }
 
-int is_good_params(instructions *list)
+int is_good_params(int types, int inst)
 {
-	int	ins_case = 0;
 	int	nb_params = 0;
 
-	ins_case = list->mnemonique[0] % 16 + 48;
-	ins_case = ins_case * 10 + list->mnemonique[1] % 16 + 48;
-	nb_params = know_params_nb(list->types);
-	if (or_types(list->types) != op_tab[ins_case - 1].type[nb_params])
+	nb_params = know_params_nb(types);
+	if (or_types(types) != op_tab[inst - 1].type[nb_params])
 		return (-1);
 	return (0);
 }
