@@ -15,7 +15,8 @@ static	void	(*param_tab[NB_INS])(struct token *, int, int) = {
 bool	check_case(char *str)
 {
 	if (my_strcmp(str, "zjmp") == 0 || my_strcmp(str, "ldi") == 0 ||
-	my_strcmp(str, "sti") == 0 || my_strcmp(str, "fork") == 0)
+	my_strcmp(str, "sti") == 0 || my_strcmp(str, "fork") == 0
+	|| my_strcmp(str, "lldi") == 0 || my_strcmp(str, "lfork") == 0)
 		return (true);
 	return (false);
 }
