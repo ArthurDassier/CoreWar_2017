@@ -18,8 +18,16 @@ void live_instru(instructions *instr, champions *champ, circular_memory *vm)
 void ld_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) vm;
-	//WARNING instr->arg2 = my_getnbr((champ->PC + instr->arg1 % IDX_MOD));
+	champ->tmp = champ->PC + instr->arg1 % IDX_MOD;
+	instr->arg2 = 0;
+//	printf(">>>>>>>>>>>%p\n",champ->tmp);
+	for (int i = 0; i != REG_SIZE; ++i) {
+		instr->arg2 += my_getnbr(champ->tmp);
+		instr->arg2 *= 10;
+		++champ->tmp;
+	}
 	champ->carry = modif_carry(champ->carry);
+	champ->tmp = champ->PC;
 }
 
 void st_instru(instructions *instr, champions *champ, circular_memory *vm)

@@ -24,7 +24,7 @@ arg_champ *init_ag_champ(int hyp_a, int hyp_n, char *av)
 	if (element == NULL)
 		return (NULL);
 	element->nbr_champ = 0;
-	element->hyp_a = hyp_a;
+	element->hyp_a = hyp_a % MEM_SIZE;
 	element->hyp_n = hyp_n;
 	element->cor = av;
 	element->next = NULL;
@@ -38,7 +38,7 @@ int insert_begin(arg_champ **first_elem, int hyp_a, int hyp_n, char *av)
 	if (new_elem == NULL)
 		return (84);
 	new_elem->nbr_champ = 0;
-	new_elem->hyp_a = hyp_a;
+	new_elem->hyp_a = hyp_a % MEM_SIZE;
 	new_elem->hyp_n = hyp_n;
 	new_elem->cor = av;
 	new_elem->next = *first_elem;
@@ -54,7 +54,7 @@ int insert_end(arg_champ **first_elem, int hyp_a, int hyp_n, char *av)
 	if (new_elem == NULL)
 		return (84);
 	new_elem->nbr_champ = 0;
-	new_elem->hyp_a = hyp_a;
+	new_elem->hyp_a = hyp_a % MEM_SIZE;
 	new_elem->hyp_n = hyp_n;
 	new_elem->cor = av;
 	new_elem->next = NULL;

@@ -42,11 +42,18 @@ void ldi_instru(instructions *instr, champions *champ, circular_memory *vm)
 
 	(void) vm;
 	champ->tmp = champ->PC + instr->arg1 % IDX_MOD;
-	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
-	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3)))
-	+ instr->arg2;
+	for (int i = 0; i != IND_SIZE; ++i) {
+		S += my_getnbr(champ->tmp);
+		S *= 10;
+		++champ->tmp;
+	}
+	S += instr->arg2;
 	champ->tmp = champ->PC + S % IDX_MOD;
-	instr->arg3 = my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
-	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
+	instr->arg3 = 0;
+	for (int i = 0; i != REG_SIZE; ++i) {
+		instr->arg3 += my_getnbr(champ->tmp);
+		instr->arg3 *= 10;
+		++champ->tmp;
+	}
 	champ->tmp = champ->PC;
 }
