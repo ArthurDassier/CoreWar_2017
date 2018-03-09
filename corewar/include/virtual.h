@@ -45,14 +45,15 @@ int double_arg(int dump, int hyp_a, int hyp_n);
 
 arg_champ *put_arg(int ac, char **av);
 arg_champ *init_ag_champ(int hyp_a, int hyp_n, char *av);
-void insert_begin(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
-void insert_end(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
+int insert_begin(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
+int insert_end(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
+void insert_nbr_champ(arg_champ **first_elem, int nbr);
 void memory_memset(char *memory, int size);
 int adr_acc(int adr);
 int set_flag(int adr);
 
 int init_champions(champions **champ, arg_champ *av_list);
-void memset_champion_registers(champions *champ);
+int memset_champion_registers(champions *champ);
 
 int init_data_base(instructions **list, arg_champ *av_list);
 
@@ -66,7 +67,7 @@ int headers_error_handling(struct header_s *files_h);
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 		int size);
 void memory_put_move(circular_memory *vm, champions *champ, char data, int adr);
-void put_instructions_in_memory(champions **champ, circular_memory *vm);
+int put_instructions_in_memory(champions **champ, circular_memory *vm);
 int hexo_to_dec(int value, int flag);
 void int_to_str(char *tmp, int nb, int *i, int size);
 void instruction_str(char *tmp, instructions *list);
@@ -99,5 +100,8 @@ int read_for_ldi(instructions *list, int val, int i, int fd);
 int read_ldi(instructions *list, int code, int nb_arg, int fd);
 int read_for_sti(instructions *list, int val, int i, int fd);
 int read_sti(instructions *list, int code, int nb_arg, int fd);
+
+int recup_instruction(instructions *instr, circular_memory *vm, champions *champ);
+int cycles(circular_memory *vm, champions **champ);
 
 #endif

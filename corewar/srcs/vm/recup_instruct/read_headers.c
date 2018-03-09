@@ -22,7 +22,7 @@ int headers_error_handling(struct header_s *files_h)
 
 int read_headers(int fd)
 {
-	struct header_s	*files_h = malloc(sizeof(struct header_s));
+	struct header_s	*files_h = NULL;
 	union endian	tmp;
 
 	if ((files_h = malloc(sizeof(struct header_s))) == NULL)

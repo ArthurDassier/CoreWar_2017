@@ -1,4 +1,5 @@
 .vscode
 srcs/op.c
 fenix.cor
+fenix.s
 zork.cor

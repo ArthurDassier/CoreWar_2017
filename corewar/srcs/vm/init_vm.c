@@ -53,6 +53,7 @@ void memory_put_move(circular_memory *vm, champions *champ, char data, int adr)
 	}
 	if (data != ' ')
 		*champ->tmp = data;
+	champ->PC = champ->tmp;
 }
 
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
@@ -60,7 +61,7 @@ int size)
 {
 	int	i = 0;
 
-	if ((vm->memory = malloc(sizeof(char) * (size + 1))) == NULL)
+	if ((vm->memory = malloc(sizeof(char) * (size + 2))) == NULL)
 		return (-1);
 	memory_memset(vm->memory, size - 1);
 	vm->memory_end = vm->memory + size;
