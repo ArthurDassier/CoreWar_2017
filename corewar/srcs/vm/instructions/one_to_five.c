@@ -18,6 +18,7 @@ void live_instru(instructions *instr, champions *champ, circular_memory *vm)
 void ld_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
 	(void) vm;
+	(void) instr;
 	//WARNING instr->arg2 = my_getnbr((champ->PC + instr->arg1 % IDX_MOD));
 	champ->carry = modif_carry(champ->carry);
 }

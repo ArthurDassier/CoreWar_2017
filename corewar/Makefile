@@ -13,6 +13,7 @@ SRC	=	srcs/main.c						\
 		srcs/args_errors/av_errors/flags_errors.c		\
 		srcs/args_errors/av_errors/look_ff_errors.c		\
 		srcs/vm/init_champions.c				\
+		srcs/op.c						\
 		srcs/vm/recup_instruct/ldi.c				\
 		srcs/vm/recup_instruct/sti.c				\
 		srcs/vm/recup_instruct/instructions_ele_fif.c		\
@@ -24,7 +25,7 @@ SRC	=	srcs/main.c						\
 		srcs/vm/recup_instruct/read_parameters.c		\
 		srcs/vm/recup_instruct/switch_endian.c			\
 		srcs/vm/recup_instruct/init_data_base.c			\
-		srcs/vm/recup_instruct/param_error.c			\
+		srcs/vm/champions/param_error.c				\
 		srcs/vm/init_vm.c					\
 		srcs/vm/recup_args/clist_argv.c				\
 		srcs/vm/clist_arg_champ.c				\

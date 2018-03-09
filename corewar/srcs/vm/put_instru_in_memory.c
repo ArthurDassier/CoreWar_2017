@@ -70,6 +70,7 @@ instructions *put_champ_in_mem(champions *champ, circular_memory *vm)
 		i = 0;
 		champ->list = champ->list->next;
 	}
+	++champ->PC;
 	champ->tmp = champ->PC;
 	return (tmp_list);
 }

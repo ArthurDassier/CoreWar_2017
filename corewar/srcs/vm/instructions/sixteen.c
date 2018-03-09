@@ -18,8 +18,7 @@ void aff_instru(instructions *instr, champions *champ, circular_memory *vm)
 int modif_carry(int carry)
 {
 	if (carry == 0)
-		carry = 1;
+		return (1);
 	else
-		carry = 0;
-	return (carry);
+		return (0);
 }
