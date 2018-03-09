@@ -36,6 +36,7 @@ SRC	=	srcs/main.c						\
 		srcs/fight/exec_instructions.c				\
 		srcs/vm/champions/param_error.c				\
 		srcs/vm/champions/pars_champ.c				\
+		srcs/vm/instructions/get_nbr_from_size.c		\
 
 OBJ	=	$(SRC:.c = .o)
 
