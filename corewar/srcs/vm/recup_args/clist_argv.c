@@ -25,19 +25,19 @@ int find_n(char **av, int i)
 	return (0);
 }
 
-arg_champ *put_in_list(arg_champ *clist, char **av, int i)
+arg_champ *put_in_list(arg_champ *clt, char **av, int i)
 {
 	static int	status = 0;
 
 	if (status == 0) {
-		clist = init_ag_champ(find_a(av, i), find_n(av, i), av[i]);
-		if (clist == NULL)
+		clt = init_ag_champ(find_a(av, i), find_n(av, i), av[i]);
+		if (clt == NULL)
 			return (NULL);
 		status = 1;
 	} else
-		if (insert_end(&clist, find_a(av, i), find_n(av, i), av[i]) == 84)
+		if (insert_end(&clt, find_a(av, i), find_n(av, i), av[i]) == 84)
 			return (NULL);
-	return (clist);
+	return (clt);
 }
 
 int verif_cor(char *av)

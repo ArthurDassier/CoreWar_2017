@@ -11,7 +11,8 @@ int lf_flag_err(int (*flag_handler[3])(char *flag, char *argv),
 char **av, int i)
 {
 	if (!av[i][1]) {
-		my_puterror("Error in function open: No such file or directory.\n");
+		my_puterror("Error in function open: "
+		"No such file or directory.\n");
 		return (84);
 	}
 	if (g_flag(av[i]) == 84)
