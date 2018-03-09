@@ -56,7 +56,7 @@ void memory_put_move(circular_memory *vm, champions *champ, char data, int adr)
 }
 
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
-			int size)
+int size)
 {
 	int	i = 0;
 

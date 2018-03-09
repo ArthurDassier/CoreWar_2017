@@ -15,19 +15,19 @@ void live_instru(instructions *instr, champions *champ, circular_memory *vm)
 	my_printf("Le joueur %d (?) est en vie.\n", instr->arg1);
 }
 
-void ld_instru(instructions *instr, champions *champ, circular_memory *vm)
+void ld_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) vm;
-	(void) instr;
-	champ->tmp = champ->PC + instr->arg1 % IDX_MOD;
-	instr->arg2 = 0;
-	for (int i = 0; i != REG_SIZE; ++i) {
-		instr->arg2 += my_getnbr(champ->tmp);
-		instr->arg2 *= 10;
-		++champ->tmp;
-	}
-	champ->carry = modif_carry(champ->carry);
-	champ->tmp = champ->PC;
+	int	ld = 0;
+	int	rg = 0;
+	int	nbr_to_load = 0;
+
+	ld = name(champ, types / 10);
+	rg = name(champ, types % 10);
+	champ->tmp = (champ->PC + ld % IDX_MOD) - 1;
+	nbr_to_load = name(champ, REG_SIZE);
+	if (rg > REG_NUMBER)
+		return;
+	champ->registers[rg] = nbr_to_load;
 }
 
 void st_instru(instructions *instr, champions *champ, circular_memory *vm)
@@ -36,7 +36,7 @@ void st_instru(instructions *instr, champions *champ, circular_memory *vm)
 	char	*str = its(instr->arg1);
 
 	if (instr->arg2 > REG_NUMBER) {
-		champ->tmp = (champ->PC + instr->arg2 % IDX_MOD);
+		champ->tmp = champ->PC + instr->arg2 % IDX_MOD;
 		memory_put_move(vm, champ, str[i++], 0);
 		while (str[i] != '\0')
 			memory_put_move(vm, champ, str[i++], 1);

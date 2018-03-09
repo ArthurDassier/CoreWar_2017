@@ -12,7 +12,7 @@ void sti_instru(instructions *instr, champions *champ, circular_memory *vm)
 	int	i = 0;
 	char	*str = its(instr->arg1);
 
-	champ->tmp = champ->PC + (instr->arg2 + instr->arg3) % IDX_MOD;
+	champ->tmp += (instr->arg2 + instr->arg3) % IDX_MOD;
 	memory_put_move(vm, champ, str[i++], 0);
 	while (str[i] != '\0')
 		memory_put_move(vm, champ, str[i++], 1);
@@ -32,8 +32,30 @@ void fork_instru(instructions *instr, champions *champ, circular_memory *vm)
 
 void lld_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) vm;
-	instr->arg2 = my_getnbr((champ->PC + instr->arg1));
+	int	ld = 0;
+	int	rg = 0;
+	int	nbr_to_load = 0;
+
+	for (int i = 0; i != types / 10; ++i) {
+		champ->tmp = champ->PC + i;
+		ld += my_getnbr(*champ->tmp);
+		ld *= 10;
+	}
+	champ->tmp += champ->PC + types / 10;
+	for (int i = 0; i != types % 10; ++i) {
+		champ->tmp = champ->PC + i;
+		rg += my_getnbr(*champ->tmp);
+		rg *= 10;
+	}
+	champ->tmp = (champ->PC + ld) - 1;
+	for (int i = 0; i != REG_SIZE; ++i) {
+		champ->tmp += 1;
+		nbr_to_load += my_getnbr(*champ->tmp);
+		nbr_to_load *= 10;
+	}
+	if (rg > REG_NUMBER)
+		return;
+	champ->registers[rg] = nbr_to_load;
 	champ->carry = modif_carry(champ->carry);
 }
 
@@ -43,13 +65,19 @@ void lldi_instru(instructions *instr, champions *champ, circular_memory *vm)
 
 	(void) vm;
 	champ->tmp = champ->PC + instr->arg1;
-	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
-	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3)))
-	+ instr->arg2;
+	for (int i = 0; i != IND_SIZE; ++i) {
+		S += my_getnbr(champ->tmp);
+		S *= 10;
+		++champ->tmp;
+	}
+	S += instr->arg2;
 	champ->tmp = champ->PC + S;
-	instr->arg3 =  my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
-	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
-	champ->carry = modif_carry(champ->carry);
+	instr->arg3 = 0;
+	for (int i = 0; i != REG_SIZE; ++i) {
+		instr->arg3 += my_getnbr(champ->tmp);
+		instr->arg3 *= 10;
+		++champ->tmp;
+	}
 	champ->tmp = champ->PC;
 }
 

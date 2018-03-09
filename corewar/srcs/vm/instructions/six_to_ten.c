@@ -28,12 +28,25 @@ void xor_instru(instructions *instr, champions *champ, circular_memory *vm)
 	champ->carry = modif_carry(champ->carry);
 }
 
-void zjmp_instru(instructions *instr, champions *champ, circular_memory *vm)
+void zjmp_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) vm;
-	if (champ->carry == 1)
-		champ->PC = champ->PC + instr->arg1 % IDX_MOD;
-	champ->tmp = champ->PC;
+	int	nbr = 0;
+	int	ld = 0;
+
+	for (int i = 0; i != types / 10; ++i) {
+		champ->tmp = champ->PC + i;
+		ld += my_getnbr(*champ->tmp);
+		ld *= 10;
+	}
+	if (champ->carry == 1) {
+		for (int i = 0; i != IND_SIZE; ++i) {
+			champ->tmp = champ->PC + i;
+			nbr += my_getnbr(*champ->tmp);
+			nbr *= 10;
+		}
+		champ->PC = champ->PC + nbr % IDX_MOD;
+		champ->tmp = champ->PC;
+	}
 }
 
 void ldi_instru(instructions *instr, champions *champ, circular_memory *vm)
