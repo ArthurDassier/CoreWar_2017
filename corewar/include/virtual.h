@@ -109,4 +109,6 @@ int champ_adr(champions *champ);
 int champ_params_types(int adr, int nb_params, int inst);
 int is_good_params(int types, int inst);
 
+int getnbr_from_size(champions *champ, int size);
+
 #endif

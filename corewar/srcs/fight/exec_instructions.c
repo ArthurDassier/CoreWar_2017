@@ -85,14 +85,3 @@ int recup_instruction(instructions *instr, circular_memory *vm, champions *champ
 		++vm->nbr_live;
 	return (0);
 }
-
-//void do_instruction(champions *champ)
-//{
-	//int		i = 0;
-//	instructions	*tmp1 = champ[0]->list;
-	//instructions	*tmp2 = champ[1]->list;
-
-	//while (1) {
-//		exec_
-	//}
-//}
