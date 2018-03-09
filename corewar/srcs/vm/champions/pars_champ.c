@@ -61,8 +61,6 @@ int champ_params_types(int inst, int adr, int nb_params)
 		bin <<= 2;
 		--nb_params;
 	}
-	if (types < 100)
-		val *= 10;
 	if (is_good_params(types, inst) != 0)
 		return (-1);
 	return (types);
