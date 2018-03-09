@@ -8,7 +8,7 @@
 #include "virtual.h"
 #include "printf.h"
 
-void live_instru(instructions *instr, champions *champ, circular_memory *vm)
+void live_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) champ;
 	(void) vm;
@@ -22,7 +22,9 @@ void ld_instru(circular_memory *vm, champions *champ, int types)
 	int	nbr_to_load = 0;
 
 	ld = getnbr_from_size(champ, types / 10);
+	champ->PC = champ->tmp;
 	rg = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
 	champ->tmp = champ->PC + ld % IDX_MOD;
 	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
 	champ->tmp = champ->PC;
@@ -31,7 +33,7 @@ void ld_instru(circular_memory *vm, champions *champ, int types)
 	champ->registers[rg] = nbr_to_load;
 }
 
-void st_instru(instructions *instr, champions *champ, circular_memory *vm)
+void st_instru(circular_memory *vm, champions *champ, int types)
 {
 	int	i = 0;
 	char	*str = its(instr->arg1);
@@ -46,14 +48,14 @@ void st_instru(instructions *instr, champions *champ, circular_memory *vm)
 		instr->arg2 = instr->arg1;
 }
 
-void add_instru(instructions *instr, champions *champ, circular_memory *vm)
+void add_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) vm;
 	instr->arg3 = instr->arg1 + instr->arg2;
 	champ->carry = modif_carry(champ->carry);
 }
 
-void sub_instru(instructions *instr, champions *champ, circular_memory *vm)
+void sub_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) vm;
 	instr->arg3 = instr->arg1 - instr->arg2;

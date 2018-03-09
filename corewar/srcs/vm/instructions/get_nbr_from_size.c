@@ -18,7 +18,7 @@ int getnbr_form_size(champions *champ, int size)
 		++champ->tmp;
 	}
 	tmp[i] = '\0';
-	champ->PC = champ->tmp;
+	++champ->tmp;
 	nb = my_getnbr_base(tmp, "0123456789ABCDEF");
 	free(tmp);
 	return (nb);

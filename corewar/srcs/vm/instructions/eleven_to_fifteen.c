@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-void sti_instru(instructions *instr, champions *champ, circular_memory *vm)
+void sti_instru(circular_memory *vm, champions *champ, int types)
 {
 	int	i = 0;
 	char	*str = its(instr->arg1);
@@ -19,7 +19,7 @@ void sti_instru(instructions *instr, champions *champ, circular_memory *vm)
 	champ->tmp = champ->PC;
 }
 
-void fork_instru(instructions *instr, champions *champ, circular_memory *vm)
+void fork_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) instr;
 	(void) champ;
@@ -30,36 +30,25 @@ void fork_instru(instructions *instr, champions *champ, circular_memory *vm)
 	return;
 }
 
-void lld_instru(instructions *instr, champions *champ, circular_memory *vm)
+void lld_instru(circular_memory *vm, champions *champ, int types)
 {
 	int	ld = 0;
 	int	rg = 0;
 	int	nbr_to_load = 0;
 
-	for (int i = 0; i != types / 10; ++i) {
-		champ->tmp = champ->PC + i;
-		ld += my_getnbr(*champ->tmp);
-		ld *= 10;
-	}
-	champ->tmp += champ->PC + types / 10;
-	for (int i = 0; i != types % 10; ++i) {
-		champ->tmp = champ->PC + i;
-		rg += my_getnbr(*champ->tmp);
-		rg *= 10;
-	}
-	champ->tmp = (champ->PC + ld) - 1;
-	for (int i = 0; i != REG_SIZE; ++i) {
-		champ->tmp += 1;
-		nbr_to_load += my_getnbr(*champ->tmp);
-		nbr_to_load *= 10;
-	}
+	ld = getnbr_from_size(champ, types / 10);
+	champ->PC = champ->tmp;
+	rg = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
+	champ->tmp = champ->PC + ld;
+	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
+	champ->tmp = champ->PC;
 	if (rg > REG_NUMBER)
 		return;
 	champ->registers[rg] = nbr_to_load;
-	champ->carry = modif_carry(champ->carry);
 }
 
-void lldi_instru(instructions *instr, champions *champ, circular_memory *vm)
+void lldi_instru(circular_memory *vm, champions *champ, int types)
 {
 	int	S = 0;
 
@@ -81,7 +70,7 @@ void lldi_instru(instructions *instr, champions *champ, circular_memory *vm)
 	champ->tmp = champ->PC;
 }
 
-void lfork_instru(instructions *instr, champions *champ, circular_memory *vm)
+void lfork_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) instr;
 	(void) champ;

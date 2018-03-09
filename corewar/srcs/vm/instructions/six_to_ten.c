@@ -7,21 +7,21 @@
 
 #include "virtual.h"
 
-void and_instru(instructions *instr, champions *champ, circular_memory *vm)
+void and_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) vm;
 	instr->arg1 = instr->arg2 & instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
-void or_instru(instructions *instr, champions *champ, circular_memory *vm)
+void or_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) vm;
 	instr->arg1 = instr->arg2 | instr->arg3;
 	champ->carry = modif_carry(champ->carry);
 }
 
-void xor_instru(instructions *instr, champions *champ, circular_memory *vm)
+void xor_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) vm;
 	instr->arg1 = instr->arg2 ^ instr->arg3;
@@ -49,7 +49,7 @@ void zjmp_instru(circular_memory *vm, champions *champ, int types)
 	}
 }
 
-void ldi_instru(instructions *instr, champions *champ, circular_memory *vm)
+void ldi_instru(circular_memory *vm, champions *champ, int types)
 {
 	int	S = 0;
 
