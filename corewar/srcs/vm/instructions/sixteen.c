@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2017
+** EPITECH PROJECT, 2018
 ** sixteen.c
 ** File description:
 ** Arthur
@@ -8,7 +8,18 @@
 #include "virtual.h"
 #include "printf.h"
 
-void aff(int *register_one)
+void aff_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	my_printf("%c\n", register_one);
+	(void) champ;
+	(void) vm;
+	my_printf("%c\n", instr->arg1);
+}
+
+int modif_carry(int carry)
+{
+	if (carry == 0)
+		carry = 1;
+	else
+		carry = 0;
+	return (carry);
 }

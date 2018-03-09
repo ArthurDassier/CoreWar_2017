@@ -6,6 +6,7 @@
 */
 
 #include "struct.h"
+#include "instructions.h"
 #include "my.h"
 #include "op.h"
 
@@ -44,14 +45,15 @@ int double_arg(int dump, int hyp_a, int hyp_n);
 
 arg_champ *put_arg(int ac, char **av);
 arg_champ *init_ag_champ(int hyp_a, int hyp_n, char *av);
-void insert_begin(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
-void insert_end(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
+int insert_begin(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
+int insert_end(arg_champ **first_elem, int hyp_a, int hyp_n, char *av);
+void insert_nbr_champ(arg_champ **first_elem, int nbr);
 void memory_memset(char *memory, int size);
 int adr_acc(int adr);
 int set_flag(int adr);
 
 int init_champions(champions **champ, arg_champ *av_list);
-void memset_champion_registers(champions *champ);
+int memset_champion_registers(champions *champ);
 
 int init_data_base(instructions **list, arg_champ *av_list);
 
@@ -64,29 +66,42 @@ int headers_error_handling(struct header_s *files_h);
 
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 		int size);
-void memory_put(circular_memory *vm, champions *champ, char data, int adr);
+void memory_put_move(circular_memory *vm, champions *champ, char data, int adr);
+int put_instructions_in_memory(champions **champ, circular_memory *vm);
+int hexo_to_dec(int value, int flag);
+void int_to_str(char *tmp, int nb, int *i, int size);
+void instruction_str(char *tmp, instructions *list);
+instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm);
 
 instructions *read_instructions(int fd);
-int live_instruction(instructions *list, int fd);
-int ld_instruction(instructions *list, int fd);
-int st_instruction(instructions *list, int fd);
-int add_instruction(instructions *list, int fd);
-int sub_instruction(instructions *list, int fd);
-int and_instruction(instructions *list, int fd);
-int or_instruction(instructions *list, int fd);
-int xor_instruction(instructions *list, int fd);
-int zjmp_instruction(instructions *list, int fd);
-int ldi_instruction(instructions *list, int fd);
-int sti_instruction(instructions *list, int fd);
-int fork_instruction(instructions *list, int fd);
-int lld_instruction(instructions *list, int fd);
-int lldi_instruction(instructions *list, int fd);
-int lfork_instruction(instructions *list, int fd);
-int aff_instruction(instructions *list, int fd);
-void instruction_str(char *tmp, instructions *list);
+int read_live(instructions *list, int fd);
+int read_ld(instructions *list, int fd);
+int read_st(instructions *list, int fd);
+int read_add(instructions *list, int fd);
+int read_sub(instructions *list, int fd);
+int read_and(instructions *list, int fd);
+int read_or(instructions *list, int fd);
+int read_xor(instructions *list, int fd);
+int read_zjmp(instructions *list, int fd);
+int read_ldi_instruction(instructions *list, int fd);
+int read_sti_instruction(instructions *list, int fd);
+int read_fork(instructions *list, int fd);
+int read_lld(instructions *list, int fd);
+int read_lldi(instructions *list, int fd);
+int read_lfork(instructions *list, int fd);
+int read_aff(instructions *list, int fd);
+
 int read_in_struct(instructions *list, int val, int j, int fd);
 struct parameters recup_parameters(int types);
-int read_value_of_param(int value, int fd);
+int read_value_of_param(int *types, int value, int fd);
 int read_parameters(instructions *list, int code, int nb_arg, int fd);
+
+int read_for_ldi(instructions *list, int val, int i, int fd);
+int read_ldi(instructions *list, int code, int nb_arg, int fd);
+int read_for_sti(instructions *list, int val, int i, int fd);
+int read_sti(instructions *list, int code, int nb_arg, int fd);
+
+int recup_instruction(instructions *instr, circular_memory *vm, champions *champ);
+int cycles(circular_memory *vm, champions **champ);
 
 #endif

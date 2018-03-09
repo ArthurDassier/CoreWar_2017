@@ -7,44 +7,6 @@
 
 #include "virtual.h"
 
-int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
-		int size)
-{
-	int		i = 0;
-
-	if ((vm->memory = malloc(sizeof(char) * (size + 1))) == NULL)
-		return (-1);
-	vm->memory_end = vm->memory + size;
-	vm->memory_head = vm->memory;
-	while (av_list->next != NULL) {
-		champ[i]->pars = vm->memory;
-		champ[i++]->pars += av_list->hyp_a;
-		av_list = av_list->next;
-	}
-	vm->size = size;
-	memory_memset(vm->memory, size);
-	return (0);
-}
-
-void memory_put(circular_memory *vm, champions *champ, char data, int adr)
-{
-	int		flag = 0;
-	int		flag2 = 0;
-
-	if (adr > 0)
-		flag2 = 1;
-	flag = set_flag(adr);
-	while (adr != 0) {
-		if (champ->pars == vm->memory_end)
-			champ->pars = vm->memory_head;
-		else if (champ->pars == vm->memory_head - flag2)
-			champ->pars = vm->memory_end;
-		champ->pars += flag;
-		adr = adr_acc(adr);
-	}
-	*champ->pars = data;
-}
-
 int adr_acc(int adr)
 {
 	if (adr > 0)
@@ -59,7 +21,7 @@ int set_flag(int adr)
 
 	if (adr > 0)
 		flag = 1;
-	else
+	else if (adr < 0)
 		flag = -1;
 	return (flag);
 }
@@ -71,4 +33,49 @@ void memory_memset(char *memory, int size)
 	while (i != size)
 		memory[i++] = '0';
 	memory[i] = '\0';
+}
+
+void memory_put_move(circular_memory *vm, champions *champ, char data, int adr)
+{
+	int	flag = 0;
+	int	flag2 = 0;
+
+	if (adr > 0)
+		flag2 = 1;
+	flag = set_flag(adr);
+	while (adr != 0) {
+		if (champ->tmp == vm->memory_end)
+			champ->tmp = vm->memory_head;
+		else if (champ->tmp == vm->memory_head - flag2)
+			champ->tmp = vm->memory_end;
+		champ->tmp += flag;
+		adr = adr_acc(adr);
+	}
+	if (data != ' ')
+		*champ->tmp = data;
+	champ->PC = champ->tmp;
+}
+
+int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
+int size)
+{
+	int	i = 0;
+
+	if ((vm->memory = malloc(sizeof(char) * (size + 2))) == NULL)
+		return (-1);
+	memory_memset(vm->memory, size - 1);
+	vm->memory_end = vm->memory + size;
+	vm->memory_head = vm->memory;
+	while (av_list != NULL) {
+		champ[i]->PC = vm->memory;
+		if ((champ[i]->PC += av_list->hyp_a) == vm->memory_head)
+			champ[i]->PC = vm->memory_end - 1;
+		else
+			champ[i]->PC -= 1;
+		champ[i]->tmp = champ[i]->PC;
+		av_list = av_list->next;
+		++i;
+	}
+	vm->size = size;
+	return (0);
 }

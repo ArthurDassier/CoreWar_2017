@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2017
+** EPITECH PROJECT, 2018
 ** eleven_to_fifteen.c
 ** File description:
 ** Arthur
@@ -7,45 +7,59 @@
 
 #include "virtual.h"
 
-void sti(int *register_one, int *param_one, int *param_two)
+void sti_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) *register_one;
-	(void) *param_one;
-	(void) *param_two;
-//	PC + (param_one + param_two) % IDX_MOD = register_one;
+	int	i = 0;
+	char	*str = its(instr->arg1);
+
+	champ->tmp = champ->PC + (instr->arg2 + instr->arg3) % IDX_MOD;
+	memory_put_move(vm, champ, str[i++], 0);
+	while (str[i] != '\0')
+		memory_put_move(vm, champ, str[i++], 1);
+	champ->tmp = champ->PC;
+}
+
+void fork_instru(instructions *instr, champions *champ, circular_memory *vm)
+{
+	(void) instr;
+	(void) champ;
+	(void) vm;
+	/*It creates a new program that inherits different states from
+	the parent. This program is executed at the address PC
+	+ first index_one % IDX_MOD.*/
 	return;
 }
 
-void fork_inst(int *index_one)
+void lld_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) *index_one;
-	return;
+	(void) vm;
+	instr->arg2 = my_getnbr((champ->PC + instr->arg1));
+	champ->carry = modif_carry(champ->carry);
 }
 
-void lld(int *param_one, int *register_one)
+void lldi_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) *param_one;
-	(void) *register_one;
-	//register_one = (PC + *param_one);
-	//modif carry;
-	return;
+	int	S = 0;
+
+	(void) vm;
+	champ->tmp = champ->PC + instr->arg1;
+	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
+	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3)))
+	+ instr->arg2;
+	champ->tmp = champ->PC + S;
+	instr->arg3 =  my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
+	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
+	champ->carry = modif_carry(champ->carry);
+	champ->tmp = champ->PC;
 }
 
-void lldi(int *index_one, int *index_two, int *register_one)
+void lfork_instru(instructions *instr, champions *champ, circular_memory *vm)
 {
-	(void) *index_one;
-	(void) *index_two;
-	(void) *register_one;
-	//IND_SIZE :
-	//S = (PC + index_one) + index_two;
-	//REG_SIZE :
-	//register_one = PC + S;
-	//modif carry;
-	return;
-}
-
-void lfork(int *index_one)
-{
-	(void) *index_one;
+	(void) instr;
+	(void) champ;
+	(void) vm;
+	/*It creates a new program that inherits different states from
+	the parent. This program is executed at the address PC
+	+ first index_one.*/
 	return;
 }
