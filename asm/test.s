@@ -1,5 +1,3 @@
-#	ration win 95%
-#	809 octet
 .name		"the knock puncher"
 .comment	"il va vous les briser"
 
@@ -11,14 +9,13 @@
 debut:		fork	%:attaque
 		fork	%:live1
 		fork	%:back_wall1
-		zjmp	%:debut
 	
 attaque:	fork	%:first_atk
 		fork	%:second_atk
 		fork	%:live1
+		zjmp	%:debut
 		zjmp	%:attaque
 
-live:		st	r1, 6
 live1:		live	%42
 		fork	%:live2
 		st	r1,24
@@ -63,6 +60,8 @@ live4:		fork	%:live1
 		live	%42
 		live	%42
 		zjmp	%-20
+
+live:		st	r1, 6
 
 back_wall:	ld	:jump, r6
 		fork	%:back_wall1

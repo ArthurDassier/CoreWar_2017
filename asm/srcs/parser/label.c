@@ -11,13 +11,15 @@ static struct d_queue	*get_label(char *label, struct d_queue *head)
 	struct d_queue	*tmp = head;
 	struct token	*token = tmp->token;
 
-	while (tmp != NULL && my_strcmp(token->mnemo, label) != 0) {
-		token = tmp->token;
+	while (tmp != NULL) {
+		if (my_strcmp(token->mnemo, label) == 0 && token->tk_val == L)
+			return (tmp->next);
 		tmp = tmp->next;
+		if (tmp == NULL)
+			return (NULL);
+		token = tmp->token;
 	}
-	if (tmp == NULL)
-		return (NULL);
-	return (tmp);
+	return (NULL);
 }
 
 void	labels(struct d_queue *head, int fd, int i, struct token *token)

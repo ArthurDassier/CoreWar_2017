@@ -9,9 +9,22 @@
 
 void sti_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) champ;
-	(void) vm;
-	(void) types;
+	int	rr = getnbr_from_size(champ, types / 100);
+	int	rg = getnbr_from_size(champ, types % 100);
+	int	ld = getnbr_from_size(champ, types % 10);
+	int	i = 0;
+	char	*str = NULL;
+
+	champ->PC = champ->tmp;
+	if (rr > REG_NUMBER)
+		return;
+	champ->tmp = champ->PC + ld % IDX_MOD;
+	str = its(champ->registers[rr]);
+	champ->tmp = champ->PC + (rg + ld) % IDX_MOD;
+	memory_put_move(vm, champ, str[i++], 0);
+	while (str[i] != '\0')
+		memory_put_move(vm, champ, str[i++], 1);
+	champ->tmp = champ->PC;
 }
 
 void fork_instru(circular_memory *vm, champions *champ, int types)
@@ -33,7 +46,6 @@ void lld_instru(circular_memory *vm, champions *champ, int types)
 
 	(void) vm;
 	ld = getnbr_from_size(champ, types / 10);
-	champ->PC = champ->tmp;
 	rg = getnbr_from_size(champ, types % 10);
 	champ->PC = champ->tmp;
 	champ->tmp = champ->PC + ld;
@@ -46,9 +58,26 @@ void lld_instru(circular_memory *vm, champions *champ, int types)
 
 void lldi_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) champ;
+	int	ld = 0;
+	int	nbr = 0;
+	int	rg = 0;
+	int	the_s = 0;
+	int	nbr_to_load = 0;
+
 	(void) vm;
-	(void) types;
+	ld = getnbr_from_size(champ, types / 100);
+	nbr = getnbr_from_size(champ, types % 100);
+	rg = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
+	champ->tmp = champ->PC + ld;
+	the_s = getnbr_from_size(champ, IND_SIZE) + nbr;
+	champ->tmp = champ->PC + the_s;
+	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
+	if (rg > REG_NUMBER)
+		return;
+	champ->registers[rg] = nbr_to_load;
+	champ->tmp = champ->PC;
+	champ->carry = modif_carry(champ->carry);
 }
 
 void lfork_instru(circular_memory *vm, champions *champ, int types)
