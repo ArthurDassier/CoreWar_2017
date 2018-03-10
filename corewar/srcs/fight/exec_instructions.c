@@ -7,48 +7,6 @@
 
 #include "virtual.h"
 
-static void num_cycle(int i, circular_memory *vm, champions **champ)
-{
-	struct instructions	*tmp = champ[0]->list;
-	int			cycle = 0;
-	int			j = 0;
-
-	while (champ[j] != NULL) {
-		tmp = champ[j]->list;
-		while (tmp->next != NULL) {
-			cycle += tmp->nb_cycles;
-			if (i > cycle)
-				tmp = tmp->next;
-			if (i == cycle) {
-			//	recup_instruction(tmp, vm, champ[j]);
-				break;
-			}
-			if (i < cycle)
-				break;
-			}
-		cycle = 0;
-		++j;
-	}
-}
-
-int cycles(circular_memory *vm, champions **champ)
-{
-	int	cycle_to_die = CYCLE_TO_DIE;
-	int	cycle_delta = CYCLE_DELTA;
-	int	i = 0;
-
-	vm->nbr_live = 0;
-	while (cycle_to_die > 0) {
-		while (i != cycle_to_die) {
-		//	num_cycle(i, vm, champ);
-			++i;
-		}
-		i = 0;
-		cycle_to_die -= cycle_delta;
-	}
-	return (0);
-}
-
 void init_exec_instru_tab(int (*exec_instru_tab[16])(circular_memory *vm,
 champions *champ))
 {

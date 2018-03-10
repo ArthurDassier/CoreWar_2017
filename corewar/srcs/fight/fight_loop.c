@@ -7,27 +7,20 @@
 
 #include "virtual.h"
 
-void set_cycles(int *cycles, int *max, int delta)
+int fight_loop(circular_memory *vm, champions **champ)
 {
-	if (*cycles == *max) {
-		*cycles = 1;
-		*max -= delta;
-	}
-}
-
-void loop_fight(circular_memory *vm, champions **champ)
-{
-	int	cycles = 1;
-	int	max = CYCLES_TO_DIE;
-	int	delta = CYCLES_DELTA;
-	int	lives = NBR_LIVE;
+	int	cycle_to_die = CYCLE_TO_DIE;
+	int	cycle_delta = CYCLE_DELTA;
 	int	i = 0;
 
-	while (cycles != (max + 1)) {
-		while (champ[i])
-			do_instruction(champ[i++]);
+	vm->nbr_live = 0;
+	while (cycle_to_die > 0) {
+		while (i != cycle_to_die) {
+		//	instructions de vincent;
+			++i;
+		}
 		i = 0;
-		set_cycles(cycles, max, delta);
-		++cycles;
+		cycle_to_die -= cycle_delta;
 	}
+	return (0);
 }
