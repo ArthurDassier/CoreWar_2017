@@ -8,22 +8,22 @@
 #ifndef INSTR_H_
 #define INSTR_H_
 
-void live_instru(circular_memory *vm, champions *champ, int types);
-void ld_instru(circular_memory *vm, champions *champ, int types);
-void st_instru(circular_memory *vm, champions *champ, int types);
-void add_instru(circular_memory *vm, champions *champ, int types);
-void sub_instru(circular_memory *vm, champions *champ, int types);
-void and_instru(circular_memory *vm, champions *champ, int types);
-void or_instru(circular_memory *vm, champions *champ, int types);
-void xor_instru(circular_memory *vm, champions *champ, int types);
-void zjmp_instru(circular_memory *vm, champions *champ, int types);
-void ldi_instru(circular_memory *vm, champions *champ, int types);
-void sti_instru(circular_memory *vm, champions *champ, int types);
-void fork_instru(circular_memory *vm, champions *champ, int types);
-void lld_instru(circular_memory *vm, champions *champ, int types);
-void lldi_instru(circular_memory *vm, champions *champ, int types);
-void lfork_instru(circular_memory *vm, champions *champ, int types);
-void aff_instru(circular_memory *vm, champions *champ, int types);
+int live_instru(circular_memory *vm, champions *champ);
+int ld_instru(circular_memory *vm, champions *champ);
+int st_instru(circular_memory *vm, champions *champ);
+int add_instru(circular_memory *vm, champions *champ);
+int sub_instru(circular_memory *vm, champions *champ);
+int and_instru(circular_memory *vm, champions *champ);
+int or_instru(circular_memory *vm, champions *champ);
+int xor_instru(circular_memory *vm, champions *champ);
+int zjmp_instru(circular_memory *vm, champions *champ);
+int ldi_instru(circular_memory *vm, champions *champ);
+int sti_instru(circular_memory *vm, champions *champ);
+int fork_instru(circular_memory *vm, champions *champ);
+int lld_instru(circular_memory *vm, champions *champ);
+int lldi_instru(circular_memory *vm, champions *champ);
+int lfork_instru(circular_memory *vm, champions *champ);
+int aff_instru(circular_memory *vm, champions *champ);
 int modif_carry(int carry);
 
 #endif
