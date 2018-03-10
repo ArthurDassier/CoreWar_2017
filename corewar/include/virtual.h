@@ -60,7 +60,7 @@ int init_data_base(instructions **list, arg_champ *av_list);
 void switch_endian_two(union endian *value);
 void switch_endian_four(union endian *value);
 
-int read_headers(int fd);
+int read_headers(instructions *list, int fd);
 int check_name_comment(char *name, char *comment);
 int headers_error_handling(struct header_s *files_h);
 
@@ -73,7 +73,7 @@ void int_to_str(char *tmp, int nb, int *i, int size);
 void instruction_str(char *tmp, instructions *list);
 instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm);
 
-instructions *read_instructions(int fd);
+instructions *read_instructions(int fd, instructions *list);
 int read_live(instructions *list, int fd);
 int read_ld(instructions *list, int fd);
 int read_st(instructions *list, int fd);

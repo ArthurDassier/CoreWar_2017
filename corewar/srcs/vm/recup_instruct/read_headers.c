@@ -20,7 +20,7 @@ int headers_error_handling(struct header_s *files_h)
 	return (0);
 }
 
-int read_headers(int fd)
+int read_headers(instructions *list, int fd)
 {
 	struct header_s	*files_h = NULL;
 	union endian	tmp;
@@ -37,5 +37,7 @@ int read_headers(int fd)
 	files_h->prog_size = tmp.val;
 	if (headers_error_handling(files_h) != 0)
 		return (-1);
+	list->name = malloc(sizeof(char) * (my_strlen(files_h->prog_name) + 1));
+	my_strcpy(list->name, files_h->prog_name);
 	return (0);
 }

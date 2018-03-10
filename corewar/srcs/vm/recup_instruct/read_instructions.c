@@ -40,17 +40,13 @@ static void init_instructions_tab(int (**inst_tab)(instructions *list, int fd))
 	inst_tab[15] = &read_aff;
 }
 
-instructions *read_instructions(int fd)
+instructions *read_instructions(int fd, instructions *list)
 {
 	int			rv = 0;
 	int			i = 0;
-	instructions		*list = NULL;
-	instructions		*tmp_list = NULL;
+	instructions		*tmp_list = list;
 	int			(*inst_tab[16])(instructions *list, int fd);
 
-	if ((list = malloc(sizeof(instructions))) == NULL)
-		return (NULL);
-	tmp_list = list;
 	printf("\n == instructions == \n\n");
 	init_instructions_tab(inst_tab);
 	while ((rv = read(fd, &i, 1)) != 0) {

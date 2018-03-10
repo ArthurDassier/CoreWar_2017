@@ -31,6 +31,7 @@ struct arg_champ
 
 struct instructions
 {
+	char			*name;
 	char			*mnemonique;
 	unsigned char		adr;
 	int			nb_cycles;
@@ -44,6 +45,8 @@ struct instructions
 typedef struct champions
 {
 	instructions	*list;
+	char		*name;
+	int		number;
 	int		*registers;
 	char		*PC;
 	char		*tmp;

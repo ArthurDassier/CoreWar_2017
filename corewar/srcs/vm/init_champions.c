@@ -11,7 +11,7 @@ int init_champions(champions **champ, arg_champ *av_list)
 {
 	int		i = 0;
 	instructions	**data_base = malloc(sizeof(instructions) *
-			av_list->nbr_champ);
+			(av_list->nbr_champ + 1));
 
 	if (data_base == NULL)
 		return (84);
@@ -23,6 +23,10 @@ int init_champions(champions **champ, arg_champ *av_list)
 		if (memset_champion_registers(champ[i]) == 84)
 			return (84);
 		champ[i]->list = data_base[i];
+		champ[i]->name = malloc(sizeof(char) *
+				(my_strlen(champ[i]->list->name) + 1));
+		my_strcpy(champ[i]->name, champ[i]->list->name);
+		champ[i]->number = i + 1;
 		++i;
 	}
 	champ[i] = NULL;
@@ -33,12 +37,12 @@ int memset_champion_registers(champions *champ)
 {
 	int	i = 0;
 
-	champ->registers = malloc(sizeof(int) * 17);
+	champ->registers = malloc(sizeof(int) * (REG_NUMBER + 1));
 	if (champ->registers == NULL)
 		return (84);
-	while (i != 16)
+	while (i != REG_NUMBER)
 		champ->registers[i++] = 0;
-	champ->registers[i] = 0;
+	champ->registers[i] = -1;
 	champ->carry = 0;
 	return (0);
 }
