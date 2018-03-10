@@ -12,7 +12,7 @@ void aff_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) champ;
 	(void) vm;
-	my_printf("%c\n", instr->arg1);
+	(void) types;
 }
 
 int modif_carry(int carry)

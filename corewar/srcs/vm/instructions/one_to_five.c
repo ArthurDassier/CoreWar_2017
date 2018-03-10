@@ -12,7 +12,8 @@ void live_instru(circular_memory *vm, champions *champ, int types)
 {
 	(void) champ;
 	(void) vm;
-	my_printf("Le joueur %d (?) est en vie.\n", instr->arg1);
+	(void) types;
+//	my_printf("Le joueur %d (?) est en vie.\n", instr->arg1);
 }
 
 void ld_instru(circular_memory *vm, champions *champ, int types)
@@ -21,8 +22,8 @@ void ld_instru(circular_memory *vm, champions *champ, int types)
 	int	rg = 0;
 	int	nbr_to_load = 0;
 
+	(void) vm;
 	ld = getnbr_from_size(champ, types / 10);
-	champ->PC = champ->tmp;
 	rg = getnbr_from_size(champ, types % 10);
 	champ->PC = champ->tmp;
 	champ->tmp = champ->PC + ld % IDX_MOD;
@@ -35,29 +36,39 @@ void ld_instru(circular_memory *vm, champions *champ, int types)
 
 void st_instru(circular_memory *vm, champions *champ, int types)
 {
-	int	i = 0;
-	char	*str = its(instr->arg1);
-
-	if (instr->arg2 > REG_NUMBER) {
-		champ->tmp = champ->PC + instr->arg2 % IDX_MOD;
-		memory_put_move(vm, champ, str[i++], 0);
-		while (str[i] != '\0')
-			memory_put_move(vm, champ, str[i++], 1);
-		champ->tmp = champ->PC;
-	} else
-		instr->arg2 = instr->arg1;
+	(void) champ;
+	(void) vm;
+	(void) types;
 }
 
 void add_instru(circular_memory *vm, champions *champ, int types)
 {
+	int	r1 = 0;
+	int	r2 = 0;
+	int	r3 = 0;
+
 	(void) vm;
-	instr->arg3 = instr->arg1 + instr->arg2;
-	champ->carry = modif_carry(champ->carry);
+	r1 = getnbr_from_size(champ, types / 100);
+	r2 = getnbr_from_size(champ, types % 100);
+	r3 = getnbr_from_size(champ, types % 10);
+	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
+		return;
+	champ->registers[r3 - 1] = r1 + r2;
 }
 
 void sub_instru(circular_memory *vm, champions *champ, int types)
 {
+	int	r1 = 0;
+	int	r2 = 0;
+	int	r3 = 0;
+
 	(void) vm;
-	instr->arg3 = instr->arg1 - instr->arg2;
+	r1 = getnbr_from_size(champ, types / 100);
+	r2 = getnbr_from_size(champ, types % 100);
+	r3 = getnbr_from_size(champ, types % 10);
+
+	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
+		return;
+	champ->registers[r3 - 1] = r1 - r2;
 	champ->carry = modif_carry(champ->carry);
 }

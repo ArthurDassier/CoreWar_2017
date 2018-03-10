@@ -80,7 +80,7 @@ int recup_instruction(instructions *instr, circular_memory *vm, champions *champ
 	init_exec_instru_tab(exec_instru_tab);
 	inst = instr->mnemonique[0] % 16;
 	inst = inst * 10 + instr->mnemonique[1] % 16;
-	exec_instru_tab[inst - 1](instr, champ, vm);
+	//exec_instru_tab[inst - 1](instr, champ, vm);
 	if (inst == 1)
 		++vm->nbr_live;
 	return (0);
