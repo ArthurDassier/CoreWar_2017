@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-int getnbr_form_size(champions *champ, int size)
+int getnbr_from_size(champions *champ, int size)
 {
 	int	i = 0;
 	char	*tmp = malloc(sizeof(char) * (size + 1));

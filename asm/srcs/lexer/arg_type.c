@@ -13,7 +13,7 @@ enum token_e get_arg_type(char *line)
 
 	while ((line[i] == ' ' || line[i] == '\t') && line[i] != '\0')
 		i++;
-	if (!line || my_strlen(line) < 2)
+	if (!line || my_strlen(line) < 1)
 		return (-1);
 	if (line[i] == LABEL_CHAR)
 		return (LAB);
