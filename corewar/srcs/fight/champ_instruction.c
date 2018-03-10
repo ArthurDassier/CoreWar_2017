@@ -7,50 +7,55 @@
 
 #include "virtual.h"
 
-int inst_cycle(int inst)
+int inst_cycle(int ins)
 {
-	return (op_tab[inst - 1].nbr_cycles);
+	return (op_tab[ins - 1].nbr_cycles);
 }
 
 int is_adr(int ins)
 {
-	if (inst == 2 || inst == 3)
+	if (ins == 2 || ins == 3)
 		return (1);
-	if (inst >= 6 && inst <= 8)
+	if (ins >= 6 && ins <= 8)
 		return (1);
-	if (inst == 10 || inst == 11)
+	if (ins == 10 || ins == 11)
 		return (1);
-	if (inst == 13 || inst == 14)
+	if (ins == 13 || ins == 14)
 		return (1);
 	return (0);
 }
 
 int champ_instru(champions *champ)
 {
-	if (champ->cycles != 0)
+	if (champ->cycle != 0)
 		return (0);
 	while (champ->inst == 0) {
 		champ->inst = champ_instru(champ);
-		if (is_adr(champ->inst) === 1)
-			if (champ->types = champ_params_types(champ,
-					op_tab[inst - 1].types[MAX_ARGS_NUMBER]) == -1)
-				champ->inst = champ_instr(champ);
+		if (is_adr(champ->inst) == 1)
+			if ((champ->types = champ_params_types(champ,
+					op_tab[champ->inst - 1].type[MAX_ARGS_NUMBER])) == -1)
+				champ->inst = rec_instru(champ);
 	}
-	champ->cyles = inst_cycle(champ->inst);
+	champ->cycle = inst_cycle(champ->inst);
 	return (0);
 }
 
-int exec_instruc(champions *champ, circular_memory *vm)
+int exec_instruc(champions *champ, circular_memory *vm,
+		int (*exec_tab[16])(circular_memory *vm, champions *champ))
 {
-	init_exec_instru_tab(exec_tab)(champ, vm);
+	(void) vm;
+	(void) exec_tab;
 	if (champ->cycle != 0)
 		return (0);
+	return (0);
 }
 
 int champ_loop(champions **champ, circular_memory *vm)
 {
-	static void	(*exec_tab[16])(champions *champ, circular *vm);
+	static int	(*exec_tab[16])(circular_memory *vm, champions *champ);
 
-	champ_instr(champ);
-	exec_instru(champ, vm);
+	init_exec_instru_tab(exec_tab);
+	champ_instru(champ[0]);
+	exec_instruc(champ[0], vm, exec_tab);
+	return (0);
 }

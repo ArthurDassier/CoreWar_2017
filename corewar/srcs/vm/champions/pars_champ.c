@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-int champ_instru(champions *champ)
+int rec_instru(champions *champ)
 {
 	int	inst = 0;
 	char	*tmp = malloc(sizeof(char) * 3);
@@ -26,7 +26,7 @@ int champ_instru(champions *champ)
 		return (inst);
 }
 
-int champ_adr(champions *champ)
+int rec_adr(champions *champ)
 {
 	int	adr = 0;
 	char	*tmp = malloc(sizeof(char) * 3);
@@ -51,7 +51,7 @@ int champ_params_types(champions *champ, int nb_params)
 	int	loop = 0;
 	int	adr = 0;
 
-	adr = champ_adr(champ);
+	adr = rec_adr(champ);
 	if (nb_params == 2) {
 		++nb_params;
 		loop = 1;

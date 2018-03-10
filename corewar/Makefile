@@ -36,6 +36,7 @@ SRC	=	srcs/main.c						\
 		srcs/vm/instructions/eleven_to_fifteen.c		\
 		srcs/vm/instructions/sixteen.c				\
 		srcs/vm/champions/param_error.c				\
+		srcs/fight/champ_instruction.c			\
 		srcs/vm/champions/pars_champ.c				\
 		srcs/fight/exec_instructions.c				\
 

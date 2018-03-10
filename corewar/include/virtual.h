@@ -105,11 +105,22 @@ int read_sti(instructions *list, int code, int nb_arg, int fd);
 int recup_instruction(instructions *instr, circular_memory *vm, champions *champ);
 int cycles(circular_memory *vm, champions **champ);
 
-int champ_instru(champions *champ);
-int champ_adr(champions *champ);
-int champ_params_types(champions *champ, int inst);
 int is_good_params(int types, int inst);
+int rec_instru(champions *champ);
+int rec_adr(champions *champ);
 
 int getnbr_from_size(champions *champ, int size);
+
+int inst_cycle(int inst);
+int is_adr(int ins);
+int exec_instruc(champions *champ, circular_memory *vm,
+		int (*exec_tab[16])(circular_memory *vm, champions *champ));
+int champ_loop(champions **champ, circular_memory *vm);
+
+int champ_instru(champions *champ);
+int champ_params_types(champions *champ, int nb_params);
+
+void init_exec_instru_tab(int (*exec_instru_tab[16])(circular_memory *vm,
+			champions *champ));
 
 #endif
