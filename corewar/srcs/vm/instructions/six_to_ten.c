@@ -9,14 +9,12 @@
 
 void and_instru(circular_memory *vm, champions *champ, int types)
 {
-	int	r1 = 0;
-	int	r2 = 0;
-	int	r3 = 0;
+	int	r1 = getnbr_from_size(champ, types / 100);
+	int	r2 = getnbr_from_size(champ, types / 10 % 10);
+	int	r3 = getnbr_from_size(champ, types % 10);
 
 	(void) vm;
-	r1 = getnbr_from_size(champ, types / 100);
-	r2 = getnbr_from_size(champ, types / 10 % 10);
-	r3 = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = champ->registers[r1 - 1]
@@ -26,14 +24,12 @@ void and_instru(circular_memory *vm, champions *champ, int types)
 
 void or_instru(circular_memory *vm, champions *champ, int types)
 {
-	int	r1 = 0;
-	int	r2 = 0;
-	int	r3 = 0;
+	int	r1 = getnbr_from_size(champ, types / 100);
+	int	r2 = getnbr_from_size(champ, types / 10 % 10);
+	int	r3 = getnbr_from_size(champ, types % 10);
 
 	(void) vm;
-	r1 = getnbr_from_size(champ, types / 100);
-	r2 = getnbr_from_size(champ, types / 10 % 10);
-	r3 = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = champ->registers[r1 - 1]
@@ -43,14 +39,12 @@ void or_instru(circular_memory *vm, champions *champ, int types)
 
 void xor_instru(circular_memory *vm, champions *champ, int types)
 {
-	int	r1 = 0;
-	int	r2 = 0;
-	int	r3 = 0;
+	int	r1 = getnbr_from_size(champ, types / 100);
+	int	r2 = getnbr_from_size(champ, types / 10 % 10);
+	int	r3 = getnbr_from_size(champ, types % 10);
 
 	(void) vm;
-	r1 = getnbr_from_size(champ, types / 100);
-	r2 = getnbr_from_size(champ, types / 10 % 10);
-	r3 = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = champ->registers[r1 - 1]
@@ -82,9 +76,9 @@ void ldi_instru(circular_memory *vm, champions *champ, int types)
 	ld = getnbr_from_size(champ, types / 100);
 	nbr = getnbr_from_size(champ, types / 10 % 10);
 	rg = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
 	if (rg > REG_NUMBER)
 		return;
-	champ->PC = champ->tmp;
 	champ->tmp += ld % IDX_MOD;
 	the_s = getnbr_from_size(champ, IND_SIZE) + nbr;
 	champ->tmp = champ->PC + the_s % IDX_MOD;

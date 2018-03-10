@@ -58,14 +58,12 @@ void st_instru(circular_memory *vm, champions *champ, int types)
 
 void add_instru(circular_memory *vm, champions *champ, int types)
 {
-	int	r1 = 0;
-	int	r2 = 0;
-	int	r3 = 0;
+	int	r1 = getnbr_from_size(champ, types / 100);
+	int	r2 = getnbr_from_size(champ, types / 10 % 10);
+	int	r3 = getnbr_from_size(champ, types % 10);
 
 	(void) vm;
-	r1 = getnbr_from_size(champ, types / 100);
-	r2 = getnbr_from_size(champ, types / 10 % 10);
-	r3 = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = champ->registers[r1 - 1]
@@ -75,14 +73,12 @@ void add_instru(circular_memory *vm, champions *champ, int types)
 
 void sub_instru(circular_memory *vm, champions *champ, int types)
 {
-	int	r1 = 0;
-	int	r2 = 0;
-	int	r3 = 0;
+	int	r1 = getnbr_from_size(champ, types / 100);
+	int	r2 = getnbr_from_size(champ, types / 10 % 10);
+	int	r3 = getnbr_from_size(champ, types % 10);
 
 	(void) vm;
-	r1 = getnbr_from_size(champ, types / 100);
-	r2 = getnbr_from_size(champ, types /10 % 10);
-	r3 = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = champ->registers[r1 - 1]
