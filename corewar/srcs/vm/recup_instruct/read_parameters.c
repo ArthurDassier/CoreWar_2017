@@ -15,7 +15,7 @@ int case_one(int *types, int fd, union endian ins)
 	if (read(fd, &arg, DIR_SIZE) == -1)
 		return (-1);
 	ins.val = arg;
-	switch_endian_two(&ins);
+	switch_endian_four(&ins);
 	return (ins.val);
 }
 
@@ -27,7 +27,7 @@ int case_two(int *types, int fd, union endian ins)
 	if (read(fd, &arg, IND_SIZE) == -1)
 		return (-1);
 	ins.val = arg;
-	switch_endian_four(&ins);
+	switch_endian_two(&ins);
 	return (ins.val);
 }
 
