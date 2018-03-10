@@ -26,7 +26,7 @@ void ld_instru(circular_memory *vm, champions *champ, int types)
 	ld = getnbr_from_size(champ, types / 10);
 	rg = getnbr_from_size(champ, types % 10);
 	champ->PC = champ->tmp;
-	champ->tmp = champ->PC + ld % IDX_MOD;
+	champ->tmp += ld % IDX_MOD;
 	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
 	champ->tmp = champ->PC;
 	if (rg > REG_NUMBER)
@@ -44,7 +44,7 @@ void st_instru(circular_memory *vm, champions *champ, int types)
 	champ->PC = champ->tmp;
 	str = its(champ->registers[rg - 1]);
 	if (types % 10 == 8) {
-		champ->tmp = champ->PC + ld % IDX_MOD;
+		champ->tmp += ld % IDX_MOD;
 		memory_put_move(vm, champ, str[i++], 0);
 		while (str[i] != '\0')
 			memory_put_move(vm, champ, str[i++], 1);
@@ -68,7 +68,8 @@ void add_instru(circular_memory *vm, champions *champ, int types)
 	r3 = getnbr_from_size(champ, types % 10);
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
-	champ->registers[r3 - 1] = champ->registers[r1 - 1] + champ->registers[r2 - 1];
+	champ->registers[r3 - 1] = champ->registers[r1 - 1]
+	+ champ->registers[r2 - 1];
 	champ->carry = modif_carry(champ->carry);
 }
 
@@ -84,6 +85,7 @@ void sub_instru(circular_memory *vm, champions *champ, int types)
 	r3 = getnbr_from_size(champ, types % 10);
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
-	champ->registers[r3 - 1] = champ->registers[r1 - 1] - champ->registers[r2 - 1];
+	champ->registers[r3 - 1] = champ->registers[r1 - 1]
+	- champ->registers[r2 - 1];
 	champ->carry = modif_carry(champ->carry);
 }
