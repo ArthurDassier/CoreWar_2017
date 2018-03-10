@@ -1,48 +1,57 @@
-.name		"FENIX"
-.comment	"From fire to life"
+.name		"the knock puncher"
+.comment	"il va vous les briser"
 
-	aff r1
-	live %0
-start:	sti r1, %:field1, %1
-	sti r1, %:field2, %1
-	sti r1, %:field3, %1
-	sti r1, %:field4, %1
-	sti r1, %:field5, %1
-	sti r1, %:field6, %1
-	sti r1, %:field7, %1
-	sti r1, %:field8, %1
-	sti r1, %:field9, %1
-	sti r1, %:field10, %1
-	sti r1, %:field11, %1
-	sti r1, %:field12, %1
-	sti r1, %:field13, %1
-	sti r1, %:field14, %1
-	zjmp %:field1
-	fork %:worm
-field1:	live %0
-field2:	live %0
-field3:	live %0
-field4:	live %0
-field5:	live %0
-field6:	live %0
-field7:	live %0
-field8:	live %0
-field9:	live %0
-field10: live %0
-field11: live %0
-field12: live %0
-field13: live %0
-field14: live %0
-	ld %0, r10
-	zjmp %:start
-worm:	ld %31, r3		# lod start addr of tail
-	ld %1, r4		# load commands codes of LIVE to r4 
-	ld %5, r5
-	fork %:pretail
-grow:	sti r4, r3, %1		# save command
-	sti r1, r3, %-6         # save argument
-	add r3, r5, r3		#
-	ld %0, r10		# change CARRY
-	zjmp %:grow		# GROW!
-pretail: fork %0			# waiting when tail growing and grow live forks
-tail:	live %0
+		st	r1,9
+		live	%42
+		fork	%:live
+debut:		fork	%:attaque
+		fork	%:live1
+	
+attaque:	fork	%:live1
+		zjmp	%:debut
+		zjmp	%:attaque
+
+live1:		live	%42
+		st	r1,24
+		st	r1,18
+		st	r1,12
+		st	r1,6
+         	live	%42
+		live	%42
+		live	%42
+		live	%42
+		zjmp	%-20
+
+live:		st	r1, 6
+
+back_wall:	fork	%:back_wall1
+		fork	%:live
+		zjmp	%-6
+
+back_wall1:	st	r6,-400
+		st	r6,-401
+		st	r6,-402
+		st	r6,-403
+		st	r6,-404
+		st	r6,-405
+		st	r6,-406
+		st	r6,-407
+		st	r6,-408
+		st	r6,-409
+		st	r6,-410
+		st	r6,-411
+		st	r6,-412
+		st	r6,-413
+		st	r6,-414
+		st	r6,-415
+		st	r6,-416
+		st	r6,-417
+		st	r6,-418
+		st	r6,-419
+		st	r6,-420
+		st	r6,-421
+		st	r6,-422
+		st	r6,-423
+		st	r6,-424
+		st	r6,-425
+		zjmp	%:back_wall1
