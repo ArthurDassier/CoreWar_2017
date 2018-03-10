@@ -13,7 +13,7 @@ int id_win(champions **champ, int last_live)
 
 	while (champ[i] != NULL) {
 		if (champ[i]->registers[0] == last_live)
-		return (champ[i]->registers[0]);
+			return (champ[i]->registers[0]);
 		++i;
 	}
 	return (-1);
@@ -23,7 +23,7 @@ char *name_win(champions **champ, int last_live)
 {
 	int	nb = id_win(champ, last_live);
 
-	return (champ[nb]->champ_name[champ[nb]->register[0] - 1]);
+	return (champ[nb]->champ_name[champ[nb]->registers[0] - 1]);
 }
 
 
