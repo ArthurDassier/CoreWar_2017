@@ -6,14 +6,27 @@
 */
 #include "corewar.h"
 
+static void	undefined_label(struct d_queue *head, struct token *token)
+{
+	struct	header_s	*header = head->token;
+
+	my_printf(ERROR_MSG, header->prog_name, token->line,
+	"Undefined label.\n");
+	exit(0);
+}
+
 static struct d_queue	*get_label(char *label, struct d_queue *head)
 {
 	struct d_queue	*tmp = head;
 	struct token	*token = tmp->token;
 
 	while (tmp != NULL) {
-		if (my_strcmp(token->mnemo, label) == 0 && token->tk_val == L)
-			return (tmp->next);
+		if (my_strcmp(token->mnemo, label) == 0 && token->tk_val == L) {
+			if (tmp->next != NULL)
+				return (tmp->next);
+			else
+				return (tmp);
+		}
 		tmp = tmp->next;
 		if (tmp == NULL)
 			return (NULL);
@@ -36,7 +49,7 @@ void	labels(struct d_queue *head, int fd, int i, struct token *token)
 		type = 1;
 	tmp = get_label(token->arg_tab[i].args + type, head);
 	if (tmp == NULL)
-		return;
+		undefined_label(head, token);
 	tmp_tk = tmp->token;
 	result.val = tmp_tk->l_size - curr;
 	swap_endian(&result);

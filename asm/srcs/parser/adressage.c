@@ -59,9 +59,9 @@ static bool	check_exception(char *str)
 
 void	add_adressage(struct token *token, int fd)
 {
-	int		result;
+	int	result;
 
-	if (check_exception(token->mnemo) == true)
+	if (check_exception(token->mnemo) == true || token->tk_val == L)
 		return;
 	result = adressage(token);
 	write(fd, &result, 1);
