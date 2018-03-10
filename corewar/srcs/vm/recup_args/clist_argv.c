@@ -59,7 +59,8 @@ arg_champ *put_arg(int ac, char **av)
 
 	while (i != ac) {
 		if (verif_cor(av[i]) == 1) {
-			if ((clist = put_in_list(clist, av, i)) == NULL)
+			clist = put_in_list(clist, av, i);
+			if (clist == NULL)
 				return (NULL);
 			++clist->nbr_champ;
 		}
