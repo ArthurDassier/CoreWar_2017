@@ -31,7 +31,7 @@ void ld_instru(circular_memory *vm, champions *champ, int types)
 	champ->tmp = champ->PC;
 	if (rg > REG_NUMBER)
 		return;
-	champ->registers[rg] = nbr_to_load;
+	champ->registers[rg - 1] = nbr_to_load;
 }
 
 void st_instru(circular_memory *vm, champions *champ, int types)
@@ -51,7 +51,7 @@ void st_instru(circular_memory *vm, champions *champ, int types)
 			memory_put_move(vm, champ, str[i++], 1);
 		champ->tmp = champ->PC;
 	} else
-		champ->registers[rg] = champ->registers[ld];
+		champ->registers[rg - 1] = champ->registers[ld - 1];
 }
 
 void add_instru(circular_memory *vm, champions *champ, int types)
