@@ -8,11 +8,18 @@
 #include "virtual.h"
 #include "printf.h"
 
-void aff_instru(circular_memory *vm, champions *champ, int types)
+int aff_instru(circular_memory *vm, champions *champ)
 {
-	(void) champ;
+	int	rg = getnbr_from_size(champ, T_REG * 2);
+	int	nbr = 0;
+
 	(void) vm;
-	(void) types;
+	champ->PC = champ->tmp;
+	if (rg > REG_NUMBER)
+		return (-1);
+	nbr = champ->registers[rg] % 256;
+	my_printf("%c", nbr);
+	return (0);
 }
 
 int modif_carry(int carry)

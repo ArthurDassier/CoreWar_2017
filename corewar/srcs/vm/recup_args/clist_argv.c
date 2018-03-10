@@ -18,11 +18,14 @@ int find_a(char **av, int i)
 
 int find_n(char **av, int i)
 {
+	static int	nbr = 0;
+
 	if (i - 2 > 0 && av[i - 2][1] == 'n')
 		return (my_getnbr(av[i - 1]));
 	if (i - 4 > 0 && av[i - 4][1] == 'n')
 		return (my_getnbr(av[i - 3]));
-	return (0);
+	++nbr;
+	return (nbr);
 }
 
 arg_champ *put_in_list(arg_champ *clt, char **av, int i)
