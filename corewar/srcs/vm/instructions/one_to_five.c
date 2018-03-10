@@ -49,16 +49,11 @@ void st_instru(circular_memory *vm, champions *champ, int types)
 		while (str[i] != '\0')
 			memory_put_move(vm, champ, str[i++], 1);
 		champ->tmp = champ->PC;
-<<<<<<< HEAD
-	} else
-		champ->registers[rg - 1] = champ->registers[ld - 1];
-=======
 	} else {
 		champ->registers[rg - 1] = champ->registers[ld - 1];
 		champ->tmp = champ->PC;
 	}
 	free(str);
->>>>>>> e4d70ab9c30d13be35f531a8031eeb11ced3891f
 }
 
 void add_instru(circular_memory *vm, champions *champ, int types)
