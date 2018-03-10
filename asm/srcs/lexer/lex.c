@@ -95,7 +95,7 @@ struct d_queue *lex_file(char *fname)
 		++line_no;
 		for (int pos = 0; pos < my_strlen(line);) {
 			node = process_line(line, line_no, fname, &pos);
-			//disp(node);
+			disp(node);
 			tmp = (node) ? add_d_queue(tmp, (void *)node) : tmp;
 		}
 		free(line);

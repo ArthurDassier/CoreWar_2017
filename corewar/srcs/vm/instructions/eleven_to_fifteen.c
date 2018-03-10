@@ -57,16 +57,13 @@ void lld_instru(circular_memory *vm, champions *champ, int types)
 
 void lldi_instru(circular_memory *vm, champions *champ, int types)
 {
-	int	ld = 0;
-	int	nbr = 0;
-	int	rg = 0;
+	int	ld = getnbr_from_size(champ, types / 100);
+	int	nbr = getnbr_from_size(champ, types / 10 % 10);
+	int	rg = getnbr_from_size(champ, types % 10);
 	int	the_s = 0;
 	int	nbr_to_load = 0;
 
 	(void) vm;
-	ld = getnbr_from_size(champ, types / 100);
-	nbr = getnbr_from_size(champ, types / 10 % 10);
-	rg = getnbr_from_size(champ, types % 10);
 	champ->PC = champ->tmp;
 	if (rg > REG_NUMBER)
 		return;
