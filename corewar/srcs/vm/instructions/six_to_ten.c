@@ -47,7 +47,7 @@ void xor_instru(circular_memory *vm, champions *champ, int types)
 
 	(void) vm;
 	r1 = getnbr_from_size(champ, types / 100);
-	r2 = getnbr_from_size(champ, types /10 % 10);
+	r2 = getnbr_from_size(champ, types / 10 % 10);
 	r3 = getnbr_from_size(champ, types % 10);
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
@@ -60,9 +60,11 @@ void zjmp_instru(circular_memory *vm, champions *champ, int types)
 	int	jump = 0;
 
 	(void) vm;
-	jump = getnbr_from_size(champ, types) % IDX_MOD;
-	champ->PC += jump;
-	champ->tmp = champ->PC;
+	if (champ->carry == 1) {
+		jump = getnbr_from_size(champ, types) % IDX_MOD;
+		champ->PC += jump;
+		champ->tmp = champ->PC;
+	}
 }
 
 void ldi_instru(circular_memory *vm, champions *champ, int types)

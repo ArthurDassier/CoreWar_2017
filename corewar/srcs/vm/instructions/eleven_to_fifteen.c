@@ -10,7 +10,7 @@
 void sti_instru(circular_memory *vm, champions *champ, int types)
 {
 	int	rr = getnbr_from_size(champ, types / 100);
-	int	rg = getnbr_from_size(champ, types % 100);
+	int	rg = getnbr_from_size(champ, types / 10 % 10);
 	int	ld = getnbr_from_size(champ, types % 10);
 	int	i = 0;
 	char	*str = NULL;
@@ -65,7 +65,7 @@ void lldi_instru(circular_memory *vm, champions *champ, int types)
 
 	(void) vm;
 	ld = getnbr_from_size(champ, types / 100);
-	nbr = getnbr_from_size(champ, types % 100);
+	nbr = getnbr_from_size(champ, types / 10 % 10);
 	rg = getnbr_from_size(champ, types % 10);
 	champ->PC = champ->tmp;
 	champ->tmp = champ->PC + ld;
