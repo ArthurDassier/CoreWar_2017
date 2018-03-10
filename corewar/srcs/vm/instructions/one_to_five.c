@@ -31,7 +31,7 @@ void ld_instru(circular_memory *vm, champions *champ, int types)
 	champ->tmp = champ->PC;
 	if (rg > REG_NUMBER)
 		return;
-	champ->registers[rg] = nbr_to_load;
+	champ->registers[rg - 1] = nbr_to_load;
 }
 
 void st_instru(circular_memory *vm, champions *champ, int types)
@@ -42,16 +42,18 @@ void st_instru(circular_memory *vm, champions *champ, int types)
 	char	*str = NULL;
 
 	champ->PC = champ->tmp;
-	champ->tmp = champ->PC + ld % IDX_MOD;
-	str = its(getnbr_from_size(champ, REG_SIZE));
-	if (ld > REG_NUMBER) {
+	str = its(champ->registers[rg - 1]);
+	if (types % 10 == 8) {
 		champ->tmp = champ->PC + ld % IDX_MOD;
 		memory_put_move(vm, champ, str[i++], 0);
 		while (str[i] != '\0')
 			memory_put_move(vm, champ, str[i++], 1);
 		champ->tmp = champ->PC;
-	} else
-		champ->registers[rg] = champ->registers[ld];
+	} else {
+		champ->registers[rg - 1] = champ->registers[ld - 1];
+		champ->tmp = champ->PC;
+	}
+	free(str);
 }
 
 void add_instru(circular_memory *vm, champions *champ, int types)
@@ -62,11 +64,11 @@ void add_instru(circular_memory *vm, champions *champ, int types)
 
 	(void) vm;
 	r1 = getnbr_from_size(champ, types / 100);
-	r2 = getnbr_from_size(champ, types % 100);
+	r2 = getnbr_from_size(champ, types / 10 % 10);
 	r3 = getnbr_from_size(champ, types % 10);
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
-	champ->registers[r3 - 1] = r1 + r2;
+	champ->registers[r3 - 1] = champ->registers[r1 - 1] + champ->registers[r2 - 1];
 	champ->carry = modif_carry(champ->carry);
 }
 
@@ -78,10 +80,10 @@ void sub_instru(circular_memory *vm, champions *champ, int types)
 
 	(void) vm;
 	r1 = getnbr_from_size(champ, types / 100);
-	r2 = getnbr_from_size(champ, types % 100);
+	r2 = getnbr_from_size(champ, types /10 % 10);
 	r3 = getnbr_from_size(champ, types % 10);
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
-	champ->registers[r3 - 1] = r1 - r2;
+	champ->registers[r3 - 1] = champ->registers[r1 - 1] - champ->registers[r2 - 1];
 	champ->carry = modif_carry(champ->carry);
 }

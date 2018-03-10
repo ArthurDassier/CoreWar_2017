@@ -41,6 +41,6 @@ int main(int ac, char **av)
 	if (put_instructions_in_memory(champ, vm) == 84)
 		return (84);
 	print_memory(vm->memory);
-//	cycles(vm, champ);
+	cycles(vm, champ);
 	return (0);
 }
