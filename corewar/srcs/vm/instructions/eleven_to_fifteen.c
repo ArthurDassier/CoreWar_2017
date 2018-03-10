@@ -18,8 +18,7 @@ void sti_instru(circular_memory *vm, champions *champ, int types)
 	champ->PC = champ->tmp;
 	if (rr > REG_NUMBER)
 		return;
-	champ->tmp = champ->PC + ld % IDX_MOD;
-	str = its(champ->registers[rr]);
+	str = its(champ->registers[rr - 1]);
 	champ->tmp = champ->PC + (rg + ld) % IDX_MOD;
 	memory_put_move(vm, champ, str[i++], 0);
 	while (str[i] != '\0')
@@ -53,7 +52,7 @@ void lld_instru(circular_memory *vm, champions *champ, int types)
 	champ->tmp = champ->PC;
 	if (rg > REG_NUMBER)
 		return;
-	champ->registers[rg] = nbr_to_load;
+	champ->registers[rg - 1] = nbr_to_load;
 }
 
 void lldi_instru(circular_memory *vm, champions *champ, int types)
@@ -75,7 +74,7 @@ void lldi_instru(circular_memory *vm, champions *champ, int types)
 	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
 	if (rg > REG_NUMBER)
 		return;
-	champ->registers[rg] = nbr_to_load;
+	champ->registers[rg - 1] = nbr_to_load;
 	champ->tmp = champ->PC;
 	champ->carry = modif_carry(champ->carry);
 }
