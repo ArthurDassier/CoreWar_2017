@@ -53,7 +53,6 @@ void memory_put_move(circular_memory *vm, champions *champ, char data, int adr)
 	}
 	if (data != ' ')
 		*champ->tmp = data;
-	champ->PC = champ->tmp;
 }
 
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
@@ -68,9 +67,10 @@ int size)
 	vm->memory_head = vm->memory;
 	while (av_list != NULL) {
 		champ[i]->PC = vm->memory;
-		if ((champ[i]->PC += av_list->hyp_a) == vm->memory_head)
-			champ[i]->PC = vm->memory_end - 1;
-		else
+		if ((champ[i]->PC += av_list->hyp_a) == vm->memory_head) {
+			champ[i]->PC += MEM_SIZE / av_list->nbr_champ *
+				(i + 1) - 1;
+		} else
 			champ[i]->PC -= 1;
 		champ[i]->tmp = champ[i]->PC;
 		av_list = av_list->next;

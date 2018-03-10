@@ -15,7 +15,7 @@ int init_champions(champions **champ, arg_champ *av_list)
 
 	if (data_base == NULL)
 		return (84);
-	if (init_data_base(data_base, av_list) == -1)
+	if (init_data_base(data_base, av_list) == 84)
 		return (84);
 	while (data_base[i] != NULL) {
 		if ((champ[i] = malloc(sizeof(champions))) == NULL)

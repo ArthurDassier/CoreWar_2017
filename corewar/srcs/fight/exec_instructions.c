@@ -7,7 +7,7 @@
 
 #include "virtual.h"
 
-void num_cycle(int i, circular_memory *vm, champions **champ)
+static void num_cycle(int i, circular_memory *vm, champions **champ)
 {
 	struct instructions	*tmp = champ[0]->list;
 	int			cycle = 0;
@@ -50,9 +50,8 @@ int cycles(circular_memory *vm, champions **champ)
 	return (0);
 }
 
-
-void init_exec_instru_tab(void (*exec_instru_tab[16])(instructions *instr,
-champions *champ, circular_memory *vm))
+void init_exec_instru_tab(void (*exec_instru_tab[16])(circular_memory *vm,
+champions *champ, int types))
 {
 	exec_instru_tab[0] = &live_instru;
 	exec_instru_tab[1] = &ld_instru;
@@ -75,25 +74,15 @@ champions *champ, circular_memory *vm))
 int recup_instruction(instructions *instr, circular_memory *vm, champions *champ)
 {
 	int	inst = 0;
-	void	(*exec_instru_tab[16])(instructions *instr,
-		champions *champ, circular_memory *vm);
+	void	(*exec_instru_tab[16])(circular_memory *vm,
+		champions *champ, int types);
 
+	(void) champ;
 	init_exec_instru_tab(exec_instru_tab);
 	inst = instr->mnemonique[0] % 16;
 	inst = inst * 10 + instr->mnemonique[1] % 16;
-	exec_instru_tab[inst - 1](instr, champ, vm);
+	//exec_instru_tab[inst - 1](instr, champ, vm);
 	if (inst == 1)
 		++vm->nbr_live;
 	return (0);
 }
-
-//void do_instruction(champions *champ)
-//{
-	//int		i = 0;
-//	instructions	*tmp1 = champ[0]->list;
-	//instructions	*tmp2 = champ[1]->list;
-
-	//while (1) {
-//		exec_
-	//}
-//}
