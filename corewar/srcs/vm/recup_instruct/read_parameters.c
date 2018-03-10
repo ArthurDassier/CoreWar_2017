@@ -7,28 +7,28 @@
 
 #include "virtual.h"
 
-int case_one(int *types, int fd, union endian *ins)
+int case_one(int *types, int fd, union endian ins)
 {
 	int	arg = 0;
 
 	*types = *types * 10 + 8;
 	if (read(fd, &arg, DIR_SIZE) == -1)
 		return (-1);
-	ins->val = arg;
-	switch_endian_two(ins);
-	return (ins->val);
+	ins.val = arg;
+	switch_endian_two(&ins);
+	return (ins.val);
 }
 
-int case_two(int *types, int fd, union endian *ins)
+int case_two(int *types, int fd, union endian ins)
 {
 	int	arg = 0;
 
 	*types = *types * 10 + 4;
 	if (read(fd, &arg, IND_SIZE) == -1)
 		return (-1);
-	ins->val = arg;
-	switch_endian_four(ins);
-	return (ins->val);
+	ins.val = arg;
+	switch_endian_four(&ins);
+	return (ins.val);
 }
 
 int rd_data_param(int *types, int val, int fd)
@@ -42,9 +42,9 @@ int rd_data_param(int *types, int val, int fd)
 			return (-1);
 		return (arg);
 	} else if (val == 2)
-		return (case_one(types, fd, &ins));
+		return (case_one(types, fd, ins));
 	else
-		return (case_two(types, fd, &ins));
+		return (case_two(types, fd, ins));
 	return (0);
 }
 

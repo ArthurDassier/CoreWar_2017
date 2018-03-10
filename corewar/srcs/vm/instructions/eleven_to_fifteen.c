@@ -7,55 +7,82 @@
 
 #include "virtual.h"
 
-void sti_instru(instructions *instr, champions *champ, circular_memory *vm)
+void sti_instru(circular_memory *vm, champions *champ, int types)
 {
+	int	rr = getnbr_from_size(champ, types / 100);
+	int	rg = getnbr_from_size(champ, types % 100);
+	int	ld = getnbr_from_size(champ, types % 10);
 	int	i = 0;
-	char	*str = its(instr->arg1);
+	char	*str = NULL;
 
-	champ->tmp = champ->PC + (instr->arg2 + instr->arg3) % IDX_MOD;
+	champ->PC = champ->tmp;
+	if (rr > REG_NUMBER)
+		return;
+	champ->tmp = champ->PC + ld % IDX_MOD;
+	str = its(champ->registers[rr]);
+	champ->tmp = champ->PC + (rg + ld) % IDX_MOD;
 	memory_put_move(vm, champ, str[i++], 0);
 	while (str[i] != '\0')
 		memory_put_move(vm, champ, str[i++], 1);
 	champ->tmp = champ->PC;
 }
 
-void fork_instru(instructions *instr, champions *champ, circular_memory *vm)
+void fork_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) instr;
 	(void) champ;
 	(void) vm;
+	(void) types;
 	/*It creates a new program that inherits different states from
 	the parent. This program is executed at the address PC
 	+ first index_one % IDX_MOD.*/
 	return;
 }
 
-void lld_instru(instructions *instr, champions *champ, circular_memory *vm)
+void lld_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) vm;
-	instr->arg2 = my_getnbr((champ->PC + instr->arg1));
-	champ->carry = modif_carry(champ->carry);
-}
-
-void lldi_instru(instructions *instr, champions *champ, circular_memory *vm)
-{
-	int	S = 0;
+	int	ld = 0;
+	int	rg = 0;
+	int	nbr_to_load = 0;
 
 	(void) vm;
-	champ->tmp = champ->PC + instr->arg1;
-	S = (my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
-	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3)))
-	+ instr->arg2;
-	champ->tmp = champ->PC + S;
-	instr->arg3 =  my_getnbr(champ->tmp) + my_getnbr((champ->tmp + 1))
-	+ my_getnbr((champ->tmp + 2)) + my_getnbr((champ->tmp + 3));
-	champ->carry = modif_carry(champ->carry);
+	ld = getnbr_from_size(champ, types / 10);
+	rg = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
+	champ->tmp = champ->PC + ld;
+	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
 	champ->tmp = champ->PC;
+	if (rg > REG_NUMBER)
+		return;
+	champ->registers[rg] = nbr_to_load;
 }
 
-void lfork_instru(instructions *instr, champions *champ, circular_memory *vm)
+void lldi_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) instr;
+	int	ld = 0;
+	int	nbr = 0;
+	int	rg = 0;
+	int	the_s = 0;
+	int	nbr_to_load = 0;
+
+	(void) vm;
+	ld = getnbr_from_size(champ, types / 100);
+	nbr = getnbr_from_size(champ, types % 100);
+	rg = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
+	champ->tmp = champ->PC + ld;
+	the_s = getnbr_from_size(champ, IND_SIZE) + nbr;
+	champ->tmp = champ->PC + the_s;
+	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
+	if (rg > REG_NUMBER)
+		return;
+	champ->registers[rg] = nbr_to_load;
+	champ->tmp = champ->PC;
+	champ->carry = modif_carry(champ->carry);
+}
+
+void lfork_instru(circular_memory *vm, champions *champ, int types)
+{
+	(void) types;
 	(void) champ;
 	(void) vm;
 	/*It creates a new program that inherits different states from
