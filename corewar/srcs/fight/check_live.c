@@ -19,17 +19,6 @@ int id_win(champions **champ, int last_live)
 	return (-1);
 }
 
-<<<<<<< HEAD
-char *name_win(champions **champ, int last_live)
-{
-	int	nb = id_win(champ, last_live);
-
-	return (champ[nb]->champ_name[champ[nb]->registers[0] - 1]);
-}
-
-
-=======
->>>>>>> 035661277ebaa216c8de9455650dbdc987555f41
 void check_live(circular_memory *vm, champions **champ)
 {
 	int	i = 0;
