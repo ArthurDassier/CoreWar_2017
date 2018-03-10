@@ -114,13 +114,17 @@ int getnbr_from_size(champions *champ, int size);
 int inst_cycle(int inst);
 int is_adr(int ins);
 int exec_instruc(champions *champ, circular_memory *vm,
-		int (*exec_tab[16])(circular_memory *vm, champions *champ));
-int champ_loop(champions **champ, circular_memory *vm);
+int (*exec_tab[16])(circular_memory *vm, champions *champ));
+
+int champ_loop(champions **champ, circular_memory *vm,
+int (*exec_tab[16])(circular_memory *vm, champions *champ));
 
 int champ_instru(champions *champ);
 int champ_params_types(champions *champ, int nb_params);
 
 void init_exec_instru_tab(int (*exec_instru_tab[16])(circular_memory *vm,
-			champions *champ));
+champions *champ));
+
+int fight_loop(circular_memory *vm, champions **champ);
 
 #endif
