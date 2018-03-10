@@ -44,11 +44,8 @@ static int add_arg(struct token *node)
 	int	no = 0;
 
 	for (int i = 0; i < node->arg_no; i++) {
-		if (is_index_only(node)) {
-			no += 2;
-			continue;
-		}
-		if (is_index(node) && node->arg_tab[i].tk_name != REG) {
+		if (is_index_only(node) || (is_index(node) &&
+					node->arg_tab[i].tk_name != REG)) {
 			no += 2;
 			continue;
 		}
@@ -59,7 +56,8 @@ static int add_arg(struct token *node)
 		if (node->arg_tab[i].tk_name == IND)
 			no+= IND_SIZE;
 		if (node->arg_tab[i].tk_name == LAB)
-			no += T_LAB;
+			no += (node->arg_tab[i].args[0] == '%') ? DIR_SIZE :
+				IND_SIZE;
 	}
 	return (no);
 }
