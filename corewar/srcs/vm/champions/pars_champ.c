@@ -43,13 +43,15 @@ int champ_adr(champions *champ)
 	return (adr);
 }
 
-int champ_params_types(int inst, int adr, int nb_params)
+int champ_params_types(champions *champ, int nb_params)
 {
 	int	types = 0;
 	int	bin = 0;
 	int	val = 0;
 	int	loop = 0;
+	int	adr = 0;
 
+	adr = champ_adr(champ);
 	if (nb_params == 2) {
 		++nb_params;
 		loop = 1;
@@ -61,7 +63,7 @@ int champ_params_types(int inst, int adr, int nb_params)
 		bin <<= 2;
 		--nb_params;
 	}
-	if (is_good_params(types, inst) != 0)
+	if (is_good_params(types, champ->inst) != 0)
 		return (-1);
 	return (types);
 }

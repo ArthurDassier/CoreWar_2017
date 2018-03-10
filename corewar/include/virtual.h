@@ -53,7 +53,7 @@ int adr_acc(int adr);
 int set_flag(int adr);
 
 int init_champions(champions **champ, arg_champ *av_list);
-int memset_champion_registers(champions *champ);
+int memset_champion_registers(champions *champ, int nb);
 
 int init_data_base(instructions **list, arg_champ *av_list);
 
@@ -64,6 +64,7 @@ int read_headers(instructions *list, int fd);
 int check_name_comment(char *name, char *comment);
 int headers_error_handling(struct header_s *files_h);
 
+int save_id(char **champ_name, champions **champ);
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 int size);
 void memory_put_move(circular_memory *vm, champions *champ, char data, int adr);
@@ -106,7 +107,7 @@ int cycles(circular_memory *vm, champions **champ);
 
 int champ_instru(champions *champ);
 int champ_adr(champions *champ);
-int champ_params_types(int adr, int nb_params, int inst);
+int champ_params_types(champions *champ, int inst);
 int is_good_params(int types, int inst);
 
 int getnbr_from_size(champions *champ, int size);

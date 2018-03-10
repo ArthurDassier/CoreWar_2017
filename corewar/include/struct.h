@@ -16,6 +16,7 @@ typedef struct circular_memory
 	char	*memory;
 	char	*memory_head;
 	char	*memory_end;
+	char	**champ_name;
 	int	size;
 	int	nbr_live;
 } circular_memory;
@@ -31,8 +32,8 @@ struct arg_champ
 
 struct instructions
 {
-	char			*name;
 	char			*mnemonique;
+	char			*name;
 	unsigned char		adr;
 	int			nb_cycles;
 	int			arg1;
@@ -45,12 +46,16 @@ struct instructions
 typedef struct champions
 {
 	instructions	*list;
-	char		*name;
-	int		number;
 	int		*registers;
+	char		*name;
 	char		*PC;
 	char		*tmp;
 	int		carry;
+	int		cycle;
+	int		inst;
+	int		types;
+	int		alive;
+	int		nb_live;
 } champions;
 
 typedef struct arguments

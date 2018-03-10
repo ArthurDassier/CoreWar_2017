@@ -62,6 +62,10 @@ int size)
 
 	if ((vm->memory = malloc(sizeof(char) * (size + 2))) == NULL)
 		return (-1);
+	if ((vm->champ_name = malloc(sizeof(char*) * 5)) == NULL)
+		return (-1);
+	if (save_id(vm->champ_name, champ) == -1)
+		return (-1);
 	memory_memset(vm->memory, size - 1);
 	vm->memory_end = vm->memory + size;
 	vm->memory_head = vm->memory;

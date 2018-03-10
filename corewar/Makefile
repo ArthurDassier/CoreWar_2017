@@ -26,6 +26,7 @@ SRC	=	srcs/main.c						\
 		srcs/vm/recup_instruct/switch_endian.c			\
 		srcs/vm/recup_instruct/init_data_base.c			\
 		srcs/vm/init_vm.c					\
+		srcs/vm/save_id.c					\
 		srcs/vm/recup_args/clist_argv.c				\
 		srcs/vm/clist_arg_champ.c				\
 		srcs/vm/put_instru_in_memory.c				\
