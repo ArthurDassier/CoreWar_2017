@@ -43,26 +43,23 @@ int champ_instru(champions *champ)
 int exec_instruc(champions *champ, circular_memory *vm,
 		int (*exec_tab[16])(circular_memory *vm, champions *champ))
 {
-	int	tmp = 0;
-
 	(void) vm;
 	if (champ->cycle != 0)
 		return (0);
-	tmp = exec_tab[champ->inst - 1](vm, champ);
-	return (tmp);
+	exec_tab[champ->inst - 1](vm, champ);
+	return (0);
 }
 
 int champ_loop(champions **champ, circular_memory *vm)
 {
 	static int	(*exec_tab[16])(circular_memory *vm, champions *champ);
 	int		i = 0;
-	int		tmp = 0;
 
 	init_exec_instru_tab(exec_tab);
 	while (champ[i] != NULL) {
 		champ_instru(champ[i]);
-		tmp = exec_instruc(champ[i++], vm, exec_tab);
+		exec_instruc(champ[i++], vm, exec_tab);
 		--champ[i]->cycle;
 	}
-	return (tmp);
+	return (0);
 }
