@@ -46,9 +46,25 @@ void lld_instru(circular_memory *vm, champions *champ, int types)
 
 void lldi_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) champ;
+	int	ld = 0;
+	int	nbr = 0;
+	int	rg = 0;
+	int	the_s = 0
+
 	(void) vm;
-	(void) types;
+	ld = getnbr_from_size(champ, types / 100);
+	nbr = getnbr_from_size(champ, types % 100);
+	rg = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
+	champ->tmp = champ->PC + ld;
+	the_s = getnbr_from_size(champ, IND_SIZE) + nbr;
+	champ->tmp = champ->PC + the_s;
+	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
+	if (rg > REG_NUMBER)
+		return;
+	champ->registers[rg] = nbr_to_load;
+	champ->tmp = champ->PC;
+	champ->carry = modif_carry(champ->carry);
 }
 
 void lfork_instru(circular_memory *vm, champions *champ, int types)

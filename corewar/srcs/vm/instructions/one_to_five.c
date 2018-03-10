@@ -54,6 +54,7 @@ void add_instru(circular_memory *vm, champions *champ, int types)
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = r1 + r2;
+	champ->carry = modif_carry(champ->carry);
 }
 
 void sub_instru(circular_memory *vm, champions *champ, int types)
@@ -66,7 +67,6 @@ void sub_instru(circular_memory *vm, champions *champ, int types)
 	r1 = getnbr_from_size(champ, types / 100);
 	r2 = getnbr_from_size(champ, types % 100);
 	r3 = getnbr_from_size(champ, types % 10);
-
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = r1 - r2;

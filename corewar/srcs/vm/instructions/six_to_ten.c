@@ -17,7 +17,6 @@ void and_instru(circular_memory *vm, champions *champ, int types)
 	r1 = getnbr_from_size(champ, types / 100);
 	r2 = getnbr_from_size(champ, types % 100);
 	r3 = getnbr_from_size(champ, types % 10);
-
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = r1 & r2;
@@ -34,7 +33,6 @@ void or_instru(circular_memory *vm, champions *champ, int types)
 	r1 = getnbr_from_size(champ, types / 100);
 	r2 = getnbr_from_size(champ, types % 100);
 	r3 = getnbr_from_size(champ, types % 10);
-
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = r1 | r2;
@@ -51,7 +49,6 @@ void xor_instru(circular_memory *vm, champions *champ, int types)
 	r1 = getnbr_from_size(champ, types / 100);
 	r2 = getnbr_from_size(champ, types % 100);
 	r3 = getnbr_from_size(champ, types % 10);
-
 	if (r1 > REG_NUMBER || r2 > REG_NUMBER || r3 > REG_NUMBER)
 		return;
 	champ->registers[r3 - 1] = r1 ^ r2;
@@ -60,14 +57,32 @@ void xor_instru(circular_memory *vm, champions *champ, int types)
 
 void zjmp_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) champ;
+	int	jump = 0;
+
 	(void) vm;
-	(void) types;
+	jump = getnbr_from_size(champ, types) % IDX_MOD;
+	champ->PC += jump;
+	champ->tmp = champ->PC;
 }
 
 void ldi_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) champ;
+	int	ld = 0;
+	int	nbr = 0;
+	int	rg = 0;
+	int	the_s = 0
+
 	(void) vm;
-	(void) types;
+	ld = getnbr_from_size(champ, types / 100);
+	nbr = getnbr_from_size(champ, types % 100);
+	rg = getnbr_from_size(champ, types % 10);
+	champ->PC = champ->tmp;
+	champ->tmp = champ->PC + ld % IDX_MOD;
+	the_s = getnbr_from_size(champ, IND_SIZE) + nbr;
+	champ->tmp = champ->PC + the_s % IDX_MOD;
+	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
+	if (rg > REG_NUMBER)
+		return;
+	champ->registers[rg] = nbr_to_load;
+	champ->tmp = champ->PC;
 }
