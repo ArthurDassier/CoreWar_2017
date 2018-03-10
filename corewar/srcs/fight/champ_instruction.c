@@ -16,11 +16,11 @@ int is_adr(int ins)
 {
 	if (ins == 2 || ins == 3)
 		return (1);
-	if (ins >= 6 && ins <= 8)
+	else if (ins >= 6 && ins <= 8)
 		return (1);
 	if (ins == 10 || ins == 11)
 		return (1);
-	if (ins == 13 || ins == 14)
+	else if (ins == 13 || ins == 14)
 		return (1);
 	return (0);
 }
@@ -43,19 +43,26 @@ int champ_instru(champions *champ)
 int exec_instruc(champions *champ, circular_memory *vm,
 		int (*exec_tab[16])(circular_memory *vm, champions *champ))
 {
+	int	tmp = 0;
+
 	(void) vm;
-	(void) exec_tab;
 	if (champ->cycle != 0)
 		return (0);
-	return (0);
+	tmp = exec_tab[champ->inst - 1](vm, champ);
+	return (tmp);
 }
 
 int champ_loop(champions **champ, circular_memory *vm)
 {
 	static int	(*exec_tab[16])(circular_memory *vm, champions *champ);
+	int		i = 0;
+	int		tmp = 0;
 
 	init_exec_instru_tab(exec_tab);
-	champ_instru(champ[0]);
-	exec_instruc(champ[0], vm, exec_tab);
-	return (0);
+	while (champ[i] != NULL) {
+		champ_instru(champ[i]);
+		tmp = exec_instruc(champ[i++], vm, exec_tab);
+		--champ[i]->cycle;
+	}
+	return (tmp);
 }
