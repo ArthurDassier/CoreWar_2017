@@ -36,9 +36,22 @@ void ld_instru(circular_memory *vm, champions *champ, int types)
 
 void st_instru(circular_memory *vm, champions *champ, int types)
 {
-	(void) champ;
-	(void) vm;
-	(void) types;
+	int	rg = getnbr_from_size(champ, types / 10);
+	int	ld = getnbr_from_size(champ, types % 10);
+	int	i = 0;
+	char	*str = NULL;
+
+	champ->PC = champ->tmp;
+	champ->tmp = champ->PC + ld % IDX_MOD;
+	str = its(getnbr_from_size(champ, REG_SIZE));
+	if (ld > REG_NUMBER) {
+		champ->tmp = champ->PC + ld % IDX_MOD;
+		memory_put_move(vm, champ, str[i++], 0);
+		while (str[i] != '\0')
+			memory_put_move(vm, champ, str[i++], 1);
+		champ->tmp = champ->PC;
+	} else
+		champ->registers[rg] = champ->registers[ld];
 }
 
 void add_instru(circular_memory *vm, champions *champ, int types)
