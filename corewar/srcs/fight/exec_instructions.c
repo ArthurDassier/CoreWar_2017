@@ -77,6 +77,7 @@ int recup_instruction(instructions *instr, circular_memory *vm, champions *champ
 	void	(*exec_instru_tab[16])(circular_memory *vm,
 		champions *champ, int types);
 
+	(void) champ;
 	init_exec_instru_tab(exec_instru_tab);
 	inst = instr->mnemonique[0] % 16;
 	inst = inst * 10 + instr->mnemonique[1] % 16;
