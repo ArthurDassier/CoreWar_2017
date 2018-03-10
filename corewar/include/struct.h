@@ -19,6 +19,7 @@ typedef struct circular_memory
 	char	**champ_name;
 	int	size;
 	int	nbr_live;
+	int	last_live;
 } circular_memory;
 
 struct arg_champ
