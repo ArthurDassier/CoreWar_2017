@@ -72,8 +72,8 @@ int size)
 	while (av_list != NULL) {
 		champ[i]->PC = vm->memory;
 		if ((champ[i]->PC += av_list->hyp_a) == vm->memory_head) {
-			champ[i]->PC += MEM_SIZE / av_list->nbr_champ *
-				(i + 1) - 1;
+			champ[i]->PC += (MEM_SIZE / av_list->nbr_champ *
+				(i + 1) - 1);
 		} else
 			champ[i]->PC -= 1;
 		champ[i]->tmp = champ[i]->PC;
