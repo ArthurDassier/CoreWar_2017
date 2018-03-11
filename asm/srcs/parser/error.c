@@ -32,7 +32,8 @@ static int	check_param(struct token *token, int index)
 	if (token->arg_no != op_tab[index].nbr_args)
 		return (FAILURE);
 	for (int i = 0; i < token->arg_no; ++i) {
-		if (is_valid_param(token->arg_tab[i].tk_name, index, i) == false)
+		if (is_valid_param(token->arg_tab[i].tk_name, index, i)
+		== false)
 			return (FAILURE);
 	}
 	return (SUCCESS);

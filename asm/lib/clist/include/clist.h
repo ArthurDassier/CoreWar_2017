@@ -1,9 +1,8 @@
 /*
-** EPITECH PROJECT, 2017
-** clist.h
+** EPITECH PROJECT, 2018
+** asm
 ** File description:
-** clist, a linked list library made by Leo Smith
-** It has 2 main linked list a stack and a queue
+** clist
 */
 
 #ifndef CLIST_H_
@@ -13,9 +12,9 @@
 #include <unistd.h>
 
 enum branch {
-	RIGHT=0,
-	LEFT=1,
-	ROOT=2
+	RIGHT = 0,
+	LEFT = 1,
+	ROOT = 2
 };
 
 struct tree {

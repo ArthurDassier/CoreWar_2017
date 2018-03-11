@@ -9,7 +9,7 @@
 #endif /* !GET_NEXT_LINE_H_ */
 
 #ifndef GNL_H_
-#define GNL_H_ 
+#define GNL_H_
 
 #include <unistd.h>
 #include <stdlib.h>

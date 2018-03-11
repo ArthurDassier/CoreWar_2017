@@ -36,6 +36,19 @@ static struct d_queue	*get_label(char *label, struct d_queue *head)
 	return (NULL);
 }
 
+static void	write_labels(int fd, struct token *token, int type,
+union endian result)
+{
+	if (my_strcmp(token->mnemo, "live") == 0) {
+		write(fd, &result, 4);
+	} else if (check_case(token->mnemo) == true || type == 1) {
+		result.val = result.val >> 16;
+		write(fd, &result, IND_SIZE);
+	} else {
+		write(fd, &result, DIR_SIZE);
+	}
+}
+
 void	labels(struct d_queue *head, int fd, int i, struct token *token)
 {
 	union endian	result;
@@ -54,12 +67,5 @@ void	labels(struct d_queue *head, int fd, int i, struct token *token)
 	tmp_tk = tmp->token;
 	result.val = tmp_tk->l_size - curr;
 	swap_endian(&result);
-	if (my_strcmp(token->mnemo, "live") == 0) {
-		write(fd, &result, 4);
-	} else if (check_case(token->mnemo) == true || type == 1) {
-		result.val = result.val >> 16;
-		write(fd, &result, IND_SIZE);
-	} else {
-		write(fd, &result, DIR_SIZE);
-	}
+	write_labels(fd, token, type, result);	
 }
