@@ -40,6 +40,7 @@ SRC	=	srcs/main.c						\
 		srcs/vm/champions/pars_champ.c				\
 		srcs/fight/exec_instructions.c				\
 		srcs/fight/fight_loop.c					\
+		srcs/fight/check_live.c					\
 
 OBJ	=	$(SRC:.c = .o)
 

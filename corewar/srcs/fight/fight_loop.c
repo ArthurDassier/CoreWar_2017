@@ -21,6 +21,7 @@ int fight_loop(circular_memory *vm, champions **champ)
 			champ_loop(champ, vm, exec_tab);
 			++i;
 		}
+		check_live(vm, champ);
 		i = 0;
 		cycle_to_die -= cycle_delta;
 	}
