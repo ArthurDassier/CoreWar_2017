@@ -37,7 +37,7 @@ void cpy_dec(char *tmp, int *i, char *nb)
 {
 	int	j = 0;
 
-	while(nb[j] != '\0') {
+	while (nb[j] != '\0') {
 		tmp[*i] = nb[j];
 		*i += 1;
 		++j;
