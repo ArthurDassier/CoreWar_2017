@@ -39,7 +39,7 @@ int init_champions(champions **champ, arg_champ *av_list)
 		if (memset_champion_registers(champ[i], nb++) == 84)
 			return (84);
 		champ[i]->inst = 0;
-		champ[i]->alive = 0;
+		champ[i]->alive = 1;
 		champ[i]->types = 0;
 		champ[i]->cycle = 0;
 		champ[i]->list = data_base[i];

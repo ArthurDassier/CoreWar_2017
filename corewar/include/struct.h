@@ -51,6 +51,7 @@ typedef struct champions
 	char		*name;
 	char		*PC;
 	char		*tmp;
+	char		*end;
 	int		carry;
 	int		cycle;
 	int		inst;

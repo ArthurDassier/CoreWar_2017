@@ -121,6 +121,7 @@ int (*exec_tab[16])(circular_memory *vm, champions *champ));
 
 int champ_instru(champions *champ);
 int champ_params_types(champions *champ, int nb_params);
+int nb_params_ins(int ins);
 
 void init_exec_instru_tab(int (*exec_instru_tab[16])(circular_memory *vm,
 champions *champ));

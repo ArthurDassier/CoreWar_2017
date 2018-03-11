@@ -19,7 +19,6 @@ int rec_instru(champions *champ)
 	++champ->tmp;
 	inst = my_getnbr_base(tmp, "0123456789ABCDEF");
 	free(tmp);
-	printf("---> ins %d\n", inst);
 	if (inst < 1 || inst > 16)
 		return (0);
 	else
@@ -38,7 +37,6 @@ int rec_adr(champions *champ)
 	++champ->tmp;
 	adr = my_getnbr_base(tmp, "0123456789ABCDEF");
 	free(tmp);
-	printf("---> adr %d\n", adr);
 	return (adr);
 }
 
