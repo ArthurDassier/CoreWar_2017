@@ -22,11 +22,10 @@ void dec_to_hexa(char *tmp, int value)
 	while (value != 0) {
 		tmp[i] = value % 16;
 		if (tmp[i] > 9)
-			tmp[i] += 55;
+			tmp[i++] += 55;
 		else
-			tmp[i] += 48;
+			tmp[i++] += 48;
 		value /= 16;
-		++i;
 	}
 	while (i < j)
 		tmp[i++] = '0';
@@ -48,7 +47,7 @@ void cpy_dec(char *tmp, int *i, char *nb)
 void instruction_str(char *tmp, instructions *list)
 {
 	int	i = 0;
-	char	*nb = malloc(sizeof(char) * 8);
+	char	*nb = malloc(sizeof(char) * 9);
 
 	tmp[i++] = list->mnemonique[0];
 	tmp[i++] = list->mnemonique[1];
