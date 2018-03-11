@@ -20,6 +20,7 @@ int fight_loop(circular_memory *vm, champions **champ)
 		while (i < cycle_to_die) {
 			champ_loop(champ, vm, exec_tab);
 			if (vm->nbr_live >= NBR_LIVE) {
+				printf("1\n");
 				check_live(vm, champ);
 				cycle_to_die -= cycle_delta;
 			}

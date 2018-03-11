@@ -42,5 +42,6 @@ int main(int ac, char **av)
 		return (84);
 	print_memory(vm->memory);
 	fight_loop(vm, champ);
+	print_memory(vm->memory);
 	return (0);
 }
