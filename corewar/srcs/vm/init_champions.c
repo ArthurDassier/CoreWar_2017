@@ -7,9 +7,10 @@
 
 #include "virtual.h"
 
-int memset_champion_registers(champions *champ, arg_champ *av_list)
+int memset_champion_registers(champions *champ)
 {
-	int	i = 0;
+	int		i = 0;
+	static int	nb = 1;
 
 	champ->inst = 0;
 	champ->alive = 1;
@@ -20,7 +21,7 @@ int memset_champion_registers(champions *champ, arg_champ *av_list)
 	champ->registers = malloc(sizeof(int) * (REG_NUMBER + 1));
 	if (champ->registers == NULL)
 		return (84);
-	champ->registers[i++] = av_list->hyp_n;
+	champ->registers[i++] = nb++;
 	while (i != REG_NUMBER)
 		champ->registers[i++] = 0;
 	champ->registers[i] = 0;
@@ -41,7 +42,7 @@ int init_champions(champions **champ, arg_champ *av_list)
 	while (data_base[++i] != NULL) {
 		if ((champ[i] = malloc(sizeof(champions))) == NULL)
 			return (84);
-		if (memset_champion_registers(champ[i], av_list) == 84)
+		if (memset_champion_registers(champ[i]) == 84)
 			return (84);
 		champ[i]->list = data_base[i];
 		champ[i]->name = malloc(sizeof(char) *

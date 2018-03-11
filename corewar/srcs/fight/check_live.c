@@ -35,8 +35,8 @@ int check_live(circular_memory *vm, champions **champ)
 		return (0);
 	} else {
 		nb = id_win(champ, vm->last_live);
-		my_printf("Le joueur %d (%s) a gagné.\n", nb + 1,
-				champ[nb]->name);
+		my_printf("Le joueur %d (%s) a gagné.\n", nb,
+				champ[nb - 1]->name);
 		print_memory(vm->memory);
 		exit (0);
 	}
