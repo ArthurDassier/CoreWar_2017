@@ -13,12 +13,9 @@ void dec_to_hexa(char *tmp, int value)
 	int	i = 0;
 	int	j = 0;
 
-	if (value == 8)
-		j = 8;
-	else if (value == 4)
-		j = 4;
-	if (value == 2)
-		j = 2;
+	j = value;
+	if (j != 2 || j != 4 || j != 8)
+		j = 0;
 	while (value != 0) {
 		tmp[i] = value % 16;
 		if (tmp[i] > 9)
@@ -49,13 +46,7 @@ void instruction_str(char *tmp, instructions *list)
 	int	i = 0;
 	char	*nb = malloc(sizeof(char) * 9);
 
-	tmp[i++] = list->mnemonique[0];
-	tmp[i++] = list->mnemonique[1];
-	if (list->adr != 0) {
-		dec_to_hexa(nb, list->adr);
-		tmp[i++] = nb[0];
-		tmp[i++] = nb[1];
-	}
+	cpy_mne_adr(tmp, &i, list);
 	dec_to_hexa(nb, list->types / 100);
 	cpy_dec(tmp, &i, nb);
 	if (list->arg2 != 0) {

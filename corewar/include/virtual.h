@@ -131,5 +131,6 @@ int check_live(circular_memory *vm, champions **champ);
 
 void print_memory(char *memory);
 void init_lives(int *nb, int size);
+void cpy_mne_adr(char *tmp, int *i, instructions *list);
 
 #endif
