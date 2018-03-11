@@ -30,8 +30,7 @@ int check_live(circular_memory *vm, champions **champ)
 		if (champ[i++]->nb_live > 0)
 			++nbr_still_alive;
 	}
-	i = 0;
-	if (nbr_still_alive != 0)
+	if (nbr_still_alive > 1)
 		return (0);
 	else {
 		nb = id_win(champ, vm->last_live);
@@ -40,5 +39,5 @@ int check_live(circular_memory *vm, champions **champ)
 		print_memory(vm->memory);
 		exit (0);
 	}
-	return (1);
+	return (0);
 }

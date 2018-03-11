@@ -19,6 +19,7 @@ int live_instru(circular_memory *vm, champions *champ)
 	vm->champ_name[nb - 1]);
 	vm->all_live[nb - 1] = 1;
 	vm->last_live = nb;
+	++vm->nbr_live;
 	return (0);
 }
 
