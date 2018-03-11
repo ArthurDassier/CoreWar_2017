@@ -9,7 +9,7 @@
 
 static void set_zero(header_t *head)
 {
-	memset(head, 0, sizeof(header_t));
+	my_memset(head, 0, sizeof(header_t));
 	head->magic = COREWAR_EXEC_MAGIC;
 	head->prog_size = 0;
 	for (int i = 0; i < PROG_NAME_LENGTH + 1; i++)
@@ -77,7 +77,7 @@ static void get_header(char *line, header_t *head, char *fname, int *line_no)
 	}
 }
 
-header_t *create_header(int fd, char *line, char *fname, int *line_no)
+header_t *create_header(int fd, char *line, char *fname, int line_no)
 {
 	header_t	*head = (header_t *)malloc(sizeof(header_t));
 
@@ -86,9 +86,9 @@ header_t *create_header(int fd, char *line, char *fname, int *line_no)
 	set_zero(head);
 	line = get_next_line(fd);
 	while (line) {
-		*line_no += 1;
+		line_no += 1;
 		if (is_header(line))
-			get_header(line, head, fname, line_no);
+			get_header(line, head, fname, &line_no);
 		if (head->prog_name[0] != '\0' && head->comment[0] != '\0') {
 			free(line);
 			break;
@@ -96,5 +96,6 @@ header_t *create_header(int fd, char *line, char *fname, int *line_no)
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (head);
+	lseek(fd, 0, SEEK_SET);
+	return (catch_header_error(head, fname, line_no));
 }
