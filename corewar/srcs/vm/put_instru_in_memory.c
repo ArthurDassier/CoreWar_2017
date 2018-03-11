@@ -13,7 +13,7 @@ void dec_to_hexa(char *tmp, int value)
 	int	j = 0;
 
 	if (value == 8)
-		j = 7;
+		j = 8;
 	else if (value == 4)
 		j = 4;
 	if (value == 2)
