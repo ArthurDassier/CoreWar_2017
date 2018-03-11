@@ -60,7 +60,5 @@ int champ_params_types(champions *champ, int nb_params)
 		bin <<= 2;
 		--nb_params;
 	}
-	if (is_good_params(types, champ->inst) != 0)
-		return (-1);
 	return (types);
 }

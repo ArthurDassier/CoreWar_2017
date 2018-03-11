@@ -17,7 +17,7 @@ int id_win(champions **champ, int last_live)
 			return (champ[i]->registers[0]);
 		++i;
 	}
-	return (-1);
+	return (0);
 }
 
 void check_live(circular_memory *vm, champions **champ)
@@ -35,7 +35,8 @@ void check_live(circular_memory *vm, champions **champ)
 		return;
 	} else {
 		nb = id_win(champ, vm->last_live);
-		my_printf("Le joueur %d (%s) a gagné.\n", nb, champ[nb]->name);
+		my_printf("Le joueur %d (%s) a gagné.\n", nb, champ[nb - 1]->name);
+		print_memory(vm->memory);
 		exit (0);
 	}
 }

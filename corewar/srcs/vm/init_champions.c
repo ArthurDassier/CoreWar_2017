@@ -38,10 +38,12 @@ int init_champions(champions **champ, arg_champ *av_list)
 			return (84);
 		if (memset_champion_registers(champ[i], nb++) == 84)
 			return (84);
-		champ[i]->inst = 0;
-		champ[i]->alive = 1;
 		champ[i]->types = 0;
 		champ[i]->cycle = 0;
+		champ[i]->carry = 0;
+		champ[i]->inst = 0;
+		champ[i]->alive = 1;
+		champ[i]->nb_live = 0;
 		champ[i]->list = data_base[i];
 		champ[i]->name = malloc(sizeof(char) *
 				(my_strlen(champ[i]->list->name) + 1));

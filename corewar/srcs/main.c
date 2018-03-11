@@ -8,7 +8,7 @@
 #include "virtual.h"
 #include "printf.h"
 
-static void print_memory(char *memory)
+void print_memory(char *memory)
 {
 	int	i = 0;
 

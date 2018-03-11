@@ -129,4 +129,6 @@ champions *champ));
 int fight_loop(circular_memory *vm, champions **champ);
 void check_live(circular_memory *vm, champions **champ);
 
+void print_memory(char *memory);
+
 #endif

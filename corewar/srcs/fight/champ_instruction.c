@@ -40,9 +40,8 @@ int champ_instru(champions *champ)
 {
 	if (champ->cycle != 0)
 		return (0);
-	while (champ->inst == 0) {
+	while (champ->inst == 0)
 		champ->inst = rec_instru(champ);
-	}
 	if (is_adr(champ->inst) == 1)
 		champ->types = champ_params_types(champ, nb_params_ins(champ->inst));
 	champ->cycle = inst_cycle(champ->inst);
@@ -54,6 +53,7 @@ int (*exec_tab[16])(circular_memory *vm, champions *champ))
 {
 	if (champ->cycle != 0)
 		return (0);
+//	printf("%d\n", champ->inst);
 	exec_tab[champ->inst - 1](vm, champ);
 	return (0);
 }
@@ -66,8 +66,8 @@ int (*exec_tab[16])(circular_memory *vm, champions *champ))
 	while (champ[i] != NULL) {
 		if (champ[i]->alive == 1 && &champ[i]->PC < &champ[i]->end) {
 			champ_instru(champ[i]);
-			exec_instruc(champ[i], vm, exec_tab);
-			--champ[i++]->cycle;
+			--champ[i]->cycle;
+			exec_instruc(champ[i++], vm, exec_tab);
 		}
 	}
 	return (0);
