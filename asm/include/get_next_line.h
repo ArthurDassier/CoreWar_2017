@@ -5,7 +5,7 @@
 ** header file for get next line
 */
 #ifndef READ_SIZE
-#define READ_SIZE (142)
+#define READ_SIZE (1)
 #endif /* !GET_NEXT_LINE_H_ */
 
 #ifndef GNL_H_

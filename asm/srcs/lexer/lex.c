@@ -13,7 +13,7 @@ static struct token *proccess_label(char *line ,int *pos, struct token *node)
 		*pos += 1;
 	node->tk_val = L;
 	node->mnemo = my_strndup(line + *pos, is_label(line + *pos));
-	node->l_size = 0;
+	node->l_size = set_mem(node, 1);
 	*pos += is_label(line + *pos);
 	*pos += skip_space_tabs_lab(line + *pos);
 	node->arg_tab = NULL;
@@ -54,7 +54,8 @@ static struct token *process_line(char *line, int line_no, char *fname,
 	if (node == NULL)
 		malloc_error();
 	memset(node, 0, sizeof(struct token));
-	if (is_line_comment(line + *pos) || my_strlen(line) == 0) {
+	if (is_line_comment(line + *pos) || my_strlen(line) == 0 ||
+			is_header(line + *pos)) {
 		*pos = my_strlen(line);
 		free(node);
 		return (NULL);
@@ -90,14 +91,15 @@ struct d_queue *lex_file(char *fname)
 
 	if (fd < 0)
 		return (file_error(fname));
-	tmp = add_d_queue(tmp, create_header(fd, line, fname, &line_no));
+	tmp = add_d_queue(tmp, create_header(fd, line, fname, line_no));
 	line = get_next_line(fd);
 	while (line) {
-		++line_no;
 		for (int pos = 0; pos < my_strlen(line);) {
 			node = process_line(line, line_no, fname, &pos);
+			disp(node);
 			tmp = (node) ? add_d_queue(tmp, (void *)node) : tmp;
 		}
+		++line_no;
 		free(line);
 		line = get_next_line(fd);
 	}

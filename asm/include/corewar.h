@@ -64,7 +64,8 @@ int		get_cmd(char *cmd);
 struct d_queue	*lex_file(char *);
 int		is_line_comment(char *);
 struct d_queue *lex_file(char *);
-header_t	*create_header(int, char *, char *, int *);
+header_t	*create_header(int, char *, char *, int);
+header_t *catch_header_error(header_t *, char *, int);
 enum token_e	get_arg_type(char *);
 int		is_line_comment(char *);
 int		is_header(char *);
@@ -108,5 +109,6 @@ void		malloc_error(void);
 void		error_comment(char *, int);
 void		error_name(char *, int);
 void		syntax_error(char *, int);
+void 		my_memset(void *, int, unsigned int);
 
 #endif
