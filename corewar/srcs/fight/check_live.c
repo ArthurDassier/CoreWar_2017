@@ -42,3 +42,8 @@ int check_live(circular_memory *vm, champions **champ)
 	}
 	return (0);
 }
+
+int inst_cycle(int ins)
+{
+	return (op_tab[ins - 1].nbr_cycles);
+}

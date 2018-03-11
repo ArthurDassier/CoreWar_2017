@@ -7,11 +7,6 @@
 
 #include "virtual.h"
 
-int inst_cycle(int ins)
-{
-	return (op_tab[ins - 1].nbr_cycles);
-}
-
 int is_adr(int ins)
 {
 	if (ins == 2 || ins == 3)
