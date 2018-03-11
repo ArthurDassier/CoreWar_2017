@@ -23,7 +23,5 @@ int my_getnbr(char *str)
 		str++;
 	}
 	no *= neg;
-	if (no > 2147483647 || no < -2147483648)
-		return (0);
 	return (no);
 }

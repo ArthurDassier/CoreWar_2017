@@ -21,7 +21,8 @@ static struct d_queue	*get_label(char *label, struct d_queue *head)
 	struct token	*token = tmp->token;
 
 	while (tmp != NULL) {
-		if (my_strcmp(token->mnemo, label) == 0 && token->tk_val == L) {
+		if (my_strcmp(token->mnemo, label) == 0
+		&& token->tk_val == L) {
 			if (tmp->next != NULL)
 				return (tmp->next);
 			else
