@@ -53,7 +53,6 @@ int (*exec_tab[16])(circular_memory *vm, champions *champ))
 {
 	if (champ->cycle != 0)
 		return (0);
-//	printf("%d\n", champ->inst);
 	exec_tab[champ->inst - 1](vm, champ);
 	return (0);
 }
