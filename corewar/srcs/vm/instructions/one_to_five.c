@@ -16,6 +16,7 @@ int live_instru(circular_memory *vm, champions *champ)
 	vm->champ_name[champ->registers[0] - 1]);
 	++vm->nbr_live;
 	vm->last_live = champ->registers[0];
+	//LLOL;
 	return (0);
 }
 

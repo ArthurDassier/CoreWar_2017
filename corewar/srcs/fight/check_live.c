@@ -30,7 +30,7 @@ void check_live(circular_memory *vm, champions **champ)
 		if (champ[i++]->nb_live > 0)
 			++nbr_still_alive;
 	}
-	if (nbr_still_alive > 1 && vm->nbr_live >= NBR_LIVE) {
+	if (nbr_still_alive > 1) {
 		vm->nbr_live = 0;
 		return;
 	} else {

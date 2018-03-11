@@ -56,6 +56,7 @@ struct token
 	int		arg_no;
 	int		line;
 	int		l_size;
+	char		*fname;
 };
 
 //Lexer
@@ -78,6 +79,7 @@ int		skip_space_tabs(char *);
 int		skip_space_tabs_arg(char *);
 int		skip_space_tabs_lab(char *);
 void		disp(struct token *);
+int		is_noise(char *line);
 
 //Parser
 void		add_cmd(struct token *, int);

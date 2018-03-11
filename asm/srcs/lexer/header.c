@@ -63,7 +63,7 @@ static void get_header(char *line, header_t *head, char *fname, int *line_no)
 		for (i = next_quote(line, 0) + 1, inc = 0; line[i] != '"'
 				&& line[i] ; i++, inc++)
 			head->prog_name[inc]  = line[i];
-		if (line[i] == '\0')
+		if (line[i] == '\0' || is_noise(line + i + 1))
 			syntax_error(fname, *line_no);
 	}
 	if (is_comment(line)) {
@@ -72,7 +72,7 @@ static void get_header(char *line, header_t *head, char *fname, int *line_no)
 		for (i = next_quote(line, 0) + 1, inc = 0; line[i] != '"'
 				&& line[i]; i++, inc++)
 			head->comment[inc]  = line[i];
-		if (line[i] == '\0')
+		if (line[i] == '\0' || is_noise(line + i + 1))
 			syntax_error(fname, *line_no);
 	}
 }
