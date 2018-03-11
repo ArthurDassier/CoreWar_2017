@@ -59,6 +59,7 @@ static struct token *process_line(char *line, int line_no, char *fname,
 		free(node);
 		return (NULL);
 	}
+	node->fname = my_strdup(fname);
 	node->line = line_no;
 	if (is_label(line + *pos)) {
 		node = proccess_label(line, pos, node);
