@@ -55,7 +55,7 @@ int champ_params_types(champions *champ, int nb_params)
 	}
 	while (nb_params != loop) {
 		val = (adr >> nb_params * 2) ^ bin;
-		types = types +  val * 2 * 10;
+		types = types + val * 2 * 10;
 		bin |= adr >> (nb_params * 2);
 		bin <<= 2;
 		--nb_params;
