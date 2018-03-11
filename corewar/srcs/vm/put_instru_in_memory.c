@@ -38,7 +38,7 @@ void cpy_dec(char *tmp, int *i, char *nb)
 {
 	int	j = 0;
 
-	while(nb[j] != '\0') {
+	while (nb[j] != '\0') {
 		tmp[*i] = nb[j];
 		*i += 1;
 		++j;
@@ -48,7 +48,7 @@ void cpy_dec(char *tmp, int *i, char *nb)
 void instruction_str(char *tmp, instructions *list)
 {
 	int	i = 0;
-	char	*nb = malloc(sizeof(char) * 8);
+	char	*nb = malloc(sizeof(char) * 9);
 
 	tmp[i++] = list->mnemonique[0];
 	tmp[i++] = list->mnemonique[1];
