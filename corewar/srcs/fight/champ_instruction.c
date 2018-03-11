@@ -30,7 +30,7 @@ int champ_instru(champions *champ)
 	if (champ->cycle != 0)
 		return (0);
 	while (champ->inst == 0) {
-		champ->inst = champ_instru(champ);
+		champ->inst = rec_instru(champ);
 		if (is_adr(champ->inst) == 1)
 			if ((champ->types = champ_params_types(champ,
 					op_tab[champ->inst - 1].type[MAX_ARGS_NUMBER])) == -1)
@@ -43,7 +43,6 @@ int champ_instru(champions *champ)
 int exec_instruc(champions *champ, circular_memory *vm,
 int (*exec_tab[16])(circular_memory *vm, champions *champ))
 {
-	(void) vm;
 	if (champ->cycle != 0)
 		return (0);
 	exec_tab[champ->inst - 1](vm, champ);
@@ -57,8 +56,8 @@ int (*exec_tab[16])(circular_memory *vm, champions *champ))
 
 	while (champ[i] != NULL) {
 		champ_instru(champ[i]);
-		exec_instruc(champ[i++], vm, exec_tab);
-		--champ[i]->cycle;
+		exec_instruc(champ[i], vm, exec_tab);
+		--champ[i++]->cycle;
 	}
 	return (0);
 }
