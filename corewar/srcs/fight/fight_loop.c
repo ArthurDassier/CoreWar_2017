@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2017
+** EPITECH PROJECT, 2018
 ** fight_loop.c
 ** File description:
 ** loop_for_cores_fight
@@ -15,7 +15,6 @@ int fight_loop(circular_memory *vm, champions **champ)
 	int	(*exec_tab[16])(circular_memory *vm, champions *champ);
 
 	init_exec_instru_tab(exec_tab);
-	vm->ll = 0;
 	while (cycle_to_die > 0) {
 		while (i < cycle_to_die) {
 			champ_loop(champ, vm, exec_tab);

@@ -30,9 +30,10 @@ int check_live(circular_memory *vm, champions **champ)
 		if (champ[i++]->nb_live > 0)
 			++nbr_still_alive;
 	}
-	if (nbr_still_alive > 1)
+	if (nbr_still_alive > 1) {
+		vm->nbr_live = 0;
 		return (0);
-	else {
+	} else {
 		nb = id_win(champ, vm->last_live);
 		my_printf("Le joueur %d (%s) a gagné.\n", nb + 1,
 				champ[nb]->name);

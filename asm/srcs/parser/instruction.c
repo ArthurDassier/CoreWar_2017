@@ -21,8 +21,6 @@ void	add_cmd(struct token *token, int fd)
 {
 	int	index = get_cmd(token->mnemo);
 
-	if (index != FAILURE && token->tk_val == I) {
-		printf("1\n");
+	if (index != FAILURE && token->tk_val == I)
 		write(fd, &(op_tab[index].code), 1);
-	}
 }

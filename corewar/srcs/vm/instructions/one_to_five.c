@@ -17,10 +17,15 @@ int live_instru(circular_memory *vm, champions *champ)
 	nb = getnbr_from_size(champ, 8);
 	champ->PC = champ->tmp;
 	my_printf("Le joueur %d (%s) est en vie.\n", nb,
+<<<<<<< HEAD
 	vm->champ_name[nb]);
 	vm->all_live[nb] = 1;
+=======
+	vm->champ_name[nb - 1]);
+>>>>>>> VM
 	vm->last_live = nb;
 	++vm->nbr_live;
+	vm->last_live = champ->registers[0];
 	return (0);
 }
 

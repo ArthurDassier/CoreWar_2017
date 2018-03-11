@@ -59,6 +59,7 @@ static struct token *process_line(char *line, int line_no, char *fname,
 		free(node);
 		return (NULL);
 	}
+	node->fname = my_strdup(fname);
 	node->line = line_no;
 	if (is_label(line + *pos)) {
 		node = proccess_label(line, pos, node);
@@ -95,7 +96,6 @@ struct d_queue *lex_file(char *fname)
 		++line_no;
 		for (int pos = 0; pos < my_strlen(line);) {
 			node = process_line(line, line_no, fname, &pos);
-			disp(node);
 			tmp = (node) ? add_d_queue(tmp, (void *)node) : tmp;
 		}
 		free(line);

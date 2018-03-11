@@ -26,3 +26,17 @@ enum token_e get_arg_type(char *line)
 		return (REG);
 	return (IND);
 }
+
+int is_noise(char *line)
+{
+	int	i = 0;
+	int	inc = 0;
+
+	for (i = 0; line[i]; i++) {
+		if (line[i] == ' ' || line[i] == '\t')
+			continue;
+		else
+			++inc;
+	}
+	return (inc);
+}
