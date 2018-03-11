@@ -53,7 +53,7 @@ int adr_acc(int adr);
 int set_flag(int adr);
 
 int init_champions(champions **champ, arg_champ *av_list);
-int memset_champion_registers(champions *champ, int nb);
+int memset_champion_registers(champions *champ, arg_champ *av_list);
 
 int init_data_base(instructions **list, arg_champ *av_list);
 
