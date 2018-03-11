@@ -8,22 +8,22 @@
 #ifndef INSTR_H_
 #define INSTR_H_
 
-void live_instru(instructions *instr, champions *champ, circular_memory *vm);
-void ld_instru(instructions *instr, champions *champ, circular_memory *vm);
-void st_instru(instructions *instr, champions *champ, circular_memory *vm);
-void add_instru(instructions *instr, champions *champ, circular_memory *vm);
-void sub_instru(instructions *instr, champions *champ, circular_memory *vm);
-void and_instru(instructions *instr, champions *champ, circular_memory *vm);
-void or_instru(instructions *instr, champions *champ, circular_memory *vm);
-void xor_instru(instructions *instr, champions *champ, circular_memory *vm);
-void zjmp_instru(instructions *instr, champions *champ, circular_memory *vm);
-void ldi_instru(instructions *instr, champions *champ, circular_memory *vm);
-void sti_instru(instructions *instr, champions *champ, circular_memory *vm);
-void fork_instru(instructions *instr, champions *champ, circular_memory *vm);
-void lld_instru(instructions *instr, champions *champ, circular_memory *vm);
-void lldi_instru(instructions *instr, champions *champ, circular_memory *vm);
-void lfork_instru(instructions *instr, champions *champ, circular_memory *vm);
-void aff_instru(instructions *instr, champions *champ, circular_memory *vm);
+void live_instru(circular_memory *vm, champions *champ, int types);
+void ld_instru(circular_memory *vm, champions *champ, int types);
+void st_instru(circular_memory *vm, champions *champ, int types);
+void add_instru(circular_memory *vm, champions *champ, int types);
+void sub_instru(circular_memory *vm, champions *champ, int types);
+void and_instru(circular_memory *vm, champions *champ, int types);
+void or_instru(circular_memory *vm, champions *champ, int types);
+void xor_instru(circular_memory *vm, champions *champ, int types);
+void zjmp_instru(circular_memory *vm, champions *champ, int types);
+void ldi_instru(circular_memory *vm, champions *champ, int types);
+void sti_instru(circular_memory *vm, champions *champ, int types);
+void fork_instru(circular_memory *vm, champions *champ, int types);
+void lld_instru(circular_memory *vm, champions *champ, int types);
+void lldi_instru(circular_memory *vm, champions *champ, int types);
+void lfork_instru(circular_memory *vm, champions *champ, int types);
+void aff_instru(circular_memory *vm, champions *champ, int types);
 int modif_carry(int carry);
 
 #endif

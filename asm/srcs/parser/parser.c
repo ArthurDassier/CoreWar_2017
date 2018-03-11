@@ -27,6 +27,8 @@ void	parser(struct d_queue *head, int fd)
 	while (tmp != NULL) {
 		token = tmp->token;
 		if (token->tk_val == L) {
+			if (tmp->next == NULL)
+				break;
 			tmp = tmp->next;
 			token = tmp->token;
 		}
