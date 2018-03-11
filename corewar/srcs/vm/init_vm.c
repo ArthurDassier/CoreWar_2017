@@ -66,9 +66,7 @@ int size)
 		return (-1);
 	if (save_id(vm->champ_name, champ) == -1)
 		return (-1);
-	vm->all_live = malloc(sizeof(int) * (av_list->nbr_champ + 1));
 	vm->nbr_live = 0;
-	init_lives(vm->all_live, av_list->nbr_champ);
 	memory_memset(vm->memory, size);
 	vm->memory_end = vm->memory + (size - 1);
 	vm->memory_head = vm->memory;
