@@ -62,7 +62,7 @@ int zjmp_instru(circular_memory *vm, champions *champ)
 	(void) vm;
 	if (champ->carry == 1) {
 		jump = getnbr_from_size(champ, champ->types) % IDX_MOD;
-		champ->PC += jump;
+		memory_put_move(vm, champ, ' ', jump);
 		champ->tmp = champ->PC;
 	}
 	return (0);
@@ -83,9 +83,9 @@ int ldi_instru(circular_memory *vm, champions *champ)
 	champ->PC = champ->tmp;
 	if (rg > REG_NUMBER)
 		return (-1);
-	champ->tmp += ld % IDX_MOD;
+	memory_put_move(vm, champ, ' ', (ld % IDX_MOD));
 	the_s = getnbr_from_size(champ, IND_SIZE) + nbr;
-	champ->tmp = champ->PC + the_s % IDX_MOD;
+	memory_put_move(vm, champ, ' ', (the_s % IDX_MOD));
 	nbr_to_load = getnbr_from_size(champ, REG_SIZE);
 	champ->registers[rg - 1] = nbr_to_load;
 	champ->tmp = champ->PC;

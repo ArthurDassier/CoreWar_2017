@@ -69,8 +69,8 @@ int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 int size);
 void memory_put_move(circular_memory *vm, champions *champ, char data, int adr);
 int put_instructions_in_memory(champions **champ, circular_memory *vm);
-int hexo_to_dec(int value, int flag);
-void int_to_str(char *tmp, int nb, int *i, int size);
+void dec_to_hexa(char *tmp, int value);
+void cpy_dec(char *tmp, int *i, char *nb);
 void instruction_str(char *tmp, instructions *list);
 instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm);
 
@@ -127,8 +127,9 @@ void init_exec_instru_tab(int (*exec_instru_tab[16])(circular_memory *vm,
 champions *champ));
 
 int fight_loop(circular_memory *vm, champions **champ);
-void check_live(circular_memory *vm, champions **champ);
+int check_live(circular_memory *vm, champions **champ);
 
 void print_memory(char *memory);
+void init_lives(int *nb, int size);
 
 #endif

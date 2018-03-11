@@ -15,12 +15,11 @@ int fight_loop(circular_memory *vm, champions **champ)
 	int	(*exec_tab[16])(circular_memory *vm, champions *champ);
 
 	init_exec_instru_tab(exec_tab);
-	vm->nbr_live = 0;
+	vm->ll = 0;
 	while (cycle_to_die > 0) {
 		while (i < cycle_to_die) {
 			champ_loop(champ, vm, exec_tab);
-			if ( vm->nbr_live >= NBR_LIVE) {
-				/* code */
+			if (vm->nbr_live >= NBR_LIVE) {
 				check_live(vm, champ);
 				cycle_to_die -= cycle_delta;
 			}

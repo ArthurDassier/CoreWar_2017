@@ -13,10 +13,10 @@ int rec_instru(champions *champ)
 	char	*tmp = malloc(sizeof(char) * 3);
 
 	tmp[0] = *champ->tmp;
-	++champ->tmp;
+	champ->tmp += 1;
 	tmp[1] = *champ->tmp;
 	tmp[2] = '\0';
-	++champ->tmp;
+	champ->tmp += 1;
 	inst = my_getnbr_base(tmp, "0123456789ABCDEF");
 	free(tmp);
 	if (inst < 1 || inst > 16)
@@ -31,10 +31,10 @@ int rec_adr(champions *champ)
 	char	*tmp = malloc(sizeof(char) * 3);
 
 	tmp[0] = *champ->tmp;
-	++champ->tmp;
+	champ->tmp += 1;
 	tmp[1] = *champ->tmp;
 	tmp[2] = '\0';
-	++champ->tmp;
+	champ->tmp += 1;
 	adr = my_getnbr_base(tmp, "0123456789ABCDEF");
 	free(tmp);
 	return (adr);

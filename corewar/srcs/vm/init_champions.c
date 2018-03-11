@@ -17,7 +17,7 @@ int memset_champion_registers(champions *champ, int nb)
 	champ->registers[i++] = nb;
 	while (i != REG_NUMBER)
 		champ->registers[i++] = 0;
-	champ->registers[i] = -1;
+	champ->registers[i] = 0;
 	champ->carry = 0;
 	return (0);
 }
