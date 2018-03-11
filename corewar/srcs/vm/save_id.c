@@ -23,3 +23,12 @@ int save_id(char **champ_name, champions **champ)
 	champ_name[4] = NULL;
 	return (0);
 }
+
+void init_lives(int *nb, int size)
+{
+	int	i = 0;
+
+	while (i != size)
+		nb[i++] = 0;
+	nb[i] = -1;
+}

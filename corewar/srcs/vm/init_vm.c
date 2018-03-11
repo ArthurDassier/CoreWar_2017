@@ -44,9 +44,9 @@ void memory_put_move(circular_memory *vm, champions *champ, char data, int adr)
 		flag2 = 1;
 	flag = set_flag(adr);
 	while (adr != 0) {
-		if (champ->tmp == vm->memory_end)
+		if (champ->tmp == vm->memory_end) {
 			champ->tmp = vm->memory_head;
-		else if (champ->tmp == vm->memory_head - flag2)
+		} else if (champ->tmp == vm->memory_head - flag2)
 			champ->tmp = vm->memory_end;
 		champ->tmp += flag;
 		adr = adr_acc(adr);
@@ -66,17 +66,21 @@ int size)
 		return (-1);
 	if (save_id(vm->champ_name, champ) == -1)
 		return (-1);
-	memory_memset(vm->memory, size - 1);
-	vm->memory_end = vm->memory + size;
+	vm->all_live = malloc(sizeof(int) * (av_list->nbr_champ + 1));
+	vm->nbr_live = 0;
+	init_lives(vm->all_live, av_list->nbr_champ);
+	memory_memset(vm->memory, size);
+	vm->memory_end = vm->memory + (size - 1);
 	vm->memory_head = vm->memory;
 	while (av_list != NULL) {
 		champ[i]->PC = vm->memory;
-		if ((champ[i]->PC += av_list->hyp_a) == vm->memory_head) {
-			champ[i]->PC += (MEM_SIZE / av_list->nbr_champ *
-				(i + 1) - 1);
-		} else
-			champ[i]->PC -= 1;
 		champ[i]->tmp = champ[i]->PC;
+		if (av_list->hyp_a == 0) {
+			memory_put_move(vm, champ[i], ' ', MEM_SIZE /
+					(av_list->nbr_champ * (i + 1)) - 1);
+		} else
+			memory_put_move(vm, champ[i], ' ', av_list->hyp_a);
+		champ[i]->PC = champ[i]->tmp;
 		av_list = av_list->next;
 		++i;
 	}

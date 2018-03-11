@@ -15,15 +15,15 @@ int fight_loop(circular_memory *vm, champions **champ)
 	int	(*exec_tab[16])(circular_memory *vm, champions *champ);
 
 	init_exec_instru_tab(exec_tab);
-	vm->nbr_live = 0;
+	vm->ll = 0;
 	while (cycle_to_die > 0) {
 		while (i != cycle_to_die) {
 			champ_loop(champ, vm, exec_tab);
 			++i;
 		}
-		check_live(vm, champ);
+		if (check_live(vm, champ) == 0)
+			cycle_to_die -= cycle_delta;
 		i = 0;
-		cycle_to_die -= cycle_delta;
 	}
 	return (0);
 }

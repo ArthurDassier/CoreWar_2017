@@ -18,6 +18,8 @@ typedef struct circular_memory
 	char	*memory_end;
 	char	**champ_name;
 	int	size;
+	int	ll;
+	int	*all_live;
 	int	nbr_live;
 	int	last_live;
 } circular_memory;

@@ -127,8 +127,9 @@ void init_exec_instru_tab(int (*exec_instru_tab[16])(circular_memory *vm,
 champions *champ));
 
 int fight_loop(circular_memory *vm, champions **champ);
-void check_live(circular_memory *vm, champions **champ);
+int check_live(circular_memory *vm, champions **champ);
 
 void print_memory(char *memory);
+void init_lives(int *nb, int size);
 
 #endif

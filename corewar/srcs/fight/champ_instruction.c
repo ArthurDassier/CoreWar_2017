@@ -42,8 +42,10 @@ int champ_instru(champions *champ)
 		return (0);
 	while (champ->inst == 0)
 		champ->inst = rec_instru(champ);
-	if (is_adr(champ->inst) == 1)
-		champ->types = champ_params_types(champ, nb_params_ins(champ->inst));
+	if (is_adr(champ->inst) == 1) {
+		champ->types = champ_params_types(champ,
+				nb_params_ins(champ->inst));
+	}
 	champ->cycle = inst_cycle(champ->inst);
 	return (0);
 }

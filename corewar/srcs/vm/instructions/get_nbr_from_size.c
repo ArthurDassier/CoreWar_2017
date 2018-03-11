@@ -15,10 +15,10 @@ int getnbr_from_size(champions *champ, int size)
 
 	while (i != size) {
 		tmp[i++] = *champ->tmp;
-		++champ->tmp;
+		champ->tmp += 1;
 	}
 	tmp[i] = '\0';
-	++champ->tmp;
+	champ->tmp += 1;
 	nb = my_getnbr_base(tmp, "0123456789ABCDEF");
 	free(tmp);
 	return (nb);
