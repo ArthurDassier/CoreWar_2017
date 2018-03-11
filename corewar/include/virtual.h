@@ -60,20 +60,21 @@ int init_data_base(instructions **list, arg_champ *av_list);
 void switch_endian_two(union endian *value);
 void switch_endian_four(union endian *value);
 
-int read_headers(int fd);
+int read_headers(instructions *list, int fd);
 int check_name_comment(char *name, char *comment);
 int headers_error_handling(struct header_s *files_h);
 
+int save_id(char **champ_name, champions **champ);
 int memory_init(circular_memory *vm, champions **champ, arg_champ *av_list,
 int size);
 void memory_put_move(circular_memory *vm, champions *champ, char data, int adr);
 int put_instructions_in_memory(champions **champ, circular_memory *vm);
-int hexo_to_dec(int value, int flag);
-void int_to_str(char *tmp, int nb, int *i, int size);
+void dec_to_hexa(char *tmp, int value);
+void cpy_dec(char *tmp, int *i, char *nb);
 void instruction_str(char *tmp, instructions *list);
 instructions *put_one_champ_in_memory(champions *champ, circular_memory *vm);
 
-instructions *read_instructions(int fd);
+instructions *read_instructions(int fd, instructions *list);
 int read_live(instructions *list, int fd);
 int read_ld(instructions *list, int fd);
 int read_st(instructions *list, int fd);
@@ -104,11 +105,32 @@ int read_sti(instructions *list, int code, int nb_arg, int fd);
 int recup_instruction(instructions *instr, circular_memory *vm, champions *champ);
 int cycles(circular_memory *vm, champions **champ);
 
-int champ_instru(champions *champ);
-int champ_adr(champions *champ);
-int champ_params_types(int adr, int nb_params, int inst);
 int is_good_params(int types, int inst);
+int rec_instru(champions *champ);
+int rec_adr(champions *champ);
 
 int getnbr_from_size(champions *champ, int size);
+
+int inst_cycle(int inst);
+int is_adr(int ins);
+int exec_instruc(champions *champ, circular_memory *vm,
+int (*exec_tab[16])(circular_memory *vm, champions *champ));
+
+int champ_loop(champions **champ, circular_memory *vm,
+int (*exec_tab[16])(circular_memory *vm, champions *champ));
+
+int champ_instru(champions *champ);
+int champ_params_types(champions *champ, int nb_params);
+int nb_params_ins(int ins);
+
+void init_exec_instru_tab(int (*exec_instru_tab[16])(circular_memory *vm,
+champions *champ));
+
+int fight_loop(circular_memory *vm, champions **champ);
+int check_live(circular_memory *vm, champions **champ);
+
+void print_memory(char *memory);
+void init_lives(int *nb, int size);
+void cpy_mne_adr(char *tmp, int *i, instructions *list);
 
 #endif

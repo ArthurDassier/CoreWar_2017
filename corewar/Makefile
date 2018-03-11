@@ -26,17 +26,22 @@ SRC	=	srcs/main.c						\
 		srcs/vm/recup_instruct/switch_endian.c			\
 		srcs/vm/recup_instruct/init_data_base.c			\
 		srcs/vm/init_vm.c					\
+		srcs/vm/save_id.c					\
 		srcs/vm/recup_args/clist_argv.c				\
 		srcs/vm/clist_arg_champ.c				\
 		srcs/vm/put_instru_in_memory.c				\
+		srcs/vm/pu_in_me_two.c				\
 		srcs/vm/instructions/get_nbr_from_size.c		\
 		srcs/vm/instructions/one_to_five.c			\
 		srcs/vm/instructions/six_to_ten.c			\
 		srcs/vm/instructions/eleven_to_fifteen.c		\
 		srcs/vm/instructions/sixteen.c				\
 		srcs/vm/champions/param_error.c				\
+		srcs/fight/champ_instruction.c				\
 		srcs/vm/champions/pars_champ.c				\
 		srcs/fight/exec_instructions.c				\
+		srcs/fight/fight_loop.c					\
+		srcs/fight/check_live.c					\
 
 OBJ	=	$(SRC:.c = .o)
 

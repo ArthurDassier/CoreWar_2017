@@ -6,6 +6,7 @@
 */
 
 #include "virtual.h"
+#include "printf.h"
 
 static int malloc_instruction(instructions *list)
 {
@@ -40,18 +41,14 @@ static void init_instructions_tab(int (**inst_tab)(instructions *list, int fd))
 	inst_tab[15] = &read_aff;
 }
 
-instructions *read_instructions(int fd)
+instructions *read_instructions(int fd, instructions *list)
 {
 	int			rv = 0;
 	int			i = 0;
-	instructions		*list = NULL;
-	instructions		*tmp_list = NULL;
+	instructions		*tmp_list = list;
 	int			(*inst_tab[16])(instructions *list, int fd);
 
-	if ((list = malloc(sizeof(instructions))) == NULL)
-		return (NULL);
-	tmp_list = list;
-	printf("\n == instructions == \n\n");
+	my_printf("\n == instructions == \n\n");
 	init_instructions_tab(inst_tab);
 	while ((rv = read(fd, &i, 1)) != 0) {
 		if (malloc_instruction(tmp_list) == 84)
@@ -60,12 +57,12 @@ instructions *read_instructions(int fd)
 			return (NULL);
 		if ((tmp_list->next = malloc(sizeof(instructions))) == NULL)
 			return (NULL);
-		printf("==> %s", tmp_list->mnemonique);
-		printf("	/ TY = %d", tmp_list->types);
-		printf("	/ AD = %X", tmp_list->adr);
-		printf("	/ A1 = %X", tmp_list->arg1);
-		printf("	/ A2 = %X", tmp_list->arg2);
-		printf("	/ A3 = %X\n", tmp_list->arg3);
+		my_printf("==> %s", tmp_list->mnemonique);
+		my_printf("	/ TY = %d", tmp_list->types);
+		my_printf("	/ AD = %X", tmp_list->adr);
+		my_printf("	/ A1 = %X", tmp_list->arg1);
+		my_printf("	/ A2 = %X", tmp_list->arg2);
+		my_printf("	/ A3 = %X\n", tmp_list->arg3);
 		tmp_list = tmp_list->next;
 	}
 	tmp_list->next = NULL;

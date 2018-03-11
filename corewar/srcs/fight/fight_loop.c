@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2017
+** EPITECH PROJECT, 2018
 ** fight_loop.c
 ** File description:
 ** loop_for_cores_fight
@@ -7,27 +7,24 @@
 
 #include "virtual.h"
 
-void set_cycles(int *cycles, int *max, int delta)
+int fight_loop(circular_memory *vm, champions **champ)
 {
-	if (*cycles == *max) {
-		*cycles = 1;
-		*max -= delta;
-	}
-}
-
-void loop_fight(circular_memory *vm, champions **champ)
-{
-	int	cycles = 1;
-	int	max = CYCLES_TO_DIE;
-	int	delta = CYCLES_DELTA;
-	int	lives = NBR_LIVE;
+	int	cycle_to_die = CYCLE_TO_DIE;
+	int	cycle_delta = CYCLE_DELTA;
 	int	i = 0;
+	int	(*exec_tab[16])(circular_memory *vm, champions *champ);
 
-	while (cycles != (max + 1)) {
-		while (champ[i])
-			do_instruction(champ[i++]);
+	init_exec_instru_tab(exec_tab);
+	while (cycle_to_die > 0) {
+		while (i < cycle_to_die) {
+			champ_loop(champ, vm, exec_tab);
+			if (vm->nbr_live >= NBR_LIVE) {
+				check_live(vm, champ);
+			}
+			++i;
+		}
+		cycle_to_die -= cycle_delta;
 		i = 0;
-		set_cycles(cycles, max, delta);
-		++cycles;
 	}
+	return (0);
 }

@@ -18,11 +18,14 @@ int find_a(char **av, int i)
 
 int find_n(char **av, int i)
 {
+	static int	nbr = 0;
+
 	if (i - 2 > 0 && av[i - 2][1] == 'n')
 		return (my_getnbr(av[i - 1]));
 	if (i - 4 > 0 && av[i - 4][1] == 'n')
 		return (my_getnbr(av[i - 3]));
-	return (0);
+	++nbr;
+	return (nbr);
 }
 
 arg_champ *put_in_list(arg_champ *clt, char **av, int i)
@@ -32,11 +35,11 @@ arg_champ *put_in_list(arg_champ *clt, char **av, int i)
 	if (status == 0) {
 		clt = init_ag_champ(find_a(av, i), find_n(av, i), av[i]);
 		if (clt == NULL)
-			return (NULL);
+			exit (84);
 		status = 1;
 	} else
 		if (insert_end(&clt, find_a(av, i), find_n(av, i), av[i]) == 84)
-			return (NULL);
+			exit (84);
 	return (clt);
 }
 
@@ -60,8 +63,6 @@ arg_champ *put_arg(int ac, char **av)
 	while (i != ac) {
 		if (verif_cor(av[i]) == 1) {
 			clist = put_in_list(clist, av, i);
-			if (clist == NULL)
-				return (NULL);
 			++clist->nbr_champ;
 		}
 		++i;

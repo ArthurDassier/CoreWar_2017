@@ -18,15 +18,15 @@ int err_init_data_base(instructions **list, arg_champ *av_list, int i)
 		my_puterror("open failed\n");
 		return (84);
 	}
-	if (read_headers(fd) == -1) {
-		my_puterror("bad header\n");
-		return (84);
-	}
 	if((list[i] = malloc(sizeof(instructions))) == NULL) {
 		my_puterror("malloc failed\n");
 		return (84);
 	}
-	if ((list[i] = read_instructions(fd)) == NULL) {
+	if (read_headers(list[i], fd) == -1) {
+		my_puterror("bad header\n");
+		return (84);
+	}
+	if ((list[i] = read_instructions(fd, list[i])) == NULL) {
 		my_puterror("list failed\n");
 		return (84);
 	}

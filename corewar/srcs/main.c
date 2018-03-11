@@ -8,7 +8,7 @@
 #include "virtual.h"
 #include "printf.h"
 
-static void print_memory(char *memory)
+void print_memory(char *memory)
 {
 	int	i = 0;
 
@@ -41,6 +41,7 @@ int main(int ac, char **av)
 	if (put_instructions_in_memory(champ, vm) == 84)
 		return (84);
 	print_memory(vm->memory);
-	cycles(vm, champ);
+	fight_loop(vm, champ);
+	print_memory(vm->memory);
 	return (0);
 }
