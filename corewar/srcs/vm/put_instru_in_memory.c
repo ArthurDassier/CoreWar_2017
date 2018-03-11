@@ -6,6 +6,7 @@
 */
 
 #include "virtual.h"
+#include "printf.h"
 
 void dec_to_hexa(char *tmp, int value)
 {
@@ -67,7 +68,7 @@ void instruction_str(char *tmp, instructions *list)
 		cpy_dec(tmp, &i, nb);
 	}
 	tmp[i] = '\0';
-	printf("== instructions str ==> %s\n", tmp);
+	my_printf("== instructions str ==> %s\n", tmp);
 }
 
 instructions *put_champ_in_mem(champions *champ, circular_memory *vm)
@@ -78,7 +79,7 @@ instructions *put_champ_in_mem(champions *champ, circular_memory *vm)
 
 	if (tmp == NULL)
 		return (NULL);
-	printf("\n");
+	my_printf("\n");
 	while (champ->list->next != NULL) {
 		instruction_str(tmp, champ->list);
 		while (tmp[i] != '\0')

@@ -32,9 +32,6 @@ int fork_instru(circular_memory *vm, champions *champ)
 	(void) champ;
 	(void) vm;
 	(void) champ->types;
-	/*It creates a new program that inherits different states from
-	the parent. This program is executed at the address PC
-	+ first index_one % IDX_MOD.*/
 	return (0);
 }
 
@@ -85,8 +82,5 @@ int lfork_instru(circular_memory *vm, champions *champ)
 	(void) champ->types;
 	(void) champ;
 	(void) vm;
-	/*It creates a new program that inherits different states from
-	the parent. This program is executed at the address PC
-	+ first index_one.*/
 	return (0);
 }
