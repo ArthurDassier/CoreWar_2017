@@ -13,12 +13,12 @@ int sti_instru(circular_memory *vm, champions *champ)
 	int	rg = getnbr_from_size(champ, champ->types / 10 % 10);
 	int	ld = getnbr_from_size(champ, champ->types % 10);
 	int	i = 0;
-	char	*str = NULL;
+	char	*str = malloc(sizeof(char) * champ->registers[rr - 1] + 1);
 
 	champ->PC = champ->tmp;
 	if (rr > REG_NUMBER)
 		return (-1);
-	str = its(champ->registers[rr - 1]);
+	str = its(champ->registers[rr - 1], str);
 	champ->tmp += (rg + ld) % IDX_MOD;
 	memory_put_move(vm, champ, str[i++], 0);
 	while (str[i] != '\0')

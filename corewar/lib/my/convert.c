@@ -23,10 +23,9 @@ char itc(int nb)
 	return (c);
 }
 
-char *its(int nb)
+char *its(int nb, char *str)
 {
 	char	base[10] = "0123456789";
-	char	*str = malloc(sizeof(char) * nb);
 	int	i = 0;
 	int	j = 0;
 	int	tmp = 0;

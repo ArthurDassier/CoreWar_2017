@@ -32,6 +32,6 @@ char *my_realloc(char *str);
 void my_puterror(char *str);
 int cti(char c);
 char itc(int nb);
-char *its(int nb);;
+char *its(int nb, char *str);
 
 #endif

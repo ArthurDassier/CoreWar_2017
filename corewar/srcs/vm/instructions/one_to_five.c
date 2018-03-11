@@ -43,10 +43,10 @@ int st_instru(circular_memory *vm, champions *champ)
 	int	rg = getnbr_from_size(champ, champ->types / 10);
 	int	ld = getnbr_from_size(champ, champ->types % 10);
 	int	i = 0;
-	char	*str = NULL;
+	char	*str = malloc(sizeof(char) * champ->registers[rg - 1] + 1);
 
 	champ->PC = champ->tmp;
-	str = its(champ->registers[rg - 1]);
+	str = its(champ->registers[rg - 1], str);
 	if (champ->types % 10 == 8) {
 		champ->tmp += ld % IDX_MOD;
 		memory_put_move(vm, champ, str[i++], 0);
